@@ -53,9 +53,16 @@ class ServiceProviderController extends Controller
         return redirect()->route('service-provider.index')->with('success', 'Prestador de serviço criado com sucesso!');
     }
 
-    public function edit(ServiceProvider $serviceProvider) // Route model binding
+    public function edit($id) // Route model binding
     {
-        $clients = Client::all(); // Busque todos os clientes para o select
+        $serviceProvider = ServiceProvider::find($id);
+
+        if (!$serviceProvider) {
+            return redirect()->route('client.index')->with('error', 'Cliente não encontrado');
+        }
+
+        $clients = Client::all();
+
         return view('service_provider.edit', compact('serviceProvider', 'clients'));
     }
 
@@ -63,7 +70,7 @@ class ServiceProviderController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'company_name' => 'required|string|max:255',
-            'provider_cnpj' => 'required|string|max:255|unique:service_provider,provider_cnpj,' . $serviceProvider->id, // Validação única (ignora o registro atual)
+            'provider_cnpj' => 'required|string|max:255|unique:service_providers,provider_cnpj,' . $serviceProvider->id, // Validação única (ignora o registro atual)
             'social_purpose' => 'nullable|string',
             'company_type' => 'nullable|string|max:255',
             'company_opening_date' => 'nullable|date',
