@@ -21,6 +21,28 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ServiceProviderController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/client', [ClientController::class, 'index'])->name('client.index');
+    Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
+    Route::get('/client/{id}', [ClientController::class, 'show'])->name('client.show');
+    Route::post('/client', [ClientController::class, 'store'])->name('client.store');
+    Route::get('/client/{id}/edit', [ClientController::class, 'edit'])->name('client.edit');
+    Route::put('/client/{id}', [ClientController::class, 'update'])->name('client.update');
+    Route::delete('/client', [ClientController::class, 'destroy'])->name('client.delete');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/service-provider', [ServiceProviderController::class, 'index'])->name('service-provider.index');
+    Route::get('/service-provider/create', [ServiceProviderController::class, 'create'])->name('service-provider.create');
+    Route::get('/service-provider/{id}', [ServiceProviderController::class, 'show'])->name('service-provider.show');
+    Route::post('/service-provider', [ServiceProviderController::class, 'store'])->name('service-provider.store');
+    Route::get('/service-provider/{id}/edit', [ServiceProviderController::class, 'edit'])->name('service-provider.edit');
+    Route::put('/service-provider/{id}', [ServiceProviderController::class, 'update'])->name('service-provider.update');
+    Route::delete('/service-provider', [ServiceProviderController::class, 'destroy'])->name('client.delete');
+});
 
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
