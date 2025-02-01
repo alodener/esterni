@@ -23,6 +23,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ServiceProviderController;
+use App\Http\Controllers\EmployeeController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/client', [ClientController::class, 'index'])->name('client.index');
@@ -31,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/client', [ClientController::class, 'store'])->name('client.store');
     Route::get('/client/{id}/edit', [ClientController::class, 'edit'])->name('client.edit');
     Route::put('/client/{id}', [ClientController::class, 'update'])->name('client.update');
-    Route::delete('/client', [ClientController::class, 'destroy'])->name('client.delete');
+    Route::delete('/client', [ClientController::class, 'destroy'])->name('client.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -40,8 +41,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/service-provider/{id}', [ServiceProviderController::class, 'show'])->name('service-provider.show');
     Route::post('/service-provider', [ServiceProviderController::class, 'store'])->name('service-provider.store');
     Route::get('/service-provider/{id}/edit', [ServiceProviderController::class, 'edit'])->name('service-provider.edit');
-    Route::put('/service-provider/{id}', [ServiceProviderController::class, 'update'])->name('service-provider.update');
-    Route::delete('/service-provider', [ServiceProviderController::class, 'destroy'])->name('client.delete');
+    Route::put('/service-provider/{serviceProvider}', [ServiceProviderController::class, 'update'])->name('service-provider.update');
+    Route::delete('/service-provider', [ServiceProviderController::class, 'destroy'])->name('service-provider.destroy');
+});
+
+Route::prefix('employees')->group(function () {
+    Route::get('/', [EmployeeController::class, 'index'])->name('employees.index'); // Listar funcionários
+    Route::get('/create', [EmployeeController::class, 'create'])->name('employees.create'); // Formulário de criação
+    Route::post('/', [EmployeeController::class, 'store'])->name('employees.store'); // Criar funcionário
+    Route::get('/{employee}', [EmployeeController::class, 'show'])->name('employees.show'); // Ver detalhes
+    Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.edit'); // Formulário de edição
+    Route::put('/{employee}', [EmployeeController::class, 'update'])->name('employees.update'); // Atualizar funcionário
+    Route::delete('/{employee}', [EmployeeController::class, 'destroy'])->name('employees.destroy'); // Excluir funcionário
 });
 
 

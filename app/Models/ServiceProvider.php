@@ -38,5 +38,9 @@ class ServiceProvider extends Model
         return $this->belongsTo(Client::class);
     }
 
-    // Outros relacionamentos (se houver)
+    public function employee ()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
 }

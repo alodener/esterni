@@ -15,9 +15,17 @@ class ServiceProviderController extends Controller
         return view('service_provider.index', compact('serviceProviders'));
     }
 
+    public function show()
+    {
+        $serviceProviders = ServiceProvider::with('client')->get(); // Ou use paginação: ServiceProvider::paginate(10);
+        return view('service_provider.show', compact('serviceProviders'));
+    }
+
     public function create()
     {
-        return view('service_provider.create');
+        $clients = Client::all();
+
+        return view('service_provider.create', compact('clients'));
     }
 
     public function store(Request $request)
@@ -96,13 +104,13 @@ class ServiceProviderController extends Controller
 
         $serviceProvider->update($request->all()); // Mass assignment (cuidado com campos sensíveis)
 
-        return redirect()->route('service_provider.index')->with('success', 'Prestador de serviço atualizado com sucesso!');
+        return redirect()->route('service-provider.index')->with('success', 'Prestador de serviço atualizado com sucesso!');
     }
 
     public function destroy(ServiceProvider $serviceProvider) // Route model binding
     {
         $serviceProvider->delete(); // Soft delete
 
-        return redirect()->route('service_provider.index')->with('success', 'Prestador de serviço excluído com sucesso!');
+        return redirect()->route('service-provider.index')->with('success', 'Prestador de serviço excluído com sucesso!');
     }
 }
