@@ -20,4 +20,9 @@ class Client extends Model
     {
         return $this->morphMany(Address::class, 'addressable');
     }
+
+    public function serviceProviders()
+    {
+        return $this->hasMany(ServiceProvider::class);
+    }
 }

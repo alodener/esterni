@@ -12,7 +12,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-3">Cadastrar Cliente</h6>
+                                <h6 class="mb-3">Novo Prestador</h6>
                             </div>
                         </div>
                     </div>
@@ -41,116 +41,112 @@
                             </div>
                         @endif
 
-                        {{-- FORMULARIO CRIAR USUARIO --}}
-                        <form method="POST" action="{{ route('client.store') }}">
+                        {{-- FORMULARIO CRIAR PRESTADOR --}}
+                        <form method="POST" action="{{ route('service-provider.store') }}">
                             @csrf
                             <div class="row">
                                 <div class="mb-3 col-md-6">
-                                    <label for="name" class="form-label">Nome</label>
-                                    <input type="text" name="name" id="name"
-                                        class="form-control border border-2 p-2" value="{{ old('name') }}" required>
-                                    @error('name')
-                                        <p class='text-danger inputerror'>{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="cnpj" class="form-label">CNPJ</label>
-                                    <input type="text" name="cnpj" id="cnpj"
-                                        class="form-control border border-2 p-2" value="{{ old('cnpj') }}" required>
-                                    @error('cnpj')
-                                        <p class='text-danger inputerror'>{{ $message }}</p>
-                                    @enderror
+                                    <label for="company_name" class="form-label">Nome da Empresa</label>
+                                    <input type="text" name="company_name" id="company_name" class="form-control" value="{{ old('company_name') }}" required>
+                                    @error('company_name')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="street" class="form-label">Rua</label>
-                                    <input type="text" name="street" id="street"
-                                        class="form-control border border-2 p-2" value="{{ old('street') }}" required>
-                                    @error('street')
-                                        <p class='text-danger inputerror'>{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="number" class="form-label">Número</label>
-                                    <input type="text" name="number" id="number"
-                                        class="form-control border border-2 p-2" value="{{ old('number') }}"
-                                        required>
-                                    @error('number')
-                                        <p class='text-danger inputerror'>{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="complement" class="form-label">Complemento</label>
-                                    <input type="text" name="complement" id="complement"
-                                        class="form-control border border-2 p-2" value="{{ old('complement') }}">
-                                    @error('complement')
-                                        <p class='text-danger inputerror'>{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="district" class="form-label">Bairro</label>
-                                    <input type="text" name="district" id="district"
-                                        class="form-control border border-2 p-2" value="{{ old('district') }}"
-                                        required>
-                                    @error('district')
-                                        <p class='text-danger inputerror'>{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="city" class="form-label">Cidade</label>
-                                    <input type="text" name="city" id="city"
-                                        class="form-control border border-2 p-2" value="{{ old('city') }}"
-                                        required>
-                                    @error('city')
-                                        <p class='text-danger inputerror'>{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="state" class="form-label">Estado</label>
-                                    <input type="text" name="state" id="state"
-                                        class="form-control border border-2 p-2" value="{{ old('state') }}"
-                                        required>
-                                    @error('state')
-                                        <p class='text-danger inputerror'>{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="zip_code" class="form-label">CEP</label>
-                                    <input type="text" name="zip_code" id="zip_code"
-                                        class="form-control border border-2 p-2" value="{{ old('zip_code') }}"
-                                        required>
-                                    @error('zip_code')
-                                        <p class='text-danger inputerror'>{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="country" class="form-label">País</label>
-                                    <input type="text" name="country" id="country"
-                                        class="form-control border border-2 p-2" value="{{ old('country') }}"
-                                        required>
-                                    @error('country')
-                                        <p class='text-danger inputerror'>{{ $message }}</p>
-                                    @enderror
+                                    <label for="provider_cnpj" class="form-label">CNPJ</label>
+                                    <input type="text" name="provider_cnpj" id="provider_cnpj" class="form-control" value="{{ old('provider_cnpj') }}" required>
+                                    @error('provider_cnpj')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="password" class="form-label">Senha</label>
-                                    <input type="password" class="form-control border border-2 p-2" name="password"
-                                        id="password" required>
-                                    @error('password')
-                                        <p class="text-danger inputerror">{{ $message }}</p>
-                                    @enderror
+                                    <label for="social_purpose" class="form-label">Objeto Social</label>
+                                    <input type="text" name="social_purpose" id="social_purpose" class="form-control" value="{{ old('social_purpose') }}">
+                                    @error('social_purpose')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="password_confirmation" class="form-label">Confirmar Senha</label>
-                                    <input type="password" class="form-control border border-2 p-2"
-                                        name="password_confirmation" id="password_confirmation" required>
+                                    <label for="company_type" class="form-label">Tipo de Empresa</label>
+                                    <input type="text" name="company_type" id="company_type" class="form-control" value="{{ old('company_type') }}">
+                                    @error('company_type')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
+                                <div class="mb-3 col-md-6">
+                                    <label for="company_opening_date" class="form-label">Data de Abertura</label>
+                                    <input type="date" name="company_opening_date" id="company_opening_date" class="form-control" value="{{ old('company_opening_date') }}">
+                                    @error('company_opening_date')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="share_capital" class="form-label">Capital Social</label>
+                                    <input type="number" name="share_capital" id="share_capital" class="form-control" value="{{ old('share_capital') }}">
+                                    @error('share_capital')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                @for ($i = 1; $i <= 4; $i++)
+                                    <div class="mb-3 col-md-6">
+                                        <label for="managing_partner_{{ $i }}" class="form-label">Sócio Administrador {{ $i }}</label>
+                                        <input type="text" name="managing_partner_{{ $i }}" id="managing_partner_{{ $i }}" class="form-control" value="{{ old('managing_partner_' . $i) }}">
+                                        @error('managing_partner_'. $i)<p class='text-danger'>{{ $message }}</p>@enderror
+                                    </div>
+                                @endfor
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="risk_level" class="form-label">Nível de Risco</label>
+                                    <input type="text" name="risk_level" id="risk_level" class="form-control" value="{{ old('risk_level') }}">
+                                    @error('risk_level')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="service_provided" class="form-label">Serviço Prestado</label>
+                                    <input type="text" name="service_provided" id="service_provided" class="form-control" value="{{ old('service_provided') }}">
+                                    @error('service_provided')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="relationship_contact" class="form-label">Contato</label>
+                                    <input type="text" name="relationship_contact" id="relationship_contact" class="form-control" value="{{ old('relationship_contact') }}">
+                                    @error('relationship_contact')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="contract_start_date" class="form-label">Início do Contrato</label>
+                                    <input type="date" name="contract_start_date" id="contract_start_date" class="form-control" value="{{ old('contract_start_date') }}">
+                                    @error('contract_start_date')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="contract_end_date" class="form-label">Término do Contrato</label>
+                                    <input type="date" name="contract_end_date" id="contract_end_date" class="form-control" value="{{ old('contract_end_date') }}">
+                                    @error('contract_end_date')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="monthly_base_value" class="form-label">Valor Base Mensal</label>
+                                    <input type="number" name="monthly_base_value" id="monthly_base_value" class="form-control" value="{{ old('monthly_base_value') }}">
+                                    @error('monthly_base_value')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="retention_clause" class="form-label">Cláusula de Retenção</label>
+                                    <input type="text" name="retention_clause" id="retention_clause" class="form-control" value="{{ old('retention_clause') }}">
+                                    @error('retention_clause')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="number_of_contracted_employees" class="form-label">Número de Funcionários</label>
+                                    <input type="number" name="number_of_contracted_employees" id="number_of_contracted_employees" class="form-control" value="{{ old('number_of_contracted_employees') }}">
+                                    @error('number_of_contracted_employees')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="client_id" class="form-label">Cliente</label>
+                                    <input type="number" name="client_id" id="client_id" class="form-control" value="{{ old('client_id') }}" required>
+                                    @error('client_id')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
                             </div>
-                            <button type="submit" class="btn bg-gradient-dark">Enviar</button>
+
+                            <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
+
 
                     </div>
                 </div>

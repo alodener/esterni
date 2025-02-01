@@ -40,7 +40,7 @@
                                                 CNPJ</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Status</th>
+                                                Vínculo</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Ações</th>
@@ -48,26 +48,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($clients as $client)
+                                        @foreach ($serviceProviders as $serviceProvider)
                                             <tr>
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">{{ $client->name }}</h6>
+                                                            <h6 class="mb-0 text-sm">{{ $serviceProvider->company_name }}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $client->cnpj }}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $serviceProvider->provider_cnpj }}</p>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="badge badge-sm bg-gradient-{{ $client->status === 'Ativo' ? 'success' : 'danger' }}">
-                                                        {{ $client->status }}
-                                                    </span>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $serviceProvider->client->name }}</p>
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    <a href="{{ route('client.edit', $client->id) }}"
+                                                    <a href="{{ route('service-provider.edit', $serviceProvider->id) }}"
                                                         {{-- Link para editar --}}
                                                         class="text-secondary font-weight-bold text-xs badge badge-sm bg-gradient-secondary text-white"
                                                         data-toggle="tooltip" data-original-title="Editar usuário">
