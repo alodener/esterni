@@ -12,7 +12,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-3">Novo Prestador</h6>
+                                <h6 class="mb-3">Novo Funcionário</h6>
                             </div>
                         </div>
                     </div>
@@ -41,120 +41,109 @@
                             </div>
                         @endif
 
-                        {{-- FORMULARIO CRIAR PRESTADOR --}}
-                        <form method="POST" action="{{ route('service-provider.store') }}">
+                        {{-- FORMULARIO CRIAR FUNCIONARIO --}}
+                        <form method="POST" action="{{ route('employees.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
+                                {{-- <div class="mb-3 col-md-6">
+                                    <label for="service_provider_id" class="form-label">Prestador de Serviço</label>
+                                    <select name="service_provider_id" id="service_provider_id" class="form-select border border-2 p-2" required>
+                                        <option value="">Selecione um prestador</option>
+                                        @foreach($serviceProviders as $provider)
+                                            <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('service_provider_id')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div> --}}
+
                                 <div class="mb-3 col-md-6">
-                                    <label for="company_name" class="form-label">Nome da Empresa</label>
-                                    <input type="text" name="company_name" id="company_name" class="form-control border border-2 p-2" value="{{ old('company_name') }}" required>
-                                    @error('company_name')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="photo" class="form-label">Foto</label>
+                                    <input type="file" name="photo" id="photo" class="form-control border border-2 p-2">
+                                    @error('photo')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="provider_cnpj" class="form-label">CNPJ</label>
-                                    <input type="text" name="provider_cnpj" id="provider_cnpj" class="form-control border border-2 p-2" value="{{ old('provider_cnpj') }}" required>
+                                    <label for="system_enable_date" class="form-label">Data de Habilitação no Sistema</label>
+                                    <input type="date" name="system_enable_date" id="system_enable_date" class="form-control border border-2 p-2" required>
+                                    @error('system_enable_date')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="client_name" class="form-label">Nome do Cliente</label>
+                                    <input type="text" name="client_name" id="client_name" class="form-control border border-2 p-2" required>
+                                    @error('client_name')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="provider_name" class="form-label">Nome do Prestador</label>
+                                    <input type="text" name="provider_name" id="provider_name" class="form-control border border-2 p-2" required>
+                                    @error('provider_name')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="provider_cnpj" class="form-label">CNPJ do Prestador</label>
+                                    <input type="text" name="provider_cnpj" id="provider_cnpj" class="form-control border border-2 p-2" required>
                                     @error('provider_cnpj')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="social_purpose" class="form-label">Objeto Social</label>
-                                    <input type="text" name="social_purpose" id="social_purpose" class="form-control border border-2 p-2" value="{{ old('social_purpose') }}">
-                                    @error('social_purpose')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="employee_name" class="form-label">Nome do Funcionário</label>
+                                    <input type="text" name="employee_name" id="employee_name" class="form-control border border-2 p-2" required>
+                                    @error('employee_name')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="company_type" class="form-label">Tipo de Empresa</label>
-                                    <input type="text" name="company_type" id="company_type" class="form-control border border-2 p-2" value="{{ old('company_type') }}">
-                                    @error('company_type')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="admission_date" class="form-label">Data de Admissão</label>
+                                    <input type="date" name="admission_date" id="admission_date" class="form-control border border-2 p-2" required>
+                                    @error('admission_date')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="company_opening_date" class="form-label">Data de Abertura</label>
-                                    <input type="date" name="company_opening_date" id="company_opening_date" class="form-control border border-2 p-2" value="{{ old('company_opening_date') }}">
-                                    @error('company_opening_date')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="dismissal_date" class="form-label">Data de Demissão</label>
+                                    <input type="date" name="dismissal_date" id="dismissal_date" class="form-control border border-2 p-2">
+                                    @error('dismissal_date')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="share_capital" class="form-label">Capital Social</label>
-                                    <input type="number" name="share_capital" id="share_capital" class="form-control border border-2 p-2" value="{{ old('share_capital') }}">
-                                    @error('share_capital')<p class='text-danger'>{{ $message }}</p>@enderror
-                                </div>
-
-                                @for ($i = 1; $i <= 4; $i++)
-                                    <div class="mb-3 col-md-6">
-                                        <label for="managing_partner_{{ $i }}" class="form-label">Sócio Administrador {{ $i }}</label>
-                                        <input type="text" name="managing_partner_{{ $i }}" id="managing_partner_{{ $i }}" class="form-control border border-2 p-2" value="{{ old('managing_partner_' . $i) }}">
-                                        @error('managing_partner_'. $i)<p class='text-danger'>{{ $message }}</p>@enderror
-                                    </div>
-                                @endfor
-
-                                <div class="mb-3 col-md-6">
-                                    <label for="risk_level" class="form-label">Nível de Risco</label>
-                                    <input type="text" name="risk_level" id="risk_level" class="form-control border border-2 p-2" value="{{ old('risk_level') }}">
-                                    @error('risk_level')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="job_title" class="form-label">Cargo</label>
+                                    <input type="text" name="job_title" id="job_title" class="form-control border border-2 p-2" required>
+                                    @error('job_title')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="service_provided" class="form-label">Serviço Prestado</label>
-                                    <input type="text" name="service_provided" id="service_provided" class="form-control border border-2 p-2" value="{{ old('service_provided') }}">
-                                    @error('service_provided')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="salary" class="form-label">Salário</label>
+                                    <input type="number" step="0.01" name="salary" id="salary" class="form-control border border-2 p-2" required>
+                                    @error('salary')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="relationship_contact" class="form-label">Contato</label>
-                                    <input type="text" name="relationship_contact" id="relationship_contact" class="form-control border border-2 p-2" value="{{ old('relationship_contact') }}">
-                                    @error('relationship_contact')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="work_schedule" class="form-label">Horário de Trabalho</label>
+                                    <input type="text" name="work_schedule" id="work_schedule" class="form-control border border-2 p-2" required>
+                                    @error('work_schedule')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="contract_start_date" class="form-label">Início do Contrato</label>
-                                    <input type="date" name="contract_start_date" id="contract_start_date" class="form-control border border-2 p-2" value="{{ old('contract_start_date') }}">
-                                    @error('contract_start_date')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="department" class="form-label">Departamento</label>
+                                    <input type="text" name="department" id="department" class="form-control border border-2 p-2" required>
+                                    @error('department')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="contract_end_date" class="form-label">Término do Contrato</label>
-                                    <input type="date" name="contract_end_date" id="contract_end_date" class="form-control border border-2 p-2" value="{{ old('contract_end_date') }}">
-                                    @error('contract_end_date')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="start_client_allocation" class="form-label">Início da Alocação</label>
+                                    <input type="date" name="start_client_allocation" id="start_client_allocation" class="form-control border border-2 p-2" required>
+                                    @error('start_client_allocation')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="monthly_base_value" class="form-label">Valor Base Mensal</label>
-                                    <input type="number" name="monthly_base_value" id="monthly_base_value" class="form-control border border-2 p-2" value="{{ old('monthly_base_value') }}">
-                                    @error('monthly_base_value')<p class='text-danger'>{{ $message }}</p>@enderror
-                                </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label for="retention_clause" class="form-label">Cláusula de Retenção</label>
-                                    <input type="text" name="retention_clause" id="retention_clause" class="form-control border border-2 p-2" value="{{ old('retention_clause') }}">
-                                    @error('retention_clause')<p class='text-danger'>{{ $message }}</p>@enderror
-                                </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label for="number_of_contracted_employees" class="form-label">Número de Funcionários</label>
-                                    <input type="number" name="number_of_contracted_employees" id="number_of_contracted_employees" class="form-control border border-2 p-2" value="{{ old('number_of_contracted_employees') }}">
-                                    @error('number_of_contracted_employees')<p class='text-danger'>{{ $message }}</p>@enderror
-                                </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label for="client_id" class="form-label">Vínculo</label>
-                                    <select name="client_id" id="client_id" class="form-select border border-2 p-2" required>
-                                        <option value="">Selecione um cliente</option>
-                                        @foreach($clients as $client)
-                                            <option value="{{ $client->id }}">
-                                                {{ $client->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('client_id')
-                                        <p class='text-danger'>{{ $message }}</p>
-                                    @enderror
+                                    <label for="end_client_allocation" class="form-label">Fim da Alocação</label>
+                                    <input type="date" name="end_client_allocation" id="end_client_allocation" class="form-control border border-2 p-2">
+                                    @error('end_client_allocation')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
+
 
 
                     </div>

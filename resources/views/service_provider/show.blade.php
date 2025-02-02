@@ -5,19 +5,6 @@
         <x-navbars.navs.auth titlePage="Visualizar Prestadores"></x-navbars.navs.auth>
         <!-- End Navbar -->
 
-        {{-- <div class="col-md-12 mb-lg-0 mb-4">
-            <div class="mt-4">
-                <div class=" pb-0 p-3">
-                    <div class="row">
-                        <div class="col-1 text-end">
-                            <a class="btn bg-gradient-dark mb-0" href="{{ route('service-provider.create') }}"><i
-                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Novo Prestador</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
         <div class="container px-0">
             <div class="card card-body mx-md-4 mt-4">
                 <div class="card card-plain h-100 mb-4">
