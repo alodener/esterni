@@ -17,7 +17,7 @@ class ServiceProviderController extends Controller
 
     public function show()
     {
-        $serviceProviders = ServiceProvider::with('client')->get(); // Ou use paginação: ServiceProvider::paginate(10);
+        $serviceProviders = ServiceProvider::with('client')->first(); // Ou use paginação: ServiceProvider::paginate(10);
         return view('service_provider.show', compact('serviceProviders'));
     }
 

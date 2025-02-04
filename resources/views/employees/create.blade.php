@@ -45,16 +45,14 @@
                         <form method="POST" action="{{ route('employees.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                {{-- <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-6">
                                     <label for="service_provider_id" class="form-label">Prestador de Serviço</label>
-                                    <select name="service_provider_id" id="service_provider_id" class="form-select border border-2 p-2" required>
+                                    <select name="service_provider_id" id="service_provider_id" class="form-select border border-2 p-2" required disabled>
                                         <option value="">Selecione um prestador</option>
-                                        @foreach($serviceProviders as $provider)
-                                            <option value="{{ $provider->id }}">{{ $provider->name }}</option>
-                                        @endforeach
+                                        <option selected="selected" value="{{ $serviceProvider->id }}">{{ $serviceProvider->company_name }}</option>
                                     </select>
                                     @error('service_provider_id')<p class='text-danger'>{{ $message }}</p>@enderror
-                                </div> --}}
+                                </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label for="photo" class="form-label">Foto</label>
@@ -76,13 +74,13 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="provider_name" class="form-label">Nome do Prestador</label>
-                                    <input type="text" name="provider_name" id="provider_name" class="form-control border border-2 p-2" required>
+                                    <input type="text" name="provider_name" id="provider_name" class="form-control border border-2 p-2" value="{{ $serviceProvider->company_name }}" disabled required>
                                     @error('provider_name')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label for="provider_cnpj" class="form-label">CNPJ do Prestador</label>
-                                    <input type="text" name="provider_cnpj" id="provider_cnpj" class="form-control border border-2 p-2" required>
+                                    <input type="text" name="provider_cnpj" id="provider_cnpj" class="form-control border border-2 p-2" value="{{ $serviceProvider->provider_cnpj }}" disabled required>
                                     @error('provider_cnpj')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
@@ -117,6 +115,24 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
+                                    <label for="insalubrity" class="form-label">Insalubridade</label>
+                                    <select name="insalubrity" id="insalubrity" class="form-select border border-2 p-2" required>
+                                        <option value="0">Não</option>
+                                        <option value="1">Sim</option>
+                                    </select>
+                                    @error('insalubrity')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="dangerousness" class="form-label">Periculosidade</label>
+                                    <select name="dangerousness" id="dangerousness" class="form-select border border-2 p-2" required>
+                                        <option value="0">Não</option>
+                                        <option value="1">Sim</option>
+                                    </select>
+                                    @error('dangerousness')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
                                     <label for="work_schedule" class="form-label">Horário de Trabalho</label>
                                     <input type="text" name="work_schedule" id="work_schedule" class="form-control border border-2 p-2" required>
                                     @error('work_schedule')<p class='text-danger'>{{ $message }}</p>@enderror
@@ -127,22 +143,10 @@
                                     <input type="text" name="department" id="department" class="form-control border border-2 p-2" required>
                                     @error('department')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label for="start_client_allocation" class="form-label">Início da Alocação</label>
-                                    <input type="date" name="start_client_allocation" id="start_client_allocation" class="form-control border border-2 p-2" required>
-                                    @error('start_client_allocation')<p class='text-danger'>{{ $message }}</p>@enderror
-                                </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label for="end_client_allocation" class="form-label">Fim da Alocação</label>
-                                    <input type="date" name="end_client_allocation" id="end_client_allocation" class="form-control border border-2 p-2">
-                                    @error('end_client_allocation')<p class='text-danger'>{{ $message }}</p>@enderror
-                                </div>
                             </div>
-
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
+
 
 
 

@@ -47,7 +47,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::prefix('employees')->group(function () {
     Route::get('/', [EmployeeController::class, 'index'])->name('employees.index'); // Listar funcionários
-    Route::get('/create', [EmployeeController::class, 'create'])->name('employees.create'); // Formulário de criação
+    Route::get('/create/{employee}', [EmployeeController::class, 'create'])->name('employees.create'); // Formulário de criação
     Route::post('/', [EmployeeController::class, 'store'])->name('employees.store'); // Criar funcionário
     Route::get('/{employee}', [EmployeeController::class, 'show'])->name('employees.show'); // Ver detalhes
     Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.edit'); // Formulário de edição
