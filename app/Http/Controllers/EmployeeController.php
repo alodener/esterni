@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
@@ -60,10 +61,11 @@ class EmployeeController extends Controller
             'end_client_allocation' => 'nullable|date',
         ]);
 
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+        $data = $validator->validated();
         // Verifica se há uma foto e faz o upload
         $photoPath = null;
         if ($request->hasFile('photo')) {
@@ -73,32 +75,36 @@ class EmployeeController extends Controller
 
         // Criar o novo empregado
         $employee = Employee::create([
-            'service_provider_id' => $validator['service_provider_id'],
+            'service_provider_id' => $data['service_provider_id'],
             'photo' => $photoPath, // Salva o caminho da foto
-            'system_enable_date' => $validator['system_enable_date'],
-            'client_name' => $validator['client_name'],
-            'provider_name' => $validator['provider_name'],
-            'provider_cnpj' => $validator['provider_cnpj'],
-            'employee_name' => $validator['employee_name'],
-            'admission_date' => $validator['admission_date'],
-            'dismissal_date' => $validator['dismissal_date'],
-            'job_title' => $validator['job_title'],
-            'salary' => $validator['salary'],
-            'insalubrity' => $validator['insalubrity'] ?? false,
-            'dangerousness' => $validator['dangerousness'] ?? false,
-            'work_schedule' => $validator['work_schedule'],
-            'night_shift' => $validator['night_shift'] ?? false,
-            'department' => $validator['department'],
-            'start_client_allocation' => $validator['start_client_allocation'],
-            'end_client_allocation' => $validator['end_client_allocation'],
+            'system_enable_date' => $data['system_enable_date'],
+            'client_name' => $data['client_name'],
+            'provider_name' => $data['provider_name'],
+            'provider_cnpj' => $data['provider_cnpj'],
+            'employee_name' => $data['employee_name'],
+            'admission_date' => $data['admission_date'],
+            'dismissal_date' => $data['dismissal_date'],
+            'job_title' => $data['job_title'],
+            'salary' => $data['salary'],
+            'insalubrity' => $data['insalubrity'] ?? false,
+            'dangerousness' => $data['dangerousness'] ?? false,
+            'work_schedule' => $data['work_schedule'],
+            'night_shift' => $data['night_shift'] ?? false,
+            'department' => $data['department'],
+            'start_client_allocation' => $data['start_client_allocation'],
+            'end_client_allocation' => $data['end_client_allocation'],
         ]);
 
         // Retornar uma resposta ou redirecionar
-        return redirect()->route('employees.index')->with('success', 'Funcionario criado com sucesso!');
+        return redirect()->route('employees.show', $data['service_provider_id'])->with('success', 'Funcionario criado com sucesso!');
     }
-    public function edit($id)
+    public function edit(Employee $employee, $serviceProvider)
     {
-        //
+        $serviceProvider = ServiceProvider::with('employees')->find($serviceProvider);
+        if (!$serviceProvider) {
+            return redirect()->route('service-provider.show', $serviceProvider)->with('error', 'Prestador não encontrado');
+        }
+        return view('employees.edit', compact('serviceProvider', 'employee'));
     }
 
     /**
@@ -108,10 +114,71 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Employee $employee, ServiceProvider $serviceProvider)
     {
-        //
+        // Validação dos dados
+        $validator = Validator::make($request->all(), [
+            'service_provider_id' => 'required|exists:service_providers,id',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validações da foto
+            'system_enable_date' => 'required|date',
+            'client_name' => 'required|string',
+            'provider_name' => 'required|string',
+            'provider_cnpj' => 'required|string|max:18',
+            'employee_name' => 'required|string',
+            'admission_date' => 'required|date',
+            'dismissal_date' => 'nullable|date',
+            'job_title' => 'required|string',
+            'salary' => 'required|numeric',
+            'insalubrity' => 'nullable|boolean',
+            'dangerousness' => 'nullable|boolean',
+            'work_schedule' => 'required|string',
+            'night_shift' => 'nullable|boolean',
+            'department' => 'required|string',
+            'start_client_allocation' => 'required|date',
+            'end_client_allocation' => 'nullable|date',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $data = $validator->validated();
+
+        // Verifica se há uma nova foto e faz o upload
+        if ($request->hasFile('photo')) {
+            // Remove a foto antiga, se houver
+            if ($employee->photo) {
+                Storage::disk('public')->delete($employee->photo);
+            }
+            // Faz o upload da nova foto
+            $data['photo'] = $request->file('photo')->store('photos', 'public');
+        }
+
+        // Atualiza os dados do empregado
+        $employee->update([
+            'service_provider_id' => $data['service_provider_id'],
+            'photo' => $data['photo'] ?? $employee->photo,
+            'system_enable_date' => $data['system_enable_date'],
+            'client_name' => $data['client_name'],
+            'provider_name' => $data['provider_name'],
+            'provider_cnpj' => $data['provider_cnpj'],
+            'employee_name' => $data['employee_name'],
+            'admission_date' => $data['admission_date'],
+            'dismissal_date' => $data['dismissal_date'],
+            'job_title' => $data['job_title'],
+            'salary' => $data['salary'],
+            'insalubrity' => $data['insalubrity'] ?? false,
+            'dangerousness' => $data['dangerousness'] ?? false,
+            'work_schedule' => $data['work_schedule'],
+            'night_shift' => $data['night_shift'] ?? false,
+            'department' => $data['department'],
+            'start_client_allocation' => $data['start_client_allocation'],
+            'end_client_allocation' => $data['end_client_allocation'],
+        ]);
+
+        return redirect()->route('employees.show', $serviceProvider)->with('success', 'Funcionário atualizado com sucesso!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -119,8 +186,14 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $serviceProviderId)
     {
-        //
+        $employee = Employee::find($id);
+        if(!$employee){
+            return redirect()->route('employees.show', $serviceProviderId)->with('error', 'Não foi possivel excluir o funcionário');
+        }
+        $employee->delete(); // Soft delete
+
+        return redirect()->route('employees.show', $serviceProviderId)->with('success', 'Funcionário de serviço excluído com sucesso!');
     }
 }

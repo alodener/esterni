@@ -37,6 +37,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('assets') }}/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body class="{{ $bodyClass }}">
 
@@ -61,5 +62,40 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('assets') }}/js/material-dashboard.min.js?v=3.0.0"></script>
+<script>
+    @if(session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: '{{ session('success') }}',
+            position: 'top-end', // ou 'bottom-end' para o canto inferior
+            showConfirmButton: false,
+            timer: 3000, // tempo em milissegundos para o toast desaparecer
+            toast: true, // Faz a mensagem ser exibida como um toast
+            background: '#28a745', // Cor de fundo personalizada
+            color: '#fff', // Cor do texto
+            iconColor: '#fff', // Cor do ícone
+            customClass: {
+                container: 'position-fixed', // Garante que o toast fique fixo
+                popup: 'col-md-4', // Define a largura do popup
+            }
+        });
+    @elseif(session('error'))
+        Swal.fire({
+            icon: 'error',
+            title: '{{ session('error') }}',
+            position: 'top-end', // ou 'bottom-end' para o canto inferior
+            showConfirmButton: false,
+            timer: 3000, // tempo em milissegundos para o toast desaparecer
+            toast: true, // Faz a mensagem ser exibida como um toast
+            background: '#dc3545', // Cor de fundo personalizada
+            color: '#fff', // Cor do texto
+            iconColor: '#fff', // Cor do ícone
+            customClass: {
+                container: 'position-fixed', // Garante que o toast fique fixo
+                popup: 'col-md-4', // Define a largura do popup
+            }
+        });
+    @endif
+</script>
 </body>
 </html>

@@ -105,26 +105,26 @@
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">{{ $employee->employee }}</h6>
+                                                            <h6 class="mb-0 text-sm">{{ $employee->client_name }}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $employee->employee }}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $employee->department }}</p>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <p class="text-xs font-weight-bold mb-0">{{ $employee->admission_date }}</p>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <div class="d-flex justify-content-center">
-                                                        <a href="{{ route('service-provider.edit', $employee->id) }}"
+                                                        <a href="{{ route('employees.edit', [$employee->id, $serviceProvider->id]) }}"
                                                            class="btn btn-sm btn-secondary text-white me-1"
                                                            data-toggle="tooltip"
                                                            data-original-title="Editar usuário">
                                                             Editar
                                                         </a>
 
-                                                        <form action="{{ route('service-provider.destroy', $employee->id) }}"
+                                                        <form action="{{ route('employees.destroy', [$employee->id, $serviceProvider->id]) }}"
                                                               method="POST" style="display: inline-block;">
                                                             @csrf
                                                             @method('DELETE')

@@ -15,9 +15,12 @@ class ServiceProviderController extends Controller
         return view('service_provider.index', compact('serviceProviders'));
     }
 
-    public function show()
+    public function show($id)
     {
-        $serviceProviders = ServiceProvider::with('client')->first(); // Ou use paginação: ServiceProvider::paginate(10);
+        $serviceProviders = ServiceProvider::with('client')->find($id); // Ou use paginação: ServiceProvider::paginate(10);
+        if(!$serviceProviders){
+            return redirect()->route('client.index')->with('error', 'Prestador não encontrado');
+        }
         return view('service_provider.show', compact('serviceProviders'));
     }
 

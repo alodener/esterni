@@ -50,9 +50,9 @@ Route::prefix('employees')->group(function () {
     Route::get('/create/{employee}', [EmployeeController::class, 'create'])->name('employees.create'); // Formulário de criação
     Route::post('/', [EmployeeController::class, 'store'])->name('employees.store'); // Criar funcionário
     Route::get('/{employee}', [EmployeeController::class, 'show'])->name('employees.show'); // Ver detalhes
-    Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.edit'); // Formulário de edição
+    Route::get('/{employee}/edit/{serviceProvider}', [EmployeeController::class, 'edit'])->name('employees.edit'); // Formulário de edição
     Route::put('/{employee}', [EmployeeController::class, 'update'])->name('employees.update'); // Atualizar funcionário
-    Route::delete('/{employee}', [EmployeeController::class, 'destroy'])->name('employees.destroy'); // Excluir funcionário
+    Route::delete('/{employee}/{serviceProvider}', [EmployeeController::class, 'destroy'])->name('employees.destroy'); // Excluir funcionário
 });
 
 

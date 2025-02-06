@@ -47,9 +47,8 @@
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label for="service_provider_id" class="form-label">Prestador de Serviço</label>
-                                    <select name="service_provider_id" id="service_provider_id" class="form-select border border-2 p-2" required disabled>
-                                        <option value="">Selecione um prestador</option>
-                                        <option selected="selected" value="{{ $serviceProvider->id }}">{{ $serviceProvider->company_name }}</option>
+                                    <select name="service_provider_id" id="service_provider_id" class="form-select border border-2 p-2" required readonly>
+                                        <option selected="selected" value="{{ $serviceProvider->id }}" readonly>{{ $serviceProvider->company_name }}</option>
                                     </select>
                                     @error('service_provider_id')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
@@ -74,13 +73,13 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="provider_name" class="form-label">Nome do Prestador</label>
-                                    <input type="text" name="provider_name" id="provider_name" class="form-control border border-2 p-2" value="{{ $serviceProvider->company_name }}" disabled required>
+                                    <input type="text" name="provider_name" id="provider_name" class="form-control border border-2 p-2" value="{{ $serviceProvider->company_name }}" readonly required>
                                     @error('provider_name')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label for="provider_cnpj" class="form-label">CNPJ do Prestador</label>
-                                    <input type="text" name="provider_cnpj" id="provider_cnpj" class="form-control border border-2 p-2" value="{{ $serviceProvider->provider_cnpj }}" disabled required>
+                                    <input type="text" name="provider_cnpj" id="provider_cnpj" class="form-control border border-2 p-2" value="{{ $serviceProvider->provider_cnpj }}" readonly required>
                                     @error('provider_cnpj')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
@@ -143,12 +142,27 @@
                                     <input type="text" name="department" id="department" class="form-control border border-2 p-2" required>
                                     @error('department')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="dismissal_date" class="form-label">Data de Demissão</label>
+                                    <input type="date" name="dismissal_date" id="dismissal_date" class="form-control border border-2 p-2">
+                                    @error('dismissal_date')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="start_client_allocation" class="form-label">Ínicio da Lotação no Tomador</label>
+                                    <input type="date" name="start_client_allocation" id="start_client_allocation" class="form-control border border-2 p-2">
+                                    @error('start_client_allocation')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="end_client_allocation" class="form-label">Fim da Lotação no Tomador</label>
+                                    <input type="date" name="end_client_allocation" id="end_client_allocation" class="form-control border border-2 p-2">
+                                    @error('end_client_allocation')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
-
-
-
 
                     </div>
                 </div>
