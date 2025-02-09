@@ -114,7 +114,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee, ServiceProvider $serviceProvider)
+    public function update(Request $request, Employee $employee)
     {
         // Validação dos dados
         $validator = Validator::make($request->all(), [
@@ -176,7 +176,7 @@ class EmployeeController extends Controller
             'end_client_allocation' => $data['end_client_allocation'],
         ]);
 
-        return redirect()->route('employees.show', $serviceProvider)->with('success', 'Funcionário atualizado com sucesso!');
+        return redirect()->route('employees.show', $data['service_provider_id'])->with('success', 'Funcionário atualizado com sucesso!');
     }
 
 
@@ -194,6 +194,6 @@ class EmployeeController extends Controller
         }
         $employee->delete(); // Soft delete
 
-        return redirect()->route('employees.show', $serviceProviderId)->with('success', 'Funcionário de serviço excluído com sucesso!');
+        return redirect()->route('employees.show', $serviceProviderId)->with('success', 'Funcionário excluído com sucesso!');
     }
 }

@@ -3,7 +3,7 @@
     <x-navbars.sidebar activePage="service-provider"></x-navbars.sidebar>
     <div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage='Novo Prestador'></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage='Novo Funcionário'></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="container px-2 px-md-4">
