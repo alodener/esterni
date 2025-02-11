@@ -43,4 +43,28 @@ class ServiceProvider extends Model
         return $this->hasMany(Employee::class);
     }
 
+    // Relação 1:1 com Habilitação Jurídica
+    public function legalCertification()
+    {
+        return $this->hasOne(LegalCertification::class);
+    }
+
+    // Relação 1:1 com Habilitação Trabalhista
+    public function laborCertification()
+    {
+        return $this->hasOne(LaborCertification::class);
+    }
+
+    // Relação 1:1 com Habilitação Fiscal
+    public function fiscalCertification()
+    {
+        return $this->hasOne(FiscalCertification::class);
+    }
+
+    // Relação 1:1 com Habilitação Econômica
+    public function economicCertification()
+    {
+        return $this->hasOne(EconomicCertification::class);
+    }
+
 }
