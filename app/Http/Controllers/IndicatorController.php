@@ -19,60 +19,60 @@ class IndicatorController extends Controller
     /**
      * Atualiza ou cria a Habilitação Jurídica
      */
-    public function updateOrCreateLegalCertification(Request $request, $serviceProviderId)
+    public function updateOrCreateLegalCertification(Request $request)
     {
-        $serviceProvider = ServiceProvider::findOrFail($serviceProviderId);
+        $serviceProvider = ServiceProvider::findOrFail($request->service_provider_id);
 
         $serviceProvider->legalCertification()->updateOrCreate(
-            ['service_provider_id' => $serviceProvider->id],
+            ['service_provider_id' => $request->service_provider_id],
             $request->all()
         );
 
-        return response()->json(['message' => 'Legal Certification updated successfully']);
+        return redirect()->route('service-provider.show', $request->service_provider_id)->with('success', 'Indicador alterado com sucesso');
     }
 
     /**
      * Atualiza ou cria a Habilitação Trabalhista
      */
-    public function updateOrCreateLaborCertification(Request $request, $serviceProviderId)
+    public function updateOrCreateLaborCertification(Request $request)
     {
-        $serviceProvider = ServiceProvider::findOrFail($serviceProviderId);
+        $serviceProvider = ServiceProvider::findOrFail($request->service_provider_id);
 
         $serviceProvider->laborCertification()->updateOrCreate(
-            ['service_provider_id' => $serviceProvider->id],
+            ['service_provider_id' => $request->service_provider_id],
             $request->all()
         );
 
-        return response()->json(['message' => 'Labor Certification updated successfully']);
+        return redirect()->route('service-provider.show', $request->service_provider_id)->with('success', 'Indicador alterado com sucesso');
     }
 
     /**
      * Atualiza ou cria a Habilitação Fiscal
      */
-    public function updateOrCreateFiscalCertification(Request $request, $serviceProviderId)
+    public function updateOrCreateFiscalCertification(Request $request)
     {
-        $serviceProvider = ServiceProvider::findOrFail($serviceProviderId);
+        $serviceProvider = ServiceProvider::findOrFail($request->service_provider_id);
 
         $serviceProvider->fiscalCertification()->updateOrCreate(
-            ['service_provider_id' => $serviceProvider->id],
+            ['service_provider_id' => $request->service_provider_id],
             $request->all()
         );
 
-        return response()->json(['message' => 'Fiscal Certification updated successfully']);
+        return redirect()->route('service-provider.show', $request->service_provider_id)->with('success', 'Indicador alterado com sucesso');
     }
 
     /**
      * Atualiza ou cria a Habilitação Econômica
      */
-    public function updateOrCreateEconomicCertification(Request $request, $serviceProviderId)
+    public function updateOrCreateEconomicCertification(Request $request)
     {
-        $serviceProvider = ServiceProvider::findOrFail($serviceProviderId);
+        $serviceProvider = ServiceProvider::findOrFail($request->service_provider_id);
 
         $serviceProvider->economicCertification()->updateOrCreate(
-            ['service_provider_id' => $serviceProvider->id],
+            ['service_provider_id' => $request->service_provider_id],
             $request->all()
         );
 
-        return response()->json(['message' => 'Economic Certification updated successfully']);
+        return redirect()->route('service-provider.show', $request->service_provider_id)->with('success', 'Indicador alterado com sucesso');
     }
 }

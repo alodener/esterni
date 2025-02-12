@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('calculation_memory')->nullable(); // Memória de Cálculo
             $table->string('bankruptcy_certificate')->nullable(); // Certidão Negativa de Falência e Protesto
             $table->string('dre_balance_sheet')->nullable(); // DRE/Balancete
-            $table->boolean('issues_invoice')->default(false); // Emite Nota Fiscal?
+            $table->string('issues_invoice')->nullable(); // Emite Nota Fiscal?
             $table->timestamps();
         });
     }
