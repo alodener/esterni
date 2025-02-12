@@ -15,8 +15,8 @@ class LaborCertification extends Model
         'service_provider_id',
         'risk_level', // Grau de Risco
         'social_capital', // Capital Social
-        'number_of_employees', // Nº de Empregados
-        'capital_employee_ratio', // Proporção Capital/Empregados
+        'employees_number', // Nº de Empregados
+        'capital_per_employee', // Proporção Capital/Empregados
         'retention_clause', // Cláusula de Retenção
         'fgts_certificate', // Certidão de FGTS
         'labor_certificate', // Certidão Trabalhista
