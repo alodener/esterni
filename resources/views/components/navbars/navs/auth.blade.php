@@ -17,9 +17,26 @@
                     <input type="text" class="form-control"> --}}
                 </div>
             </div>
-            <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">
-                @csrf
-            </form>
+            @can('isAdmin')
+                <p>Você é um administrador!</p>
+            @endcan
+
+            @can('isClient')
+                <p>Você é um cliente!</p>
+            @endcan
+
+            @can('isAdmin')
+                <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">
+                    @csrf
+                </form>
+            @endcan
+
+            @can('isClient')
+                <form method="POST" action="{{ route('client.logout') }}" class="d-none" id="logout-form">
+                    @csrf
+                </form>
+            @endcan
+
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
