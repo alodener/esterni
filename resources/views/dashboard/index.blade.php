@@ -5,50 +5,82 @@
         <x-navbars.navs.auth titlePage="Dashboard"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
-            <div class="row">
-
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-3 pt-2">
-                            <div
-                                class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">person</i>
+            <div class="row mt-4">
+                @can('isAdmin')
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-header p-3 pt-2">
+                                <div
+                                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                                    <i class="material-icons opacity-10">person</i>
+                                </div>
+                                <div class="text-end pt-1">
+                                    <p class="text-sm mb-0 text-capitalize">Total Clientes</p>
+                                    <h4 class="mb-0">2,300</h4>
+                                </div>
                             </div>
-                            <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Total Clientes</p>
-                                <h4 class="mb-0">2,300</h4>
+                            <hr class="dark horizontal my-0">
+                            <div class="card-footer p-3">
+                                <p class="mb-0"><span class="text-success text-sm font-weight-bolder"></p>
                             </div>
-                        </div>
-                        <hr class="dark horizontal my-0">
-                        <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder"></p>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-3 pt-2">
-                            <div
-                                class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">person</i>
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-header p-3 pt-2">
+                                <div
+                                    class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                                    <i class="material-icons opacity-10">person</i>
+                                </div>
+                                <div class="text-end pt-1">
+                                    <p class="text-sm mb-0 text-capitalize">Total Prestadores</p>
+                                    <h4 class="mb-0">3,462</h4>
+                                </div>
                             </div>
-                            <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Total Prestadores</p>
-                                <h4 class="mb-0">3,462</h4>
+                            <hr class="dark horizontal my-0">
+                            <div class="card-footer p-3">
+                                <p class="mb-0"></p>
                             </div>
-                        </div>
-                        <hr class="dark horizontal my-0">
-                        <div class="card-footer p-3">
-                            <p class="mb-0"></p>
                         </div>
                     </div>
-                </div>
+                @endcan
+                @can('isClient')
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-header p-3 pt-2">
+                                <div
+                                    class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                                    <i class="material-icons opacity-10">person</i>
+                                </div>
+                                <div class="text-end pt-1">
+                                    <p class="text-sm mb-0 text-capitalize">Total Prestadores</p>
+                                    <h4 class="mb-0">{{ count(Auth::guard('client')->user()->serviceProviders) }}</h4>
+                                </div>
+                            </div>
+                            <hr class="dark horizontal my-0">
+                            <div class="card-footer p-3">
+                                <p class="mb-0"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                    <div class="chart">
+                                        <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex align-items-center justify-content-center">
+                                <h6 class="mb-0">Média Prestadores</h6>
+                            </div>
+                        </div>
+                    </div>
+                @endcan
             </div>
-
-            {{-- <x-footers.auth></x-footers.auth> --}}
         </div>
     </main>
-    <x-plugins></x-plugins>
     </div>
     @push('js')
         <script src="{{ asset('assets') }}/js/plugins/chartjs.min.js"></script>
@@ -58,7 +90,7 @@
             new Chart(ctx, {
                 type: "bar",
                 data: {
-                    labels: ["M", "T", "W", "T", "F", "S", "S"],
+                    labels: ["P1", "P2", "P3", "P4"],
                     datasets: [{
                         label: "Sales",
                         tension: 0.4,

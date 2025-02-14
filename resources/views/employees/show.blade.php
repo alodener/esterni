@@ -61,89 +61,151 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
+                    @can('isAdmin')
+                        <div class="row">
+                            <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
 
-                        </div>
-                        <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
+                            </div>
+                            <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
 
-                        </div>
-                        <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
-                            <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
-                                href="">Indicadores</a>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
-                            <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
-                            style="white-space: nowrap;"
-                                href="{{ route('employees.create', $serviceProvider->id) }}">Novos Funcionários</a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="card-body px-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Nome</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Setor Lotado</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Dt Adimissão</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Ações</th>
-                                            <th class="text-secondary opacity-7"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($serviceProvider->employees as $employee)
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">{{ $employee->client_name }}</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $employee->department }}</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $employee->admission_date }}</p>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <div class="d-flex justify-content-center">
-                                                        <a href="{{ route('employees.edit', [$employee->id, $serviceProvider->id]) }}"
-                                                           class="btn btn-sm btn-secondary text-white me-1"
-                                                           data-toggle="tooltip"
-                                                           data-original-title="Editar usuário">
-                                                            Editar
-                                                        </a>
-
-                                                        <form action="{{ route('employees.destroy', [$employee->id, $serviceProvider->id]) }}"
-                                                              method="POST" style="display: inline-block;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit"
-                                                                    class="btn btn-sm btn-danger text-white me-1"
-                                                                    data-toggle="tooltip"
-                                                                    data-original-title="Exluir usuário">
-                                                                    Excluir
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
+                                <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
+                                    href="">Indicadores</a>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
+                                <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
+                                style="white-space: nowrap;"
+                                    href="{{ route('employees.create', $serviceProvider->id) }}">Novos Funcionários</a>
                             </div>
                         </div>
-                    </div>
+                    @endcan
+                    @can('isAdmin')
+                        <div class="row">
+                            <div class="card-body px-0 pb-2">
+                                <div class="table-responsive p-0">
+                                    <table class="table align-items-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Nome</th>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    Setor Lotado</th>
+                                                <th
+                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Dt Adimissão</th>
+                                                <th
+                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Ações</th>
+                                                <th class="text-secondary opacity-7"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($serviceProvider->employees as $employee)
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex px-2 py-1">
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm">{{ $employee->client_name }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $employee->department }}</p>
+                                                    </td>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $employee->admission_date }}</p>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="{{ route('employees.edit', [$employee->id, $serviceProvider->id]) }}"
+                                                            class="btn btn-sm btn-secondary text-white me-1"
+                                                            data-toggle="tooltip"
+                                                            data-original-title="Editar usuário">
+                                                                Editar
+                                                            </a>
+
+                                                            <form action="{{ route('employees.destroy', [$employee->id, $serviceProvider->id]) }}"
+                                                                method="POST" style="display: inline-block;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                        class="btn btn-sm btn-danger text-white me-1"
+                                                                        data-toggle="tooltip"
+                                                                        data-original-title="Exluir usuário">
+                                                                        Excluir
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    @endcan
+
+
+                    @can('isClient')
+                        <div class="row">
+                            <div class="card-body px-0 pb-2">
+                                <div class="table-responsive p-0">
+                                    <table class="table align-items-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Nome</th>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    Setor Lotado</th>
+                                                <th
+                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Dt Adimissão</th>
+                                                <th
+                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Ações</th>
+                                                <th class="text-secondary opacity-7"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($serviceProvider->employees as $employee)
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex px-2 py-1">
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm">{{ $employee->client_name }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $employee->department }}</p>
+                                                    </td>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $employee->admission_date }}</p>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="{{ route('employees.edit', [$employee->id, $serviceProvider->id]) }}"
+                                                            class="btn btn-sm btn-info text-white"
+                                                            data-toggle="tooltip"
+                                                            data-original-title="Visualizar usuário">
+                                                                Visualizar
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    @endcan
                 </div>
             </div>
         </div>

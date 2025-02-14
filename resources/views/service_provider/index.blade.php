@@ -4,19 +4,20 @@
         <!-- Navbar -->
         <x-navbars.navs.auth titlePage="Lista Prestadores"></x-navbars.navs.auth>
         <!-- End Navbar -->
-
-        <div class="col-md-12 mb-lg-0 mb-4">
-            <div class="mt-4">
-                <div class=" pb-0 p-3">
-                    <div class="row">
-                        <div class="col-12 text-end">
-                            <a class="btn bg-gradient-dark mb-0" href="{{ route('service-provider.create') }}"><i
-                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Novo Prestador</a>
+        @can('isAdmin')
+            <div class="col-md-12 mb-lg-0 mb-4">
+                <div class="mt-4">
+                    <div class=" pb-0 p-3">
+                        <div class="row">
+                            <div class="col-12 text-end">
+                                <a class="btn bg-gradient-dark mb-0" href="{{ route('service-provider.create') }}"><i
+                                        class="material-icons text-sm">add</i>&nbsp;&nbsp;Novo Prestador</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endcan
 
         <div class="container-fluid py-4">
             <div class="row">
@@ -48,52 +49,84 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($serviceProviders as $serviceProvider)
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">{{ $serviceProvider->company_name }}</h6>
+                                        @can('isAdmin')
+                                            @foreach ($serviceProviders as $serviceProvider)
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex px-2 py-1">
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm">{{ $serviceProvider->company_name }}</h6>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $serviceProvider->provider_cnpj }}</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $serviceProvider->client->name }}</p>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <div class="d-flex justify-content-center">
-                                                        <a href="{{ route('service-provider.edit', $serviceProvider->id) }}"
-                                                           class="btn btn-sm btn-secondary text-white me-1"
-                                                           data-toggle="tooltip"
-                                                           data-original-title="Editar usuário">
-                                                            Editar
-                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $serviceProvider->provider_cnpj }}</p>
+                                                    </td>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $serviceProvider->client->name }}</p>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="{{ route('service-provider.edit', $serviceProvider->id) }}"
+                                                            class="btn btn-sm btn-secondary text-white me-1"
+                                                            data-toggle="tooltip"
+                                                            data-original-title="Editar usuário">
+                                                                Editar
+                                                            </a>
 
-                                                        <form action="{{ route('service-provider.destroy', $serviceProvider->id) }}"
-                                                              method="POST" style="display: inline-block;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit"
-                                                                    class="btn btn-sm btn-danger text-white me-1"
-                                                                    data-toggle="tooltip"
-                                                                    data-original-title="Exluir usuário">
-                                                                    Excluir
-                                                            </button>
-                                                        </form>
+                                                            <form action="{{ route('service-provider.destroy', $serviceProvider->id) }}"
+                                                                method="POST" style="display: inline-block;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                        class="btn btn-sm btn-danger text-white me-1"
+                                                                        data-toggle="tooltip"
+                                                                        data-original-title="Exluir usuário">
+                                                                        Excluir
+                                                                </button>
+                                                            </form>
 
-                                                        <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
-                                                           class="btn btn-sm btn-info text-white"
-                                                           data-toggle="tooltip"
-                                                           data-original-title="Vizualizar usuário">
-                                                            Vizualizar
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                            <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                                            class="btn btn-sm btn-info text-white"
+                                                            data-toggle="tooltip"
+                                                            data-original-title="Visualizar usuário">
+                                                                Visualizar
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endcan
+
+                                        @can('isClient')
+                                            @foreach (Auth::guard('client')->user()->serviceProviders as $serviceProvider)
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex px-2 py-1">
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm">{{ $serviceProvider->company_name }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $serviceProvider->provider_cnpj }}</p>
+                                                    </td>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $serviceProvider->client->name }}</p>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                                            class="btn btn-sm btn-info text-white"
+                                                            data-toggle="tooltip"
+                                                            data-original-title="Visualizar usuário">
+                                                                Visualizar
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endcan
                                     </tbody>
                                 </table>
                             </div>
