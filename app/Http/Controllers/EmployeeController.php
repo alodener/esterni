@@ -33,7 +33,7 @@ class EmployeeController extends Controller
         // Permissões por nome de método
         $permissions = [
             'client' => ['index', 'show', 'edit'], // Clientes só podem acessar index
-            'web' => ['index', 'store', 'update', 'destroy'], // Web tem acesso total pois é admin
+            'web' => ['index', 'show', 'edit', 'store', 'update', 'destroy'], // Web tem acesso total pois é admin
         ];
 
         // Descobre o nome do método sendo chamado

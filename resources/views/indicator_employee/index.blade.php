@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12 d-flex align-items-center">
-                                <h6 class="mb-0">Indicador Empresa</h6>
+                                <h6 class="mb-0">Indicador Funcionário</h6>
                             </div>
                         </div>
                     </div>
@@ -19,18 +19,19 @@
                         <!-- Nav Tabs -->
                         <ul class="nav nav-tabs nav-fill mb-4">
                             <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#contratual">Habilitação
-                                    Jurídica</a>
+                                <a class="nav-link active" data-bs-toggle="tab" href="#contratual">Documentação
+                                    Contratual dos Empregados</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#ocupacionais">Habilitação
-                                    Trabalhista</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="#ocupacionais">Programas Ocupacionais</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#fiscal">Habilitação Fiscal</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="#segurança_ocupacional">Saúde e Segurança
+                                    Ocupacional</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#economica">Habilitação Econômica</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="#treinamentos_ocupacionais">Treinamentos
+                                    Ocupacionais</a>
                             </li>
                         </ul>
 
@@ -40,126 +41,223 @@
                             {{-- NOTE: Habilitação Jurídica --}}
                             <div id="contratual" class="container tab-pane active">
                                 <h1>Habilitação Jurídica</h1>
-                                <form method="POST" action="{{ route('indicator.updateOrCreateLegalCertification') }}"
+                                <form method="POST" action="{{ route('indicatorEmployee.employeeContractualDocs') }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
+
                                         <div class="mb-3 col-md-6">
-                                            <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
-                                            <select name="service_provider_id" id="service_provider_id"
+                                            <label for="admission_protocol" class="form-label">Protocolo de
+                                                Admissão</label>
+                                            <select name="admission_protocol" id="admission_protocol"
                                                 @can('isClient') disabled @endcan
-                                                class="form-select border border-2 p-2" required readonly>
-                                                <option selected="selected" value="{{ $serviceProvider->id }}" readonly>
-                                                    {{ $serviceProvider->company_name }}
-                                                </option>
+                                                class="form-select border border-2 p-2">
+                                                <option value="Conforme"
+                                                    {{ old('admission_protocol', $serviceProvider->contractualDocumentation?->admission_protocol) == 'Conforme' ? 'selected' : '' }}>
+                                                    Conforme</option>
+                                                <option value="Não Conforme"
+                                                    {{ old('admission_protocol', $serviceProvider->contractualDocumentation?->admission_protocol) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    Não Conforme</option>
+                                                <option value="Conforme Parcialmente"
+                                                    {{ old('admission_protocol', $serviceProvider->contractualDocumentation?->admission_protocol) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    Conforme Parcialmente</option>
+                                                <option value="Não se aplica"
+                                                    {{ old('admission_protocol', $serviceProvider->contractualDocumentation?->admission_protocol) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    Não se aplica</option>
                                             </select>
-                                            @error('service_provider_id')
+                                            @error('admission_protocol')
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="cnpj_card" class="form-label">Cartão de CNPJ</label>
-                                            <select name="cnpj_card" id="cnpj_card" @can('isClient') disabled @endcan
+                                            <label for="employment_contract" class="form-label">Contrato de
+                                                Trabalho</label>
+                                            <select name="employment_contract" id="employment_contract"
+                                                @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
-                                                    {{ old('cnpj_card', $serviceProvider->legalCertification?->cnpj_card) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ old('employment_contract', $serviceProvider->contractualDocumentation?->employment_contract) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
                                                 <option value="Não Conforme"
-                                                    {{ old('cnpj_card', $serviceProvider->legalCertification?->cnpj_card) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ old('employment_contract', $serviceProvider->contractualDocumentation?->employment_contract) == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('cnpj_card', $serviceProvider->legalCertification?->cnpj_card) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ old('employment_contract', $serviceProvider->contractualDocumentation?->employment_contract) == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
+                                                <option value="Não se aplica"
+                                                    {{ old('employment_contract', $serviceProvider->contractualDocumentation?->employment_contract) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    Não se aplica</option>
                                             </select>
-                                            @error('cnpj_card')
+                                            @error('employment_contract')
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="incorporation_act" class="form-label">Ato Constitutivo, Estatuto
-                                                ou Contrato Social</label>
-                                            <select name="incorporation_act" id="incorporation_act"
+                                            <label for="ethics_code" class="form-label">Código de Ética e
+                                                Conduta</label>
+                                            <select name="ethics_code" id="ethics_code"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
-                                                    {{ old('incorporation_act', $serviceProvider->legalCertification?->incorporation_act) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ old('ethics_code', $serviceProvider->contractualDocumentation?->ethics_code) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
                                                 <option value="Não Conforme"
-                                                    {{ old('incorporation_act', $serviceProvider->legalCertification?->incorporation_act) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ old('ethics_code', $serviceProvider->contractualDocumentation?->ethics_code) == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('incorporation_act', $serviceProvider->legalCertification?->incorporation_act) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ old('ethics_code', $serviceProvider->contractualDocumentation?->ethics_code) == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
+                                                <option value="Não se aplica"
+                                                    {{ old('ethics_code', $serviceProvider->contractualDocumentation?->ethics_code) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    Não se aplica</option>
                                             </select>
-                                            @error('incorporation_act')
+                                            @error('ethics_code')
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="partners_identification" class="form-label">RG, CPF dos Sócios e
-                                                Administradores</label>
-                                            <select name="partners_identification" id="partners_identification"
+                                            <label for="driver_license" class="form-label">CNH - Para Motoristas</label>
+                                            <select name="driver_license" id="driver_license"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
-                                                    {{ old('partners_identification', $serviceProvider->legalCertification?->partners_identification) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ old('driver_license', $serviceProvider->contractualDocumentation?->driver_license) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
                                                 <option value="Não Conforme"
-                                                    {{ old('partners_identification', $serviceProvider->legalCertification?->partners_identification) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ old('driver_license', $serviceProvider->contractualDocumentation?->driver_license) == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('partners_identification', $serviceProvider->legalCertification?->partners_identification) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ old('driver_license', $serviceProvider->contractualDocumentation?->driver_license) == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
+                                                <option value="Não se aplica"
+                                                    {{ old('driver_license', $serviceProvider->contractualDocumentation?->driver_license) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    Não se aplica</option>
                                             </select>
-                                            @error('partners_identification')
+                                            @error('driver_license')
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="operating_license" class="form-label">Alvará de
-                                                Funcionamento</label>
-                                            <select name="operating_license" id="operating_license"
+                                            <label for="federal_police_clearance" class="form-label">Alvará da Polícia
+                                                Federal</label>
+                                            <select name="federal_police_clearance" id="federal_police_clearance"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
-                                                    {{ old('operating_license', $serviceProvider->legalCertification?->operating_license) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ old('federal_police_clearance', $serviceProvider->contractualDocumentation?->federal_police_clearance) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
                                                 <option value="Não Conforme"
-                                                    {{ old('operating_license', $serviceProvider->legalCertification?->operating_license) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ old('federal_police_clearance', $serviceProvider->contractualDocumentation?->federal_police_clearance) == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('operating_license', $serviceProvider->legalCertification?->operating_license) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ old('federal_police_clearance', $serviceProvider->contractualDocumentation?->federal_police_clearance) == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
+                                                <option value="Não se aplica"
+                                                    {{ old('federal_police_clearance', $serviceProvider->contractualDocumentation?->federal_police_clearance) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    Não se aplica</option>
                                             </select>
-                                            @error('operating_license')
+                                            @error('federal_police_clearance')
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
+
+                                        <div class="mb-3 col-md-6">
+                                            <label for="professional_council_certificate" class="form-label">Certidão de
+                                                Registro no Conselho de Classe</label>
+                                            <select name="professional_council_certificate"
+                                                id="professional_council_certificate" @can('isClient') disabled @endcan
+                                                class="form-select border border-2 p-2">
+                                                <option value="Conforme"
+                                                    {{ old('professional_council_certificate', $serviceProvider->contractualDocumentation?->professional_council_certificate) == 'Conforme' ? 'selected' : '' }}>
+                                                    Conforme</option>
+                                                <option value="Não Conforme"
+                                                    {{ old('professional_council_certificate', $serviceProvider->contractualDocumentation?->professional_council_certificate) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    Não Conforme</option>
+                                                <option value="Conforme Parcialmente"
+                                                    {{ old('professional_council_certificate', $serviceProvider->contractualDocumentation?->professional_council_certificate) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    Conforme Parcialmente</option>
+                                                <option value="Não se aplica"
+                                                    {{ old('professional_council_certificate', $serviceProvider->contractualDocumentation?->professional_council_certificate) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    Não se aplica</option>
+                                            </select>
+                                            @error('professional_council_certificate')
+                                                <p class='text-danger'>{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3 col-md-6">
+                                            <label for="electrical_course_certificate" class="form-label">Certificado
+                                                de Curso de Elétrica</label>
+                                            <select name="electrical_course_certificate"
+                                                id="electrical_course_certificate" @can('isClient') disabled @endcan
+                                                class="form-select border border-2 p-2">
+                                                <option value="Conforme"
+                                                    {{ old('electrical_course_certificate', $serviceProvider->contractualDocumentation?->electrical_course_certificate) == 'Conforme' ? 'selected' : '' }}>
+                                                    Conforme</option>
+                                                <option value="Não Conforme"
+                                                    {{ old('electrical_course_certificate', $serviceProvider->contractualDocumentation?->electrical_course_certificate) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    Não Conforme</option>
+                                                <option value="Conforme Parcialmente"
+                                                    {{ old('electrical_course_certificate', $serviceProvider->contractualDocumentation?->electrical_course_certificate) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    Conforme Parcialmente</option>
+                                                <option value="Não se aplica"
+                                                    {{ old('electrical_course_certificate', $serviceProvider->contractualDocumentation?->electrical_course_certificate) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    Não se aplica</option>
+                                            </select>
+                                            @error('electrical_course_certificate')
+                                                <p class='text-danger'>{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3 col-md-6">
+                                            <label for="collective_agreement" class="form-label">CCT ou ACT</label>
+                                            <select name="collective_agreement" id="collective_agreement"
+                                                @can('isClient') disabled @endcan
+                                                class="form-select border border-2 p-2">
+                                                <option value="Conforme"
+                                                    {{ old('collective_agreement', $serviceProvider->contractualDocumentation?->collective_agreement) == 'Conforme' ? 'selected' : '' }}>
+                                                    Conforme</option>
+                                                <option value="Não Conforme"
+                                                    {{ old('collective_agreement', $serviceProvider->contractualDocumentation?->collective_agreement) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    Não Conforme</option>
+                                                <option value="Conforme Parcialmente"
+                                                    {{ old('collective_agreement', $serviceProvider->contractualDocumentation?->collective_agreement) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    Conforme Parcialmente</option>
+                                                <option value="Não se aplica"
+                                                    {{ old('collective_agreement', $serviceProvider->contractualDocumentation?->collective_agreement) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    Não se aplica</option>
+                                            </select>
+                                            @error('collective_agreement')
+                                                <p class='text-danger'>{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
                                     </div>
-                                    <!-- Botões de Ação -->
                                     @can('isAdmin')
                                         <div class="mt-3 d-flex justify-content-end">
-                                            <button class="btn btn-light me-2">Cancelar</button>
+                                            <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                                class="btn btn-primary">Voltar</a>
                                             <button class="btn btn-primary">Salvar</button>
                                         </div>
                                     @endcan
-
                                     @can('isClient')
                                         <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
                                             class="btn btn-primary">Voltar</a>
                                     @endcan
                                 </form>
+
+
                             </div>
 
                             {{-- NOTE: Habilitação Trabalhista --}}
                             <div id="ocupacionais" class="container tab-pane fade">
                                 <h1>Habilitação Trabalhista</h1>
-                                <form method="POST" action="{{ route('indicator.updateOrCreateLaborCertification') }}"
+                                <form method="POST"
+                                    action="{{ route('indicator.updateOrCreateLaborCertification') }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
@@ -399,22 +497,22 @@
                                             <label for="cnd_federal_debt" class="form-label">CND - Certidão Negativa
                                                 de Débitos Relativos aos Tributos Federais e à Dívida Ativa da
                                                 União</label>
-                                                    <select name="cnd_federal_debt" id="cnd_federal_debt"
-                                                        @can('isClient') disabled @endcan
-                                                        class="form-select border border-2 p-2">
-                                                        <option value="Conforme"
-                                                            {{ old('cnd_federal_debt', $serviceProvider->fiscalCertification?->cnd_federal_debt) == 'Conforme' ? 'selected' : '' }}>
-                                                            Conforme</option>
-                                                        <option value="Não Conforme"
-                                                            {{ old('cnd_federal_debt', $serviceProvider->fiscalCertification?->cnd_federal_debt) == 'Não Conforme' ? 'selected' : '' }}>
-                                                            Não Conforme</option>
-                                                        <option value="Conforme Parcialmente"
-                                                            {{ old('cnd_federal_debt', $serviceProvider->fiscalCertification?->cnd_federal_debt) == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                            Conforme Parcialmente</option>
-                                                    </select>
-                                                    @error('cnd_federal_debt')
-                                                        <p class='text-danger'>{{ $message }}</p>
-                                                    @enderror
+                                            <select name="cnd_federal_debt" id="cnd_federal_debt"
+                                                @can('isClient') disabled @endcan
+                                                class="form-select border border-2 p-2">
+                                                <option value="Conforme"
+                                                    {{ old('cnd_federal_debt', $serviceProvider->fiscalCertification?->cnd_federal_debt) == 'Conforme' ? 'selected' : '' }}>
+                                                    Conforme</option>
+                                                <option value="Não Conforme"
+                                                    {{ old('cnd_federal_debt', $serviceProvider->fiscalCertification?->cnd_federal_debt) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    Não Conforme</option>
+                                                <option value="Conforme Parcialmente"
+                                                    {{ old('cnd_federal_debt', $serviceProvider->fiscalCertification?->cnd_federal_debt) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    Conforme Parcialmente</option>
+                                            </select>
+                                            @error('cnd_federal_debt')
+                                                <p class='text-danger'>{{ $message }}</p>
+                                            @enderror
                                         </div>
 
                                     </div>

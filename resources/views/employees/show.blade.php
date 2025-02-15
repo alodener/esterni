@@ -71,7 +71,7 @@
                             </div>
                             <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
                                 <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
-                                    href="">Indicadores</a>
+                                    href="{{ route('indicatorEmployee.show', $serviceProvider->id) }}">Indicadores</a>
                             </div>
                             <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
                                 <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"

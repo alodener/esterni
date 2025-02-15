@@ -26,6 +26,7 @@ use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\IndicatorController;
 use App\Http\Controllers\ClientAuthController;
+use App\Http\Controllers\IndicatorEmployeeController;
 
 Route::prefix('client-auth')->group(function () {
     Route::get('/login', [ClientAuthController::class, 'showLoginForm'])->name('client.login');
@@ -74,6 +75,8 @@ Route::middleware(['multi-auth'])->prefix('indicator')->group(function () {
     Route::post('economic-certification', [IndicatorController::class, 'updateOrCreateEconomicCertification'])->name('indicator.updateOrCreateEconomicCertification');
 });
 
+Route::get('/indicator-employee/{id}', [IndicatorEmployeeController::class, 'show'])->name('indicatorEmployee.show');
+Route::post('/employee-contractual-docs', [IndicatorEmployeeController::class, 'employeeContractualDocs'])->name('indicatorEmployee.employeeContractualDocs');
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('multi-auth')->name('dashboard');

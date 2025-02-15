@@ -67,4 +67,23 @@ class ServiceProvider extends Model
         return $this->hasOne(EconomicCertification::class);
     }
 
+    public function contractualDocumentation()
+    {
+        return $this->hasOne(ContractualDocumentation::class);
+    }
+
+    public function occupationalPrograms()
+    {
+        return $this->hasOne(OccupationalPrograms::class);
+    }
+
+    public function occupationalHealthSafety()
+    {
+        return $this->hasOne(OccupationalHealthSafety::class);
+    }
+
+    public function occupationalTrainings()
+    {
+        return $this->hasOne(OccupationalTrainings::class);
+    }
 }
