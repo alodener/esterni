@@ -15,12 +15,12 @@ class ContractualDocumentation extends Model
         'service_provider_id',
         'admission_protocol',
         'employment_contract',
-        'code_of_ethics',
-        'cnh_for_drivers',
-        'federal_police_license',
+        'ethics_code',
+        'driver_license',
+        'federal_police_clearance',
         'professional_council_certificate',
         'electrical_course_certificate',
-        'cct_or_act'
+        'collective_agreement'
     ];
 
     public function serviceProvider()

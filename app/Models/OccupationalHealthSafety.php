@@ -15,7 +15,7 @@ class OccupationalHealthSafety extends Model
         'service_provider_id',
         'aso',
         'complementary_exams',
-        'service_order',
+        'work_order',
         'epi_uniform_record',
         'esocial_events_submission'
     ];

@@ -77,6 +77,9 @@ Route::middleware(['multi-auth'])->prefix('indicator')->group(function () {
 
 Route::get('/indicator-employee/{id}', [IndicatorEmployeeController::class, 'show'])->name('indicatorEmployee.show');
 Route::post('/employee-contractual-docs', [IndicatorEmployeeController::class, 'employeeContractualDocs'])->name('indicatorEmployee.employeeContractualDocs');
+Route::post('/occupational-program', [IndicatorEmployeeController::class, 'occupationalProgram'])->name('indicatorEmployee.occupationalProgram');
+Route::post('/occupational-health-safety', [IndicatorEmployeeController::class, 'occupationalHealthSafety'])->name('indicatorEmployee.occupationalHealthSafety');
+Route::post('/occupational-training', [IndicatorEmployeeController::class, 'occupationalTraining'])->name('indicatorEmployee.occupationalTraining');
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('multi-auth')->name('dashboard');

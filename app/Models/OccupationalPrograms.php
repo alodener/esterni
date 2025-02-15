@@ -15,7 +15,7 @@ class OccupationalPrograms extends Model
         'service_provider_id',
         'ltcat',
         'pgr',
-        'pcms_o',
+        'pcmso',
         'insalubrity_report',
         'danger_report',
         'aet'
