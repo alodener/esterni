@@ -27,6 +27,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\IndicatorController;
 use App\Http\Controllers\ClientAuthController;
 use App\Http\Controllers\IndicatorEmployeeController;
+use App\Http\Controllers\PayrollAuditController;
 
 Route::prefix('client-auth')->group(function () {
     Route::get('/login', [ClientAuthController::class, 'showLoginForm'])->name('client.login');
@@ -80,6 +81,10 @@ Route::post('/employee-contractual-docs', [IndicatorEmployeeController::class, '
 Route::post('/occupational-program', [IndicatorEmployeeController::class, 'occupationalProgram'])->name('indicatorEmployee.occupationalProgram');
 Route::post('/occupational-health-safety', [IndicatorEmployeeController::class, 'occupationalHealthSafety'])->name('indicatorEmployee.occupationalHealthSafety');
 Route::post('/occupational-training', [IndicatorEmployeeController::class, 'occupationalTraining'])->name('indicatorEmployee.occupationalTraining');
+
+Route::get('/payroll-audit/{id}', [PayrollAuditController::class, 'show'])->name('payrollAudit.show');
+Route::get('/payroll-audit/{id}/create', [PayrollAuditController::class, 'create'])->name('payrollAudit.create');
+Route::post('/payroll-audit', [PayrollAuditController::class, 'payrollAudit'])->name('payrollAudit.payrollAudit');
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('multi-auth')->name('dashboard');

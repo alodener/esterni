@@ -86,4 +86,9 @@ class ServiceProvider extends Model
     {
         return $this->hasOne(OccupationalTrainings::class);
     }
+
+    public function payrollAudits()
+    {
+        return $this->hasMany(PayrollAudit::class);
+    }
 }
