@@ -31,7 +31,7 @@ class PayrollAuditController extends Controller
         // Permissões por nome de método
         $permissions = [
             'client' => ['show'], // Clientes só podem acessar index
-            'web' => ['show', 'create', 'payrollAudit'], // Web tem acesso total pois é admin
+            'web' => ['visualizar', 'show', 'create', 'edit', 'update', 'payrollAudit', 'destroy'], // Web tem acesso total pois é admin
         ];
 
         // Descobre o nome do método sendo chamado
@@ -55,6 +55,19 @@ class PayrollAuditController extends Controller
         if (!in_array($currentAction, $permissions[$this->guard])) {
             abort(403, "O guard '{$this->guard}' não tem permissão para acessar '{$currentAction}'.");
         }
+    }
+
+    public function visualizar($id)
+    {
+        $payrollAudit = PayrollAudit::find($id);
+        if (!$payrollAudit) {
+            return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
+        }
+        $serviceProvider = ServiceProvider::find($payrollAudit->service_provider_id);
+        if (!$serviceProvider) {
+            return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
+        }
+        return view('indicator_mensal.show', compact('payrollAudit', 'serviceProvider'));
     }
 
     public function show($id)
@@ -85,14 +98,22 @@ class PayrollAuditController extends Controller
                 'service_provider_id' => 'required|exists:service_providers,id',
             ]);
 
-            // Criar ou buscar o registro existente
-            $payrollAudit = PayrollAudit::updateOrCreate([
-                'month' => $validatedData['month'],
-                'year' => $validatedData['year'],
-                'service_provider_id' => $validatedData['service_provider_id'],
-            ], []);
+            // Passo 2: Verifica se é atualização ou criação
+            if ($request->filled('id')) {
+                // Atualização: Busca o registro existente pelo ID
+                $payrollAudit = PayrollAudit::findOrFail($request->id);
+                $payrollAudit->month = $validatedData['month'];
+                $payrollAudit->year = $validatedData['year'];
+            } else {
+                // Criação: Gera um novo registro
+                $payrollAudit = PayrollAudit::create([
+                    'month' => $validatedData['month'],
+                    'year' => $validatedData['year'],
+                    'service_provider_id' => $validatedData['service_provider_id'],
+                ]);
+            }
 
-            // Array para armazenar os campos validados e consolidar a atualização
+            // Array para armazenar os campos validados
             $updateData = [];
 
             // Mapeamento das seções e validações
@@ -131,11 +152,18 @@ class PayrollAuditController extends Controller
                 'safety' => 'seguranca_trabalho',
             ];
 
+            // Armazena os dados que passaram para re-popular na sessão
+            $validDataForSession = [];
+
             foreach ($validationRules as $section => $rules) {
                 if ($request->has(array_keys($rules))) {
                     try {
-                        $updateData += $request->validate($rules);
+                        $validatedSection = $request->validate($rules);
+                        $updateData += $validatedSection;
+                        $validDataForSession += $validatedSection;
                     } catch (\Illuminate\Validation\ValidationException $e) {
+                        session()->flash('valid_data', $validDataForSession); // 🔹 Guarda os valores válidos antes do erro
+
                         return redirect()->back()
                             ->withInput()
                             ->withFragment($tabMap[$section]) // Define a aba correta
@@ -150,13 +178,46 @@ class PayrollAuditController extends Controller
                 $payrollAudit->update(array_filter($updateData));
             }
 
-            return redirect()->back()
-                ->withFragment('folha_pagamento') // Aba padrão após sucesso
-                ->with('success', 'Indicador mensal cadastrado/atualizado com sucesso!');
+            return redirect()->route('payrollAudit.show', $validatedData['service_provider_id'])->with('success', 'indicador mensal Criado/Alterado com sucesso!');
         } catch (\Exception $e) {
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Erro inesperado: ' . $e->getMessage());
         }
+    }
+
+    public function edit($id)
+    {
+        $payrollAudit = PayrollAudit::find($id);
+        if (!$payrollAudit) {
+            return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
+        }
+
+        $serviceProvider = ServiceProvider::find($payrollAudit->service_provider_id);
+        if (!$serviceProvider) {
+            return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
+        }
+
+        return view('indicator_mensal.edit', compact('payrollAudit', 'serviceProvider'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $payrollAudit = PayrollAudit::find($id);
+        if (!$payrollAudit) {
+            // return redirect()->back()->route('payrollAudit.show', $validatedData['service_provider_id'])->with('success', 'indicador mensal excluído com sucesso!');
+        }
+        // return redirect()->back()->route('payrollAudit.show', $validatedData['service_provider_id'])->with('success', 'indicador mensal excluído com sucesso!');
+    }
+
+    public function destroy($id, $serviceProviderId)
+    {
+        $payrollAudit = PayrollAudit::find($id);
+        if (!$payrollAudit) {
+            return redirect()->route('payrollAudit.show', $serviceProviderId)->with('error', 'Não foi possivel excluir o indicador mensal');
+        }
+        $payrollAudit->delete(); // Soft delete
+
+        return redirect()->route('payrollAudit.show', $serviceProviderId)->with('success', 'indicador mensal excluído com sucesso!');
     }
 }

@@ -2,7 +2,7 @@
     <x-navbars.sidebar activePage="service-provider"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Indicador Mensal - Adicionar"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Indicador Mensal - Editar"></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="container px-0">
@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12 d-flex align-items-center">
-                                <h6 class="mb-0">Indicador Mensal - Adicionar</h6>
+                                <h6 class="mb-0">Indicador Mensal - Editar</h6>
                             </div>
                         </div>
                     </div>
@@ -55,29 +55,29 @@
                                                 <label for="month" class="form-label">Mês</label>
                                                 <select id="month" name="month" class="form-select">
                                                     <option value="">Selecione um mês</option>
-                                                    <option value="1" {{ old('month') == 1 ? 'selected' : '' }}>
+                                                    <option value="1" {{ $payrollAudit->month == 1 ? 'selected' : '' }}>
                                                         Janeiro</option>
-                                                    <option value="2" {{ old('month') == 2 ? 'selected' : '' }}>
+                                                    <option value="2" {{ $payrollAudit->month == 2 ? 'selected' : '' }}>
                                                         Fevereiro</option>
-                                                    <option value="3" {{ old('month') == 3 ? 'selected' : '' }}>
+                                                    <option value="3" {{ $payrollAudit->month == 3 ? 'selected' : '' }}>
                                                         Março</option>
-                                                    <option value="4" {{ old('month') == 4 ? 'selected' : '' }}>
+                                                    <option value="4" {{ $payrollAudit->month == 4 ? 'selected' : '' }}>
                                                         Abril</option>
-                                                    <option value="5" {{ old('month') == 5 ? 'selected' : '' }}>
+                                                    <option value="5" {{ $payrollAudit->month == 5 ? 'selected' : '' }}>
                                                         Maio</option>
-                                                    <option value="6" {{ old('month') == 6 ? 'selected' : '' }}>
+                                                    <option value="6" {{ $payrollAudit->month == 6 ? 'selected' : '' }}>
                                                         Junho</option>
-                                                    <option value="7" {{ old('month') == 7 ? 'selected' : '' }}>
+                                                    <option value="7" {{ $payrollAudit->month == 7 ? 'selected' : '' }}>
                                                         Julho</option>
-                                                    <option value="8" {{ old('month') == 8 ? 'selected' : '' }}>
+                                                    <option value="8" {{ $payrollAudit->month == 8 ? 'selected' : '' }}>
                                                         Agosto</option>
-                                                    <option value="9" {{ old('month') == 9 ? 'selected' : '' }}>
+                                                    <option value="9" {{ $payrollAudit->month == 9 ? 'selected' : '' }}>
                                                         Setembro</option>
-                                                    <option value="10" {{ old('month') == 10 ? 'selected' : '' }}>
+                                                    <option value="10" {{ $payrollAudit->month == 10 ? 'selected' : '' }}>
                                                         Outubro</option>
-                                                    <option value="11" {{ old('month') == 11 ? 'selected' : '' }}>
+                                                    <option value="11" {{ $payrollAudit->month == 11 ? 'selected' : '' }}>
                                                         Novembro</option>
-                                                    <option value="12" {{ old('month') == 12 ? 'selected' : '' }}>
+                                                    <option value="12" {{ $payrollAudit->month == 12 ? 'selected' : '' }}>
                                                         Dezembro</option>
                                                 </select>
                                             </div>
@@ -93,6 +93,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <input type="number" name="id" value="{{ $payrollAudit->id }}" style="display: none">
 
                             <div class="tab-content">
 
@@ -123,23 +125,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('payroll_entries_correct', session('valid_data.payroll_entries_correct')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->payroll_entries_correct == '' ? 'selected' : '' }}>
                                                     Selecione uma opção
                                                 </option>
                                                 <option value="Conforme"
-                                                    {{ old('payroll_entries_correct', session('valid_data.payroll_entries_correct')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->payroll_entries_correct == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme
                                                 </option>
                                                 <option value="Não Conforme"
-                                                    {{ old('payroll_entries_correct', session('valid_data.payroll_entries_correct')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->payroll_entries_correct == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme
                                                 </option>
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('payroll_entries_correct', session('valid_data.payroll_entries_correct')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->payroll_entries_correct == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente
                                                 </option>
                                                 <option value="Não se aplica"
-                                                    {{ old('payroll_entries_correct', session('valid_data.payroll_entries_correct')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->payroll_entries_correct == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica
                                                 </option>
                                             </select>
@@ -157,23 +159,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('payroll_compliance', session('valid_data.payroll_compliance')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->payroll_compliance == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('payroll_compliance', session('valid_data.payroll_compliance')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->payroll_compliance == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('payroll_compliance', session('valid_data.payroll_compliance')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->payroll_compliance == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('payroll_compliance', session('valid_data.payroll_compliance')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->payroll_compliance == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('payroll_compliance', session('valid_data.payroll_compliance')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->payroll_compliance == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -190,23 +192,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('benefits_paid_correctly', session('valid_data.benefits_paid_correctly')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->benefits_paid_correctly == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('benefits_paid_correctly', session('valid_data.benefits_paid_correctly')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->benefits_paid_correctly == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('benefits_paid_correctly', session('valid_data.benefits_paid_correctly')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->benefits_paid_correctly == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('benefits_paid_correctly', session('valid_data.benefits_paid_correctly')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->benefits_paid_correctly == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('benefits_paid_correctly', session('valid_data.benefits_paid_correctly')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->benefits_paid_correctly == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -223,23 +225,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('leave_records_correct', session('valid_data.leave_records_correct')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->leave_records_correct == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('leave_records_correct', session('valid_data.leave_records_correct')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->leave_records_correct == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('leave_records_correct', session('valid_data.leave_records_correct')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->leave_records_correct == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('leave_records_correct', session('valid_data.leave_records_correct')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->leave_records_correct == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('leave_records_correct', session('valid_data.leave_records_correct')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->leave_records_correct == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -262,23 +264,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('work_schedules_presented', session('valid_data.work_schedules_presented')) == '' ? 'selected' : '' }}>
+                                                    {{$payrollAudit->work_schedules_presented == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('work_schedules_presented', session('valid_data.work_schedules_presented')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{$payrollAudit->work_schedules_presented == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('work_schedules_presented', session('valid_data.work_schedules_presented')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{$payrollAudit->work_schedules_presented == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('work_schedules_presented', session('valid_data.work_schedules_presented')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{$payrollAudit->work_schedules_presented == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('work_schedules_presented', session('valid_data.work_schedules_presented')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{$payrollAudit->work_schedules_presented == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -295,23 +297,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('work_records_compliant', session('valid_data.work_records_compliant')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->work_records_compliant == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('work_records_compliant', session('valid_data.work_records_compliant')) == 'Conforme' ? 'selected' : '' }}>
+                                                {{ $payrollAudit->work_records_compliant == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('work_records_compliant', session('valid_data.work_records_compliant')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                {{ $payrollAudit->work_records_compliant == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('work_records_compliant', session('valid_data.work_records_compliant')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                {{  $payrollAudit->work_records_compliant == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('work_records_compliant', session('valid_data.work_records_compliant')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                {{ $payrollAudit->work_records_compliant == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -328,23 +330,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('overtime_compliant', session('valid_data.overtime_compliant')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->overtime_compliant == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('overtime_compliant', session('valid_data.overtime_compliant')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->overtime_compliant == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('overtime_compliant', session('valid_data.overtime_compliant')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->overtime_compliant == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('overtime_compliant', session('valid_data.overtime_compliant')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->overtime_compliant == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('overtime_compliant', session('valid_data.overtime_compliant')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->overtime_compliant == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -361,23 +363,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('rest_periods_complied', session('valid_data.rest_periods_complied')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->rest_periods_complied == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('rest_periods_complied', session('valid_data.rest_periods_complied')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->rest_periods_complied == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('rest_periods_complied', session('valid_data.rest_periods_complied')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->rest_periods_complied == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('rest_periods_complied', session('valid_data.rest_periods_complied')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->rest_periods_complied == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('rest_periods_complied', session('valid_data.rest_periods_complied')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->rest_periods_complied == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -399,23 +401,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('tax_guides_presented', session('valid_data.tax_guides_presented')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->tax_guides_presented == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('tax_guides_presented', session('valid_data.tax_guides_presented')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->tax_guides_presented == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('tax_guides_presented', session('valid_data.tax_guides_presented')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->tax_guides_presented == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('tax_guides_presented', session('valid_data.tax_guides_presented')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->tax_guides_presented == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('tax_guides_presented', session('valid_data.tax_guides_presented')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->tax_guides_presented == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -432,23 +434,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('fgts_compliance', session('valid_data.fgts_compliance')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->fgts_compliance == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('fgts_compliance', session('valid_data.fgts_compliance')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->fgts_compliance == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('fgts_compliance', session('valid_data.fgts_compliance')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->fgts_compliance == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('fgts_compliance', session('valid_data.fgts_compliance')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->fgts_compliance == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('fgts_compliance', session('valid_data.fgts_compliance')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->fgts_compliance == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -465,23 +467,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('inss_compliance', session('valid_data.inss_compliance')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->inss_compliance == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('inss_compliance', session('valid_data.inss_compliance')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->inss_compliance == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('inss_compliance', session('valid_data.inss_compliance')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->inss_compliance == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('inss_compliance', session('valid_data.inss_compliance')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->inss_compliance == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('inss_compliance', session('valid_data.inss_compliance')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->inss_compliance == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -498,23 +500,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('ir_compliance', session('valid_data.ir_compliance')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->ir_compliance == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('ir_compliance', session('valid_data.ir_compliance')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->ir_compliance == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('ir_compliance', session('valid_data.ir_compliance')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->ir_compliance == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('ir_compliance', session('valid_data.ir_compliance')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->ir_compliance == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('ir_compliance', session('valid_data.ir_compliance')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->ir_compliance == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -536,23 +538,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('cat_submitted_on_time', session('valid_data.cat_submitted_on_time')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->cat_submitted_on_time == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('cat_submitted_on_time', session('valid_data.cat_submitted_on_time')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->cat_submitted_on_time == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('cat_submitted_on_time', session('valid_data.cat_submitted_on_time')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->cat_submitted_on_time == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('cat_submitted_on_time', session('valid_data.cat_submitted_on_time')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->cat_submitted_on_time == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('cat_submitted_on_time', session('valid_data.cat_submitted_on_time')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->cat_submitted_on_time == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -568,23 +570,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('cipa_training', session('valid_data.cipa_training')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->cipa_training == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('cipa_training', session('valid_data.cipa_training')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->cipa_training == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('cipa_training', session('valid_data.cipa_training')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->cipa_training == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('cipa_training', session('valid_data.cipa_training')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->cipa_training == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('cipa_training', session('valid_data.cipa_training')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->cipa_training == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -601,23 +603,23 @@
                                                 id="medical_certificates_presented" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('medical_certificates_presented', session('valid_data.medical_certificates_presented')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->medical_certificates_presented == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('medical_certificates_presented', session('valid_data.medical_certificates_presented')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->medical_certificates_presented == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('medical_certificates_presented', session('valid_data.medical_certificates_presented')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->medical_certificates_presented == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('medical_certificates_presented', session('valid_data.medical_certificates_presented')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->medical_certificates_presented == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('medical_certificates_presented', session('valid_data.medical_certificates_presented')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->medical_certificates_presented == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -635,23 +637,23 @@
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value=""
-                                                    {{ old('accident_investigation_presented', session('valid_data.accident_investigation_presented')) == '' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->accident_investigation_presented == '' ? 'selected' : '' }}>
                                                     Selecione uma opção</option>
 
                                                 <option value="Conforme"
-                                                    {{ old('accident_investigation_presented', session('valid_data.accident_investigation_presented')) == 'Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->accident_investigation_presented == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
 
                                                 <option value="Não Conforme"
-                                                    {{ old('accident_investigation_presented', session('valid_data.accident_investigation_presented')) == 'Não Conforme' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->accident_investigation_presented == 'Não Conforme' ? 'selected' : '' }}>
                                                     Não Conforme</option>
 
                                                 <option value="Conforme Parcialmente"
-                                                    {{ old('accident_investigation_presented', session('valid_data.accident_investigation_presented')) == 'Conforme Parcialmente' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->accident_investigation_presented == 'Conforme Parcialmente' ? 'selected' : '' }}>
                                                     Conforme Parcialmente</option>
 
                                                 <option value="Não se aplica"
-                                                    {{ old('accident_investigation_presented', session('valid_data.accident_investigation_presented')) == 'Não se aplica' ? 'selected' : '' }}>
+                                                    {{ $payrollAudit->accident_investigation_presented == 'Não se aplica' ? 'selected' : '' }}>
                                                     Não se aplica</option>
 
                                             </select>
@@ -666,7 +668,7 @@
                             <!-- Botões de Ação -->
                             @can('isAdmin')
                                 <div class="mt-3 d-flex justify-content-end">
-                                    <button type="reset" class="btn btn-light me-2">Cancelar</button>
+                                    <a href="{{ route('payrollAudit.show', $serviceProvider->id) }}" class="btn btn-light me-2">Cancelar</a>
                                     <button type="submit" class="btn btn-primary">Salvar</button>
                                 </div>
                             @endcan
@@ -699,7 +701,7 @@
                 // Atualiza a URL ao trocar de aba (opcional)
                 document.querySelectorAll('.nav-link').forEach(tab => {
                     tab.addEventListener('click', function() {
-                        history.pushState(null, null, this.getAttribute('href'));
+                        history.pushState(null, null, this.getAttribute('href;
                     });
                 });
             });
@@ -715,8 +717,8 @@
                 modal.show();
 
                 // Recuperando valores antigos do Laravel
-                let oldMonth = "{{ old('month') }}";
-                let oldYear = "{{ old('year') }}";
+                let oldMonth = "{{ $payrollAudit->month }}";
+                let oldYear = "{{ $payrollAudit->year }}";
 
                 // Preenchendo o campo de ano dinamicamente (últimos 10 anos até o próximo ano)
                 let yearSelect = document.getElementById("year");

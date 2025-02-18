@@ -2,7 +2,7 @@
     <x-navbars.sidebar activePage="service-provider"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Funcionário"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Indicador Mensal"></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="container px-0">
@@ -11,24 +11,57 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12 d-flex align-items-center">
-                                <h6 class="mb-0">Funcionário</h6>
+                                <h6 class="mb-0">Indicador Mensal</h6>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-0 mb-2">
                         @php
-                            $habilitacoes = [
-                                ['titulo' => 'Folha de pagamento', 'valor' => 2300, 'icone' => 'description'],
-                                ['titulo' => 'Jornada de trabalho', 'valor' => 3462, 'icone' => 'business_center'],
-                                [
-                                    'titulo' => 'Encargos trabalhistas',
-                                    'valor' => 3462,
-                                    'icone' => 'health_and_safety',
-                                ],
-                                ['titulo' => 'SST', 'valor' => 2462, 'icone' => 'school'],
-                            ];
+                            // Contar quantos registros existem
+                            $totalRegistros = $serviceProvider->payrollAudits->count();
 
-                            $media = 3000;
+                            // Evitar divisão por zero
+                            if ($totalRegistros > 0) {
+                                // Calcular a soma dos valores de cada categoria
+                                $totalPayroll = $serviceProvider->payrollAudits->sum('payroll_average_score');
+                                $totalWorkJourney = $serviceProvider->payrollAudits->sum('work_journey_average_score');
+                                $totalTaxes = $serviceProvider->payrollAudits->sum('taxes_average_score');
+                                $totalSST = $serviceProvider->payrollAudits->sum('sst_average_score');
+
+                                // Calcular a média dividindo pelo total de registros
+                                $habilitacoes = [
+                                    [
+                                        'titulo' => 'Folha de pagamento',
+                                        'valor' => round($totalPayroll / $totalRegistros, 2),
+                                        'icone' => 'receipt_long',
+                                    ],
+                                    [
+                                        'titulo' => 'Jornada de trabalho',
+                                        'valor' => round($totalWorkJourney / $totalRegistros, 2),
+                                        'icone' => 'schedule',
+                                    ],
+                                    [
+                                        'titulo' => 'Encargos trabalhistas',
+                                        'valor' => round($totalTaxes / $totalRegistros, 2),
+                                        'icone' => 'request_quote',
+                                    ],
+                                    [
+                                        'titulo' => 'Saúde e Segurança no Trabalho',
+                                        'valor' => round($totalSST / $totalRegistros, 2),
+                                        'icone' => 'security',
+                                    ],
+                                ];
+                            } else {
+                                // Caso não haja registros, definir valores como 0
+                                $habilitacoes = [
+                                    ['titulo' => 'Folha de pagamento', 'valor' => 0, 'icone' => 'receipt_long'],
+                                    ['titulo' => 'Jornada de trabalho', 'valor' => 0, 'icone' => 'schedule'],
+                                    ['titulo' => 'Encargos trabalhistas', 'valor' => 0, 'icone' => 'request_quote'],
+                                    ['titulo' => 'Saúde e Segurança no Trabalho', 'valor' => 0, 'icone' => 'security'],
+                                ];
+                            }
+
+                            $media = 50;
                         @endphp
 
                         @foreach ($habilitacoes as $habilitacao)
@@ -75,7 +108,7 @@
                             </div>
                             <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
                                 <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
-                                style="white-space: nowrap;"
+                                    style="white-space: nowrap;"
                                     href="{{ route('payrollAudit.create', $serviceProvider->id) }}">Adicionar mês</a>
                             </div>
                         </div>
@@ -95,7 +128,7 @@
                                                     Ano</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                   Nota Geral</th>
+                                                    Nota Geral</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     Ações</th>
@@ -108,34 +141,45 @@
                                                     <td>
                                                         <div class="d-flex px-2 py-1">
                                                             <div class="d-flex flex-column justify-content-center">
-                                                                <h6 class="mb-0 text-sm">{{ $payrollAudit->month }}</h6>
+                                                                <h6 class="mb-0 text-sm">{{ $payrollAudit->MonthName }}</h6>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <p class="text-xs font-weight-bold mb-0">{{ $payrollAudit->year }}</p>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $payrollAudit->year }}
+                                                        </p>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
-                                                        <p class="text-xs font-weight-bold mb-0">{{ $payrollAudit->admission_date }}</p>
+                                                        <p class="text-xs font-weight-bold mb-0">
+                                                            {{ $payrollAudit->admission_date }}</p>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
-                                                            <a href="{{ route('employees.edit', [$payrollAudit->id, $serviceProvider->id]) }}"
-                                                            class="btn btn-sm btn-secondary text-white me-1"
-                                                            data-toggle="tooltip"
-                                                            data-original-title="Editar Indicador Mensal">
+
+                                                            <a href="{{ route('payrollAudit.visualizar', [$payrollAudit->id]) }}"
+                                                                class="btn btn-sm btn-info text-white me-1"
+                                                                data-toggle="tooltip"
+                                                                data-original-title="Visualizar usuário">
+                                                                Visualizar
+                                                            </a>
+
+                                                            <a href="{{ route('payrollAudit.edit', [$payrollAudit->id]) }}"
+                                                                class="btn btn-sm btn-secondary text-white me-1"
+                                                                data-toggle="tooltip"
+                                                                data-original-title="Editar Indicador Mensal">
                                                                 Editar
                                                             </a>
 
-                                                            <form action="{{ route('employees.destroy', [$payrollAudit->id, $serviceProvider->id]) }}"
+                                                            <form
+                                                                action="{{ route('payrollAudit.destroy', [$payrollAudit->id, $serviceProvider->id]) }}"
                                                                 method="POST" style="display: inline-block;">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
-                                                                        class="btn btn-sm btn-danger text-white me-1"
-                                                                        data-toggle="tooltip"
-                                                                        data-original-title="Exluir Indicador Mensal">
-                                                                        Excluir
+                                                                    class="btn btn-sm btn-danger text-white me-1"
+                                                                    data-toggle="tooltip"
+                                                                    data-original-title="Exluir Indicador Mensal">
+                                                                    Excluir
                                                                 </button>
                                                             </form>
                                                         </div>
@@ -165,7 +209,7 @@
                                                     Ano</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                   Nota Geral</th>
+                                                    Nota Geral</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     Ações</th>
@@ -178,22 +222,24 @@
                                                     <td>
                                                         <div class="d-flex px-2 py-1">
                                                             <div class="d-flex flex-column justify-content-center">
-                                                                <h6 class="mb-0 text-sm">{{ $payrollAudit->client_name }}</h6>
+                                                                <h6 class="mb-0 text-sm">{{ $payrollAudit->client_name }}
+                                                                </h6>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <p class="text-xs font-weight-bold mb-0">{{ $payrollAudit->department }}</p>
+                                                        <p class="text-xs font-weight-bold mb-0">
+                                                            {{ $payrollAudit->department }}</p>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
-                                                        <p class="text-xs font-weight-bold mb-0">{{ $payrollAudit->admission_date }}</p>
+                                                        <p class="text-xs font-weight-bold mb-0">
+                                                            {{ $payrollAudit->admission_date }}</p>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
                                                             <a href="{{ route('employees.edit', [$payrollAudit->id, $serviceProvider->id]) }}"
-                                                            class="btn btn-sm btn-info text-white"
-                                                            data-toggle="tooltip"
-                                                            data-original-title="Visualizar usuário">
+                                                                class="btn btn-sm btn-info text-white" data-toggle="tooltip"
+                                                                data-original-title="Visualizar usuário">
                                                                 Visualizar
                                                             </a>
                                                         </div>

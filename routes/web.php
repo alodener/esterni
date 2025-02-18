@@ -82,9 +82,13 @@ Route::post('/occupational-program', [IndicatorEmployeeController::class, 'occup
 Route::post('/occupational-health-safety', [IndicatorEmployeeController::class, 'occupationalHealthSafety'])->name('indicatorEmployee.occupationalHealthSafety');
 Route::post('/occupational-training', [IndicatorEmployeeController::class, 'occupationalTraining'])->name('indicatorEmployee.occupationalTraining');
 
+Route::get('/payroll-audit/{id}/visualizar', [PayrollAuditController::class, 'visualizar'])->name('payrollAudit.visualizar');
 Route::get('/payroll-audit/{id}', [PayrollAuditController::class, 'show'])->name('payrollAudit.show');
 Route::get('/payroll-audit/{id}/create', [PayrollAuditController::class, 'create'])->name('payrollAudit.create');
+Route::get('/payroll-audit/{id}/edit', [PayrollAuditController::class, 'edit'])->name('payrollAudit.edit');
+Route::put('/payroll-audit/{id}', [PayrollAuditController::class, 'update'])->name('payrollAudit.update');
 Route::post('/payroll-audit', [PayrollAuditController::class, 'payrollAudit'])->name('payrollAudit.payrollAudit');
+Route::delete('/payroll-audit/{id}/{serviceProviderId}', [PayrollAuditController::class, 'destroy'])->name('payrollAudit.destroy');
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('multi-auth')->name('dashboard');
@@ -95,43 +99,3 @@ Route::post('sign-in', [SessionsController::class, 'store'])->middleware('guest'
 Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
 Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
 Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('multi-auth')->name('logout');
-
-
-// Route::get('verify', function () {
-// 	return view('sessions.password.verify');
-// })->middleware('guest')->name('verify');
-// Route::get('/reset-password/{token}', function ($token) {
-// 	return view('sessions.password.reset', ['token' => $token]);
-// })->middleware('guest')->name('password.reset');
-
-// Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
-// Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
-// Route::group(['middleware' => 'auth'], function () {
-// 	Route::get('billing', function () {
-// 		return view('pages.billing');
-// 	})->name('billing');
-// 	Route::get('tables', function () {
-// 		return view('pages.tables');
-// 	})->name('tables');
-// 	Route::get('rtl', function () {
-// 		return view('pages.rtl');
-// 	})->name('rtl');
-// 	Route::get('virtual-reality', function () {
-// 		return view('pages.virtual-reality');
-// 	})->name('virtual-reality');
-// 	Route::get('notifications', function () {
-// 		return view('pages.notifications');
-// 	})->name('notifications');
-// 	Route::get('static-sign-in', function () {
-// 		return view('pages.static-sign-in');
-// 	})->name('static-sign-in');
-// 	Route::get('static-sign-up', function () {
-// 		return view('pages.static-sign-up');
-// 	})->name('static-sign-up');
-// 	Route::get('user-management', function () {
-// 		return view('pages.laravel-examples.user-management');
-// 	})->name('user-management');
-// 	Route::get('user-profile', function () {
-// 		return view('pages.laravel-examples.user-profile');
-// 	})->name('user-profile');
-// });
