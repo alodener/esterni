@@ -151,7 +151,7 @@
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
                                                         <p class="text-xs font-weight-bold mb-0">
-                                                            {{ $payrollAudit->admission_date }}</p>
+                                                            {{ $payrollAudit->total_average_score }}</p>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
@@ -233,12 +233,13 @@
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
                                                         <p class="text-xs font-weight-bold mb-0">
-                                                            {{ $payrollAudit->admission_date }}</p>
+                                                            {{ $payrollAudit->total_average_score }}</p>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
-                                                            <a href="{{ route('employees.edit', [$payrollAudit->id, $serviceProvider->id]) }}"
-                                                                class="btn btn-sm btn-info text-white" data-toggle="tooltip"
+                                                            <a href="{{ route('payrollAudit.visualizar', [$payrollAudit->id]) }}"
+                                                                class="btn btn-sm btn-info text-white me-1"
+                                                                data-toggle="tooltip"
                                                                 data-original-title="Visualizar usuário">
                                                                 Visualizar
                                                             </a>
