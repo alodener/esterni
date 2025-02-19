@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuditComplianceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,6 +90,14 @@ Route::get('/payroll-audit/{id}/edit', [PayrollAuditController::class, 'edit'])-
 Route::put('/payroll-audit/{id}', [PayrollAuditController::class, 'update'])->name('payrollAudit.update');
 Route::post('/payroll-audit', [PayrollAuditController::class, 'payrollAudit'])->name('payrollAudit.payrollAudit');
 Route::delete('/payroll-audit/{id}/{serviceProviderId}', [PayrollAuditController::class, 'destroy'])->name('payrollAudit.destroy');
+
+Route::get('/audit-compliance/{id}/visualizar', [AuditComplianceController::class, 'visualizar'])->name('auditCompliance.visualizar');
+Route::get('/audit-compliance/{id}', [AuditComplianceController::class, 'show'])->name('auditCompliance.show');
+Route::get('/audit-compliance/{id}/create', [AuditComplianceController::class, 'create'])->name('auditCompliance.create');
+Route::get('/audit-compliance/{id}/edit', [AuditComplianceController::class, 'edit'])->name('auditCompliance.edit');
+Route::put('/audit-compliance/{id}', [AuditComplianceController::class, 'update'])->name('auditCompliance.update');
+Route::post('/audit-compliance', [AuditComplianceController::class, 'auditCompliance'])->name('auditCompliance.auditCompliance');
+Route::delete('/audit-compliance/{id}/{serviceProviderId}', [AuditComplianceController::class, 'destroy'])->name('auditCompliance.destroy');
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('multi-auth')->name('dashboard');

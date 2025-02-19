@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,6 +61,9 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('dashboard.index');
+        $client = Client::get()->count();
+        $serviceProvider = ServiceProvider::get()->count();
+
+        return view('dashboard.index', compact('client', 'serviceProvider'));
     }
 }

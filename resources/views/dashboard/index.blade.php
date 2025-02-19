@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="text-end pt-1">
                                     <p class="text-sm mb-0 text-capitalize">Total Clientes</p>
-                                    <h4 class="mb-0">2,300</h4>
+                                    <h4 class="mb-0">{{ $client }}</h4>
                                 </div>
                             </div>
                             <hr class="dark horizontal my-0">
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="text-end pt-1">
                                     <p class="text-sm mb-0 text-capitalize">Total Prestadores</p>
-                                    <h4 class="mb-0">3,462</h4>
+                                    <h4 class="mb-0">{{ $serviceProvider }}</h4>
                                 </div>
                             </div>
                             <hr class="dark horizontal my-0">
