@@ -100,6 +100,6 @@
             {{-- <x-footers.auth></x-footers.auth> --}}
         </div>
     </main>
-    <x-plugins></x-plugins>
+
 
 </x-layout>

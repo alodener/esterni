@@ -158,6 +158,6 @@
 
         </div>
     </div>
-    <x-plugins></x-plugins>
+
 
 </x-layout>

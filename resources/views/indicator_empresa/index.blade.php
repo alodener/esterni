@@ -144,7 +144,7 @@
                                     <!-- Botões de Ação -->
                                     @can('isAdmin')
                                         <div class="mt-3 d-flex justify-content-end">
-                                            <button class="btn btn-light me-2">Cancelar</button>
+                                            <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-primary">Cancelar</a>
                                             <button class="btn btn-primary">Salvar</button>
                                         </div>
                                     @endcan
@@ -297,7 +297,7 @@
                                     </div>
                                     @can('isAdmin')
                                         <div class="mt-3 d-flex justify-content-end">
-                                            <button class="btn btn-light me-2">Cancelar</button>
+                                            <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-primary">Cancelar</a>
                                             <button class="btn btn-primary">Salvar</button>
                                         </div>
                                     @endcan
@@ -420,7 +420,7 @@
                                     </div>
                                     @can('isAdmin')
                                         <div class="mt-3 d-flex justify-content-end">
-                                            <button class="btn btn-light me-2">Cancelar</button>
+                                            <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-primary">Cancelar</a>
                                             <button class="btn btn-primary">Salvar</button>
                                         </div>
                                     @endcan
@@ -563,7 +563,7 @@
                                     </div>
                                     @can('isAdmin')
                                         <div class="mt-3 d-flex justify-content-end">
-                                            <button class="btn btn-light me-2">Cancelar</button>
+                                            <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-primary">Cancelar</a>
                                             <button class="btn btn-primary">Salvar</button>
                                         </div>
                                     @endcan

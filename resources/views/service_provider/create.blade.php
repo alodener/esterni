@@ -152,7 +152,7 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-primary">Cancelar</a>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
 
@@ -163,6 +163,6 @@
 
         </div>
     </div>
-    <x-plugins></x-plugins>
+
 
 </x-layout>

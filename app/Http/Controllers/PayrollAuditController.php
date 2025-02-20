@@ -30,7 +30,7 @@ class PayrollAuditController extends Controller
     {
         // Permissões por nome de método
         $permissions = [
-            'client' => ['show'], // Clientes só podem acessar index
+            'client' => ['show', 'visualizar'], // Clientes só podem acessar index
             'web' => ['visualizar', 'show', 'create', 'edit', 'update', 'payrollAudit', 'destroy'], // Web tem acesso total pois é admin
         ];
 
