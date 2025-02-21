@@ -616,7 +616,7 @@
                                 @can('isAdmin')
                                     <div class="mt-3 d-flex justify-content-end">
                                         <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-primary">Voltar</a>
-                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                        <button type="submit" class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                                     </div>
                                 @endcan
 

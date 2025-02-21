@@ -669,7 +669,7 @@
                             @can('isAdmin')
                                 <div class="mt-3 d-flex justify-content-end">
                                     <a href="{{ route('payrollAudit.show', $serviceProvider->id) }}" class="btn btn-light me-2">Cancelar</a>
-                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                    <button type="submit" class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                                 </div>
                             @endcan
 

@@ -56,7 +56,7 @@ Route::middleware(['multi-auth'])->prefix('service-provider')->group(function ()
     Route::post('/', [ServiceProviderController::class, 'store'])->name('service-provider.store');
     Route::get('/{id}/edit', [ServiceProviderController::class, 'edit'])->name('service-provider.edit');
     Route::put('/{serviceProvider}', [ServiceProviderController::class, 'update'])->name('service-provider.update');
-    Route::delete('/', [ServiceProviderController::class, 'destroy'])->name('service-provider.destroy');
+    Route::delete('/{id}', [ServiceProviderController::class, 'destroy'])->name('service-provider.destroy');
 });
 
 Route::middleware(['multi-auth'])->prefix('employees')->group(function () {

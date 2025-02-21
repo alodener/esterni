@@ -7,7 +7,7 @@
                         <div class="">
                             <div class="">
                                 <center>
-                                    <img src="{{ asset('assets') }}/img/esterni/logo.png" style="width: 70%" />
+                                    <img src="{{ asset('assets') }}/img/esterni/logo_colorida.png" style="width: 70%" />
                                 </center>
                                 <form role="form" method="POST" action="{{ route('login') }}" class="text-start mt-4">
                                     @csrf

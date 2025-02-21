@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12 d-flex align-items-center">
-                                <h6 class="mb-3">Visualizar Prestadores</h6>
+                                <h6 class="mb-3">Visualizar Prestadores - {{ $serviceProviders->company_name }}</h6>
                             </div>
                         </div>
                     </div>
@@ -53,15 +53,22 @@
                         <div class="col-xl-3 col-sm-6 mb-4 mt-4 d-flex justify-content-center align-items-center">
                             <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center" href="{{ route('employees.show', $serviceProviders->id) }}">Funcionários</a>
                         </div>
-                        <div class="col-xl-3 col-sm-6 mb-4 mt-4 d-flex justify-content-center align-items-center">
-                            <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center" href="{{ route('indicator.show', $serviceProviders->id) }}">Indicadores</a>
-                        </div>
+                        @can('isAdmin')
+                            <div class="col-xl-3 col-sm-6 mb-4 mt-4 d-flex justify-content-center align-items-center">
+                                <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center" href="{{ route('indicator.show', $serviceProviders->id) }}">Indicadores</a>
+                            </div>
+                        @endcan
                         <div class="col-xl-3 col-sm-6 mb-4 mt-4 d-flex justify-content-center align-items-center">
                             <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center" href="{{ route('payrollAudit.show', $serviceProviders->id) }}">Ind. Mensal</a>
                         </div>
                         <div class="col-xl-3 col-sm-6 mb-4 mt-4 d-flex justify-content-center align-items-center">
-                            <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center" href="{{ route('auditCompliance.show', $serviceProviders->id) }}">Ind. Atual</a>
+                            <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center" href="{{ route('auditCompliance.show', $serviceProviders->id) }}">Ind. Anual</a>
                         </div>
+                        @can('isClient')
+                            <div class="col-xl-3 col-sm-6 mb-4 mt-4 d-flex justify-content-center align-items-center">
+                                {{-- <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center" href="{{ route('indicator.show', $serviceProviders->id) }}">Indicadores</a> --}}
+                            </div>
+                        @endcan
                     </div>
                 </div>
             </div>

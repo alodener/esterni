@@ -158,8 +158,14 @@ class ServiceProviderController extends Controller
         return redirect()->route('service-provider.index')->with('success', 'Prestador de serviço atualizado com sucesso!');
     }
 
-    public function destroy(ServiceProvider $serviceProvider) // Route model binding
+    public function destroy($id) // Route model binding
     {
+        $serviceProvider = ServiceProvider::find($id);
+
+        if (!$serviceProvider) {
+            return redirect()->route('client.index')->with('error', 'Prestador não encontrado');
+        }
+
         $serviceProvider->delete(); // Soft delete
 
         return redirect()->route('service-provider.index')->with('success', 'Prestador de serviço excluído com sucesso!');

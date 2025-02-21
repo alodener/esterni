@@ -258,7 +258,7 @@
                                         <div class="mt-3 d-flex justify-content-end">
                                             <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
                                                 class="btn btn-primary">Voltar</a>
-                                            <button class="btn btn-primary">Salvar</button>
+                                            <button class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                                         </div>
                                     @endcan
                                     @can('isClient')
@@ -433,7 +433,7 @@
                                         <div class="mt-3 d-flex justify-content-end">
                                             <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
                                                 class="btn btn-primary">Voltar</a>
-                                            <button class="btn btn-primary">Salvar</button>
+                                            <button class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                                         </div>
                                     @endcan
                                     @can('isClient')
@@ -599,7 +599,7 @@
                                         <div class="mt-3 d-flex justify-content-end">
                                             <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
                                                 class="btn btn-primary">Voltar</a>
-                                            <button class="btn btn-primary">Salvar</button>
+                                            <button class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                                         </div>
                                     @endcan
                                     @can('isClient')
@@ -635,7 +635,7 @@
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        
+
                                         <div class="mb-3 col-md-6">
                                             <label for="nr_01_general_safety" class="form-label">NR 01 - Orientações
                                                 de segurança em Geral</label>
@@ -861,7 +861,7 @@
                                         <div class="mt-3 d-flex justify-content-end">
                                             <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
                                                 class="btn btn-primary">Voltar</a>
-                                            <button class="btn btn-primary">Salvar</button>
+                                            <button class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                                         </div>
                                     @endcan
                                     @can('isClient')

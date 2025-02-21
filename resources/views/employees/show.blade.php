@@ -116,7 +116,7 @@
                                                         <p class="text-xs font-weight-bold mb-0">{{ $employee->department }}</p>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
-                                                        <p class="text-xs font-weight-bold mb-0">{{ $employee->admission_date }}</p>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ \Carbon\Carbon::parse($employee->admission_date)->format('d/m/Y') }}</p>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
