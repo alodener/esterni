@@ -18,17 +18,17 @@
                     <div class="row mt-0 mb-2">
                         @php
                             // Contar quantos registros existem
-                            $totalRegistros = $serviceProvider->payrollAudits->count();
+                            $totalRegistros = $serviceProvider->auditCompliances->count();
 
                             // Evitar divisão por zero
                             if ($totalRegistros > 0) {
                                 // Calcular a soma dos valores de cada categoria
-                                $totalPayrollThirteenth = $serviceProvider->payrollAudits->sum(
+                                $totalPayrollThirteenth = $serviceProvider->auditCompliances->sum(
                                     'payroll_thirteenth_average_score',
                                 );
-                                $totalVacation = $serviceProvider->payrollAudits->sum('vacation_average_score');
-                                $totalOccupational = $serviceProvider->payrollAudits->sum('occupational_average_score');
-                                $totalCctActFgts = $serviceProvider->payrollAudits->sum('cct_act_fgts_average_score');
+                                $totalVacation = $serviceProvider->auditCompliances->sum('vacation_average_score');
+                                $totalOccupational = $serviceProvider->auditCompliances->sum('occupational_average_score');
+                                $totalCctActFgts = $serviceProvider->auditCompliances->sum('cct_act_fgts_average_score');
 
                                 // Calcular a média dividindo pelo total de registros
                                 $habilitacoes = [

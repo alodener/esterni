@@ -92,7 +92,8 @@ class PayrollAudit extends Model
             $validFields++;
         }
 
-        return $validFields > 0 ? round($totalScore / $validFields, 2) : 0;
+        return $validFields > 0 ? round($totalScore, 2) : 0;
+        // return $validFields > 0 ? round($totalScore / $validFields, 2) : 0;
     }
 
     /**
