@@ -96,4 +96,184 @@ class ServiceProvider extends Model
     {
         return $this->hasMany(AuditCompliance::class);
     }
+
+    // NOTE: MEDIAS
+
+        /**
+     * Mapeamento de pontuação para cada resposta
+     */
+    private function getScore($value, $field)
+    {
+        $numericFields = [
+            'risk_level', 'share_capital', 'employees_number', 'capital_per_employee',
+            'contract_start_end'
+        ];
+
+        if (in_array($field, $numericFields)) {
+            return empty($value) ? 0 : 25;
+        }
+
+        $scores = [
+            '' => 0,
+            null => 0,
+            'Conforme' => 25,
+            'Não Conforme' => 0,
+            'Conforme Parcialmente' => 15,
+            'Não se aplica' => 25,
+        ];
+
+        return $scores[$value] ?? 0;
+    }
+
+    private function getScoreContratacao($value, $field)
+    {
+        $numericFields = [
+            'risk_level', 'share_capital', 'employees_number', 'capital_per_employee',
+            'contract_start_end'
+        ];
+
+        if (in_array($field, $numericFields)) {
+            return empty($value) ? 0 : 25;
+        }
+
+        $scores = [
+            '' => 0,
+            null => 0,
+            'Conforme' => 20,
+            'Não Conforme' => 0,
+            'Conforme Parcialmente' => 10,
+            'Não se aplica' => 20,
+        ];
+
+        return $scores[$value] ?? 0;
+    }
+
+    /**
+     * Calcula a média de um conjunto de campos
+     */
+    private function calculateAverageScore(array $fields, string $relation)
+    {
+        $totalScore = 0;
+        $validFields = 0;
+
+        foreach ($fields as $field) {
+            $score = $this->getScore($this->{$relation}->{$field}, $field);
+            $totalScore += $score;
+            $validFields++;
+        }
+
+        return $validFields > 0 ? round($totalScore, 2) : 0;
+    }
+
+    private function calculateAverageScoreContratacao(array $fields, string $relation)
+    {
+        $totalScore = 0;
+        $validFields = 0;
+
+        foreach ($fields as $field) {
+            $score = $this->getScoreContratacao($this->{$relation}->{$field}, $field);
+            $totalScore += $score;
+            $validFields++;
+        }
+
+        return $validFields > 0 ? round($totalScore, 2) : 0;
+    }
+
+    /**
+     * Média da Certificação Jurídica
+     */
+    public function getLegalCertificationAverageScoreAttribute()
+    {
+        return $this->calculateAverageScore([
+            'cnpj_card', 'incorporation_act', 'partners_identification', 'operating_license'
+        ], 'legalCertification');
+    }
+
+    /**
+     * Média da Certificação Trabalhista
+     */
+    public function getLaborCertificationAverageScoreAttribute()
+    {
+        return $this->calculateAverageScore([
+            'capital_per_employee',
+            'retention_clause', 'fgts_certificate', 'labor_certificate'
+        ], 'laborCertification');
+    }
+
+    /**
+     * Média da Certificação Fiscal
+     */
+    public function getFiscalCertificationAverageScoreAttribute()
+    {
+        return $this->calculateAverageScore([
+            'federal_tax_certification', 'state_tax_certification', 'municipal_tax_certification', 'cnd_federal_debt'
+        ], 'fiscalCertification');
+    }
+
+    /**
+     * Média da Certificação Econômica
+     */
+    public function getEconomicCertificationAverageScoreAttribute()
+    {
+        return $this->calculateAverageScore([
+            'calculation_memory', 'bankruptcy_certificate',
+            'dre_balance_sheet', 'issues_invoice'
+        ], 'economicCertification');
+    }
+
+    // NOTE: media funcionarios
+
+    public function getContractualDocumentationScoreAttribute()
+    {
+        return $this->calculateAverageScoreContratacao([
+            'admission_protocol', 'employment_contract', 'ethics_code', 'professional_council_certificate', 'collective_agreement'
+        ], 'contractualDocumentation');
+    }
+
+    /**
+     * Média da Certificação Trabalhista
+     */
+    public function getOccupationalProgramsScoreAttribute()
+    {
+        return $this->calculateAverageScoreContratacao([
+            'ltcat', 'pcmso', 'insalubrity_report', 'danger_report', 'aet'
+        ], 'occupationalPrograms');
+    }
+
+    /**
+     * Média da Certificação Fiscal
+     */
+    public function getOccupationalHealthSafetyScoreAttribute()
+    {
+        return $this->calculateAverageScoreContratacao([
+            'aso', 'complementary_exams', 'work_order', 'epi_uniform_record', 'esocial_events_submission'
+        ], 'occupationalHealthSafety');
+    }
+
+    /**
+     * Média da Certificação Econômica
+     */
+    public function getOccupationalTrainingsScoreAttribute()
+    {
+        return $this->calculateAverageScoreContratacao([
+            'nr_01_general_safety', 'nr_04_epi',
+            'nr_18_construction', 'nr_35_work_at_height', 'nr_10_electricity'
+        ], 'occupationalTrainings');
+    }
+
+    /**
+     * Média Total
+     */
+    public function getTotalAverageScoreAttribute()
+    {
+        $scores = [
+            $this->legal_certification_average_score,
+            $this->labor_certification_average_score,
+            $this->fiscal_certification_average_score,
+            $this->economic_certification_average_score
+        ];
+
+        return round(array_sum($scores) / count($scores), 2);
+    }
+
 }

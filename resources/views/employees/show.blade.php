@@ -18,17 +18,17 @@
                     <div class="row mt-0 mb-2">
                         @php
                             $habilitacoes = [
-                                ['titulo' => 'Documentação Contratual', 'valor' => 2300, 'icone' => 'description'],
-                                ['titulo' => 'Programas Ocupacionais', 'valor' => 3462, 'icone' => 'business_center'],
+                                ['titulo' => 'Documentação Contratual', 'valor' => $serviceProvider->getContractualDocumentationScoreAttribute(), 'icone' => 'description'],
+                                ['titulo' => 'Programas Ocupacionais', 'valor' => $serviceProvider->getOccupationalProgramsScoreAttribute(), 'icone' => 'business_center'],
                                 [
                                     'titulo' => 'Saúde e Segurança Ocupacional',
-                                    'valor' => 3462,
+                                    'valor' => $serviceProvider->getOccupationalHealthSafetyScoreAttribute(),
                                     'icone' => 'health_and_safety',
                                 ],
-                                ['titulo' => 'Treinamentos Ocupacionais', 'valor' => 2462, 'icone' => 'school'],
+                                ['titulo' => 'Treinamentos Ocupacionais', 'valor' => $serviceProvider->getOccupationalTrainingsScoreAttribute(), 'icone' => 'school'],
                             ];
 
-                            $media = 3000;
+                            $media = 50;
                         @endphp
 
                         @foreach ($habilitacoes as $habilitacao)

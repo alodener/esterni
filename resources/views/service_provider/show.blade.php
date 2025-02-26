@@ -18,12 +18,12 @@
                     <div class="row mt-5 mb-4">
                         @php
                             $habilitacoes = [
-                                ['titulo' => 'Habilitação Jurídica', 'valor' => 2300, 'icone' => 'gavel'],
-                                ['titulo' => 'Habilitação Trabalhista', 'valor' => 3462, 'icone' => 'work'],
-                                ['titulo' => 'Habilitação Fiscal', 'valor' => 3462, 'icone' => 'receipt'],
-                                ['titulo' => 'Habilitação Econômica', 'valor' => 2462, 'icone' => 'attach_money'],
+                                ['titulo' => 'Habilitação Jurídica', 'valor' => $serviceProviders->getLegalCertificationAverageScoreAttribute(), 'icone' => 'gavel'],
+                                ['titulo' => 'Habilitação Trabalhista', 'valor' => $serviceProviders->getLaborCertificationAverageScoreAttribute(), 'icone' => 'work'],
+                                ['titulo' => 'Habilitação Fiscal', 'valor' => $serviceProviders->getFiscalCertificationAverageScoreAttribute(), 'icone' => 'receipt'],
+                                ['titulo' => 'Habilitação Econômica', 'valor' => $serviceProviders->getEconomicCertificationAverageScoreAttribute(), 'icone' => 'attach_money'],
                             ];
-                            $media = 3000; // Defina aqui a média que será usada na condição
+                            $media = 50; // Defina aqui a média que será usada na condição
                         @endphp
 
                         @foreach ($habilitacoes as $habilitacao)
