@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuditComplianceController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,17 @@ Route::prefix('client-auth')->group(function () {
     Route::middleware('auth:client')->group(function () {
         Route::post('/logout', [ClientAuthController::class, 'logout'])->name('client.logout');
     });
+});
+
+
+Route::middleware(['multi-auth'])->prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
+    Route::get('/{id}', [AdminController::class, 'show'])->name('admin.show');
+    Route::post('/', [AdminController::class, 'store'])->name('admin.store');
+    Route::get('/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::put('/{id}', [AdminController::class, 'update'])->name('admin.update');
+    Route::delete('/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
 
 Route::middleware(['multi-auth'])->prefix('client')->group(function () {
