@@ -3,7 +3,7 @@
     <x-navbars.sidebar activePage="client"></x-navbars.sidebar>
     <div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage='User Profile'></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage='Cadastrar Cliente'></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="container px-2 px-md-4">
@@ -46,7 +46,7 @@
                             @csrf
                             <div class="row">
                                 <div class="mb-3 col-md-6">
-                                    <label for="name" class="form-label">Nome</label>
+                                    <label for="name" class="form-label">Nome *</label>
                                     <input type="text" name="name" id="name"
                                         class="form-control border border-2 p-2" value="{{ old('name') }}" required>
                                     @error('name')
@@ -54,7 +54,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="cnpj" class="form-label">CNPJ</label>
+                                    <label for="cnpj" class="form-label">CNPJ *</label>
                                     <input type="text" name="cnpj" id="cnpj"
                                         class="form-control border border-2 p-2" value="{{ old('cnpj') }}" required>
                                     @error('cnpj')
@@ -63,7 +63,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="street" class="form-label">Rua</label>
+                                    <label for="street" class="form-label">Rua *</label>
                                     <input type="text" name="street" id="street"
                                         class="form-control border border-2 p-2" value="{{ old('street') }}" required>
                                     @error('street')
@@ -71,7 +71,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="number" class="form-label">Número</label>
+                                    <label for="number" class="form-label">Número *</label>
                                     <input type="text" name="number" id="number"
                                         class="form-control border border-2 p-2" value="{{ old('number') }}"
                                         required>
@@ -88,7 +88,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="district" class="form-label">Bairro</label>
+                                    <label for="district" class="form-label">Bairro *</label>
                                     <input type="text" name="district" id="district"
                                         class="form-control border border-2 p-2" value="{{ old('district') }}"
                                         required>
@@ -97,7 +97,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="city" class="form-label">Cidade</label>
+                                    <label for="city" class="form-label">Cidade *</label>
                                     <input type="text" name="city" id="city"
                                         class="form-control border border-2 p-2" value="{{ old('city') }}"
                                         required>
@@ -106,7 +106,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="state" class="form-label">Estado</label>
+                                    <label for="state" class="form-label">Estado *</label>
                                     <input type="text" name="state" id="state"
                                         class="form-control border border-2 p-2" value="{{ old('state') }}"
                                         required>
@@ -115,7 +115,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="zip_code" class="form-label">CEP</label>
+                                    <label for="zip_code" class="form-label">CEP *</label>
                                     <input type="text" name="zip_code" id="zip_code"
                                         class="form-control border border-2 p-2" value="{{ old('zip_code') }}"
                                         required>
@@ -124,7 +124,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="country" class="form-label">País</label>
+                                    <label for="country" class="form-label">País *</label>
                                     <input type="text" name="country" id="country"
                                         class="form-control border border-2 p-2" value="{{ old('country') }}"
                                         required>
@@ -134,7 +134,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="password" class="form-label">Senha</label>
+                                    <label for="password" class="form-label">Senha *</label>
                                     <input type="password" class="form-control border border-2 p-2" name="password"
                                         id="password" required>
                                     @error('password')
@@ -143,7 +143,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="password_confirmation" class="form-label">Confirmar Senha</label>
+                                    <label for="password_confirmation" class="form-label">Confirmar Senha *</label>
                                     <input type="password" class="form-control border border-2 p-2"
                                         name="password_confirmation" id="password_confirmation" required>
                                 </div>

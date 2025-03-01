@@ -2,7 +2,7 @@
     <x-navbars.sidebar activePage="service-provider"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Indicador Mensal - Editar"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Indicador Anual - Editar"></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="container px-0">
@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12 d-flex align-items-center">
-                                <h6 class="mb-0">Indicador Mensal - Editar</h6>
+                                <h6 class="mb-0">Indicador Anual - Editar</h6>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label for="year" class="form-label">Ano</label>
+                                                <label for="year" class="form-label">Ano *</label>
                                                 <select id="year" name="year" class="form-select" readonly style=" pointer-events: none; background-color: #e9ecef;"></select>
                                             </div>
                                         </div>
@@ -70,7 +70,7 @@
                                     <h1>Folha 13º</h1>
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
-                                            <label for="service_provider_id" class="form-label">Prestador de Serviço</label>
+                                            <label for="service_provider_id" class="form-label">Prestador de Serviço *</label>
                                             <select name="service_provider_id" id="service_provider_id"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2"
                                                 required readonly>
@@ -84,7 +84,7 @@
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="payroll_thirteenth_launches" class="form-label">Os lançamentos foram
-                                                efetuados e pagos corretamente?</label>
+                                                efetuados e pagos corretamente? *</label>
                                             <select name="payroll_thirteenth_launches" id="payroll_thirteenth_launches"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -116,7 +116,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="payroll_thirteenth_fgts" class="form-label">Conformidade nos
-                                                lançamentos e pagamento do FGTS</label>
+                                                lançamentos e pagamento do FGTS *</label>
                                             <select name="payroll_thirteenth_fgts" id="payroll_thirteenth_fgts"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -148,7 +148,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="payroll_thirteenth_inss" class="form-label">Conformidade nos
-                                                lançamentos e pagamento do INSS</label>
+                                                lançamentos e pagamento do INSS *</label>
                                             <select name="payroll_thirteenth_inss" id="payroll_thirteenth_inss"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -180,7 +180,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="payroll_thirteenth_ir" class="form-label">Conformidade nos
-                                                lançamentos e pagamento do IR</label>
+                                                lançamentos e pagamento do IR *</label>
                                             <select name="payroll_thirteenth_ir" id="payroll_thirteenth_ir"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -218,7 +218,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="vacation_granted_on_time" class="form-label">As férias foram
-                                                concedidas dentro do prazo legal?</label>
+                                                concedidas dentro do prazo legal? *</label>
                                             <select name="vacation_granted_on_time" id="vacation_granted_on_time"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -250,7 +250,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="vacation_paid_on_time" class="form-label">As férias foram pagas
-                                                dentro do prazo legal?</label>
+                                                dentro do prazo legal? *</label>
                                             <select name="vacation_paid_on_time" id="vacation_paid_on_time"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -282,7 +282,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="vacation_planning" class="form-label">Existe planejamento de
-                                                férias?</label>
+                                                férias? *</label>
                                             <select name="vacation_planning" id="vacation_planning"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -314,7 +314,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="vacation_documentation" class="form-label">A documentação de
-                                                férias foi elaborada e assinada?</label>
+                                                férias foi elaborada e assinada? *</label>
                                             <select name="vacation_documentation" id="vacation_documentation"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -352,7 +352,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="occupational_exams" class="form-label">Exames periódicos
-                                                realizados?</label>
+                                                realizados? *</label>
                                             <select name="occupational_exams" id="occupational_exams"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -384,7 +384,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="occupational_programs" class="form-label">Programas Ocupacionais
-                                                vigentes?</label>
+                                                vigentes? *</label>
                                             <select name="occupational_programs" id="occupational_programs"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -416,7 +416,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="occupational_trainings" class="form-label">Treinamentos
-                                                ocupacionais realizados?</label>
+                                                ocupacionais realizados? *</label>
                                             <select name="occupational_trainings" id="occupational_trainings"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -448,7 +448,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="esocial_events" class="form-label">Eventos do eSocial enviados em
-                                                conformidade?</label>
+                                                conformidade? *</label>
                                             <select name="esocial_events" id="esocial_events"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -486,7 +486,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="salary_cct_act" class="form-label">Salário pago com base na
-                                                CCT/ACT?</label>
+                                                CCT/ACT? *</label>
                                             <select name="salary_cct_act" id="salary_cct_act"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -518,7 +518,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="special_work_shifts_cct_act" class="form-label">Jornadas de
-                                                trabalho especiais realizadas conforme CCT/ACT?</label>
+                                                trabalho especiais realizadas conforme CCT/ACT? *</label>
                                             <select name="special_work_shifts_cct_act" id="special_work_shifts_cct_act"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -550,7 +550,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="benefits_cct_act" class="form-label">Pagamento dos benefícios e
-                                                adicionais conforme CCT/ACT?</label>
+                                                adicionais conforme CCT/ACT? *</label>
                                             <select name="benefits_cct_act" id="benefits_cct_act"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""
@@ -582,7 +582,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="fgts_balance_deposited" class="form-label">Saldo de FGTS
-                                                depositado corretamente?</label>
+                                                depositado corretamente? *</label>
                                             <select name="fgts_balance_deposited" id="fgts_balance_deposited"
                                                 @can('isClient') disabled @endcan class="form-select border border-2 p-2">
                                                 <option value=""

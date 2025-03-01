@@ -48,13 +48,13 @@
 
                             <div class="row">
                                 <div class="mb-3 col-md-6">
-                                    <label for="company_name" class="form-label">Nome da Empresa</label>
+                                    <label for="company_name" class="form-label">Nome da Empresa *</label>
                                     <input type="text" name="company_name" id="company_name" class="form-control border border-2 p-2" value="{{ old('company_name', $serviceProvider->company_name) }}" required>
                                     @error('company_name')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="provider_cnpj" class="form-label">CNPJ</label>
+                                    <label for="provider_cnpj" class="form-label">CNPJ *</label>
                                     <input type="text" name="provider_cnpj" id="provider_cnpj" class="form-control border border-2 p-2" value="{{ old('provider_cnpj', $serviceProvider->provider_cnpj) }}" required>
                                     @error('provider_cnpj')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
@@ -140,7 +140,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="client_id" class="form-label">Vínculo</label>
+                                    <label for="client_id" class="form-label">Vínculo *</label>
                                     <select name="client_id" id="client_id" class="form-select border border-2 p-2" required>
                                         <option value="">Selecione um cliente</option>
                                         @foreach($clients as $client)

@@ -46,7 +46,7 @@
                             @csrf
                             <div class="row">
                                 <div class="mb-3 col-md-6">
-                                    <label for="service_provider_id" class="form-label">Prestador de Serviço</label>
+                                    <label for="service_provider_id" class="form-label">Prestador de Serviço *</label>
                                     <select name="service_provider_id" id="service_provider_id" class="form-select border border-2 p-2" required readonly>
                                         <option selected="selected" value="{{ $serviceProvider->id }}" readonly>{{ $serviceProvider->company_name }}</option>
                                     </select>
@@ -60,61 +60,61 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="system_enable_date" class="form-label">Data de Habilitação no Sistema</label>
+                                    <label for="system_enable_date" class="form-label">Data de Habilitação no Sistema *</label>
                                     <input type="date" name="system_enable_date" id="system_enable_date" class="form-control border border-2 p-2" required>
                                     @error('system_enable_date')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="client_name" class="form-label">Nome do Cliente</label>
+                                    <label for="client_name" class="form-label">Nome do Cliente *</label>
                                     <input type="text" name="client_name" id="client_name" class="form-control border border-2 p-2" required>
                                     @error('client_name')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="provider_name" class="form-label">Nome do Prestador</label>
+                                    <label for="provider_name" class="form-label">Nome do Prestador *</label>
                                     <input type="text" name="provider_name" id="provider_name" class="form-control border border-2 p-2" value="{{ $serviceProvider->company_name }}" readonly required>
                                     @error('provider_name')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="provider_cnpj" class="form-label">CNPJ do Prestador</label>
+                                    <label for="provider_cnpj" class="form-label">CNPJ do Prestador *</label>
                                     <input type="text" name="provider_cnpj" id="provider_cnpj" class="form-control border border-2 p-2" value="{{ $serviceProvider->provider_cnpj }}" readonly required>
                                     @error('provider_cnpj')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="employee_name" class="form-label">Nome do Funcionário</label>
+                                    <label for="employee_name" class="form-label">Nome do Funcionário *</label>
                                     <input type="text" name="employee_name" id="employee_name" class="form-control border border-2 p-2" required>
                                     @error('employee_name')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="admission_date" class="form-label">Data de Admissão</label>
+                                    <label for="admission_date" class="form-label">Data de Admissão *</label>
                                     <input type="date" name="admission_date" id="admission_date" class="form-control border border-2 p-2" required>
                                     @error('admission_date')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="dismissal_date" class="form-label">Data de Demissão</label>
+                                    <label for="dismissal_date" class="form-label">Data de Demissão *</label>
                                     <input type="date" name="dismissal_date" id="dismissal_date" class="form-control border border-2 p-2">
                                     @error('dismissal_date')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="job_title" class="form-label">Cargo</label>
+                                    <label for="job_title" class="form-label">Cargo *</label>
                                     <input type="text" name="job_title" id="job_title" class="form-control border border-2 p-2" required>
                                     @error('job_title')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="salary" class="form-label">Salário</label>
+                                    <label for="salary" class="form-label">Salário *</label>
                                     <input type="number" step="0.01" name="salary" id="salary" class="form-control border border-2 p-2" required>
                                     @error('salary')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="insalubrity" class="form-label">Insalubridade</label>
+                                    <label for="insalubrity" class="form-label">Insalubridade *</label>
                                     <select name="insalubrity" id="insalubrity" class="form-select border border-2 p-2" required>
                                         <option value="0">Não</option>
                                         <option value="1">Sim</option>
@@ -123,7 +123,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="dangerousness" class="form-label">Periculosidade</label>
+                                    <label for="dangerousness" class="form-label">Periculosidade *</label>
                                     <select name="dangerousness" id="dangerousness" class="form-select border border-2 p-2" required>
                                         <option value="0">Não</option>
                                         <option value="1">Sim</option>
@@ -132,31 +132,31 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="work_schedule" class="form-label">Horário de Trabalho</label>
+                                    <label for="work_schedule" class="form-label">Horário de Trabalho *</label>
                                     <input type="text" name="work_schedule" id="work_schedule" class="form-control border border-2 p-2" required>
                                     @error('work_schedule')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="department" class="form-label">Departamento</label>
+                                    <label for="department" class="form-label">Departamento *</label>
                                     <input type="text" name="department" id="department" class="form-control border border-2 p-2" required>
                                     @error('department')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="dismissal_date" class="form-label">Data de Demissão</label>
+                                    <label for="dismissal_date" class="form-label">Data de Demissão *</label>
                                     <input type="date" name="dismissal_date" id="dismissal_date" class="form-control border border-2 p-2">
                                     @error('dismissal_date')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="start_client_allocation" class="form-label">Ínicio da Lotação no Tomador</label>
+                                    <label for="start_client_allocation" class="form-label">Ínicio da Lotação no Tomador *</label>
                                     <input type="date" name="start_client_allocation" id="start_client_allocation" class="form-control border border-2 p-2">
                                     @error('start_client_allocation')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="end_client_allocation" class="form-label">Fim da Lotação no Tomador</label>
+                                    <label for="end_client_allocation" class="form-label">Fim da Lotação no Tomador *</label>
                                     <input type="date" name="end_client_allocation" id="end_client_allocation" class="form-control border border-2 p-2">
                                     @error('end_client_allocation')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>

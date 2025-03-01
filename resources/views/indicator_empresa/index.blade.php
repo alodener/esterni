@@ -46,7 +46,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
+                                                Serviço *</label>
                                             <select name="service_provider_id" id="service_provider_id"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2" required readonly>
@@ -60,7 +60,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="cnpj_card" class="form-label">Cartão de CNPJ</label>
+                                            <label for="cnpj_card" class="form-label">Cartão de CNPJ *</label>
                                             <select name="cnpj_card" id="cnpj_card" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
@@ -80,7 +80,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="incorporation_act" class="form-label">Ato Constitutivo, Estatuto
-                                                ou Contrato Social</label>
+                                                ou Contrato Social *</label>
                                             <select name="incorporation_act" id="incorporation_act"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -101,7 +101,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="partners_identification" class="form-label">RG, CPF dos Sócios e
-                                                Administradores</label>
+                                                Administradores *</label>
                                             <select name="partners_identification" id="partners_identification"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -122,7 +122,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="operating_license" class="form-label">Alvará de
-                                                Funcionamento</label>
+                                                Funcionamento *</label>
                                             <select name="operating_license" id="operating_license"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -165,7 +165,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
+                                                Serviço *</label>
                                             <select name="service_provider_id" id="service_provider_id"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2" required readonly>
@@ -179,7 +179,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="risk_level" class="form-label">Grau de Risco</label>
+                                            <label for="risk_level" class="form-label">Grau de Risco *</label>
                                             <input type="number" name="risk_level" id="risk_level"
                                                 @can('isClient') disabled @endcan
                                                 value="{{ old('risk_level', $serviceProvider->laborCertification?->risk_level) }}"
@@ -190,7 +190,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="share_capital" class="form-label">Capital Social</label>
+                                            <label for="share_capital" class="form-label">Capital Social *</label>
                                             <select name="share_capital" id="share_capital"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -210,7 +210,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="employees_number" class="form-label">Nº de Empregados</label>
+                                            <label for="employees_number" class="form-label">Nº de Empregados *</label>
                                             <input type="number" name="employees_number" id="employees_number"
                                                 @can('isClient') disabled @endcan
                                                 value="{{ old('employees_number', $serviceProvider->laborCertification?->employees_number) }}"
@@ -222,7 +222,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="capital_per_employee" class="form-label">Proporção
-                                                Capital/Empregados</label>
+                                                Capital/Empregados *</label>
                                             <input type="text" name="capital_per_employee"
                                                 @can('isClient') disabled @endcan id="capital_per_employee"
                                                 value="{{ old('capital_per_employee', $serviceProvider->laborCertification?->capital_per_employee) }}"
@@ -234,7 +234,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="retention_clause" class="form-label">Cláusula de
-                                                Retenção</label>
+                                                Retenção *</label>
                                             <select name="retention_clause" id="retention_clause"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -254,7 +254,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="fgts_certificate" class="form-label">Certidão de FGTS</label>
+                                            <label for="fgts_certificate" class="form-label">Certidão de FGTS *</label>
                                             <select name="fgts_certificate" id="fgts_certificate"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -275,7 +275,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="labor_certificate" class="form-label">Certidão
-                                                Trabalhista</label>
+                                                Trabalhista *</label>
                                             <select name="labor_certificate" id="labor_certificate"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -319,7 +319,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
+                                                Serviço *</label>
                                             <select name="service_provider_id" id="service_provider_id"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2" required readonly>
@@ -334,7 +334,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="federal_tax_certification" class="form-label">Certidão de
-                                                Regularidade de Tributos Federais</label>
+                                                Regularidade de Tributos Federais *</label>
                                             <select name="federal_tax_certification" id="federal_tax_certification"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -355,7 +355,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="state_tax_certification" class="form-label">Certidão de
-                                                Regularidade de Tributos Estaduais</label>
+                                                Regularidade de Tributos Estaduais *</label>
                                             <select name="state_tax_certification" id="state_tax_certification"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -376,7 +376,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="municipal_tax_certification" class="form-label">Certidão de
-                                                Regularidade de Tributos Municipais</label>
+                                                Regularidade de Tributos Municipais *</label>
                                             <select name="municipal_tax_certification"
                                                 id="municipal_tax_certification" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -398,7 +398,7 @@
                                         <div class="mb-3 col-md-6">
                                             <label for="cnd_federal_debt" class="form-label">CND - Certidão Negativa
                                                 de Débitos Relativos aos Tributos Federais e à Dívida Ativa da
-                                                União</label>
+                                                União *</label>
                                                     <select name="cnd_federal_debt" id="cnd_federal_debt"
                                                         @can('isClient') disabled @endcan
                                                         class="form-select border border-2 p-2">
@@ -443,7 +443,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
+                                                Serviço *</label>
                                             <select @can('isClient') disabled @endcan name="service_provider_id"
                                                 id="service_provider_id" class="form-select border border-2 p-2"
                                                 required readonly>
@@ -458,7 +458,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="contract_start_end" class="form-label">Início/Fim do
-                                                Contrato</label>
+                                                Contrato *</label>
                                             <input type="date" name="contract_start_end" id="contract_start_end"
                                                 @can('isClient') disabled @endcan
                                                 value="{{ old('contract_start_end', optional(\Carbon\Carbon::parse($serviceProvider->economicCertification?->contract_start_end))->format('Y-m-d')) }}"
@@ -470,7 +470,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="company_size" class="form-label">Porte</label>
+                                            <label for="company_size" class="form-label">Porte *</label>
                                             <input type="text" name="company_size" id="company_size"
                                                 @can('isClient') disabled @endcan
                                                 value="{{ old('company_size', $serviceProvider->economicCertification?->company_size) }}"
@@ -482,7 +482,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="calculation_memory" class="form-label">Memória de
-                                                Cálculo</label>
+                                                Cálculo *</label>
                                             <select @can('isClient') disabled @endcan name="calculation_memory"
                                                 id="calculation_memory" class="form-select border border-2 p-2"
                                                 required>
@@ -503,7 +503,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="bankruptcy_certificate" class="form-label">Certidão Negativa
-                                                de Falência e Protesto</label>
+                                                de Falência e Protesto *</label>
                                             <select @can('isClient') disabled @endcan name="bankruptcy_certificate"
                                                 id="bankruptcy_certificate" class="form-select border border-2 p-2"
                                                 required>
@@ -523,7 +523,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="dre_balance_sheet" class="form-label">DRE/Balancete</label>
+                                            <label for="dre_balance_sheet" class="form-label">DRE/Balancete *</label>
                                             <select @can('isClient') disabled @endcan name="dre_balance_sheet"
                                                 id="dre_balance_sheet" class="form-select border border-2 p-2"
                                                 required>
@@ -543,7 +543,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="issues_invoice" class="form-label">Emite Nota Fiscal?</label>
+                                            <label for="issues_invoice" class="form-label">Emite Nota Fiscal? *</label>
                                             <select @can('isClient') disabled @endcan name="issues_invoice"
                                                 id="issues_invoice" class="form-select border border-2 p-2" required>
                                                 <option value="Conforme"

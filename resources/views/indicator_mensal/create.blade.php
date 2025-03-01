@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label for="month" class="form-label">Mês</label>
+                                                <label for="month" class="form-label">Mês *</label>
                                                 <select id="month" name="month" class="form-select">
                                                     <option value="">Selecione um mês</option>
                                                     <option value="1" {{ old('month') == 1 ? 'selected' : '' }}>
@@ -82,7 +82,7 @@
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="year" class="form-label">Ano</label>
+                                                <label for="year" class="form-label">Ano *</label>
                                                 <select id="year" name="year" class="form-select"></select>
                                             </div>
                                         </div>
@@ -102,7 +102,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
+                                                Serviço *</label>
                                             <select name="service_provider_id" id="service_provider_id"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2" required readonly>
@@ -118,7 +118,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="payroll_entries_correct" class="form-label">Os lançamentos
-                                                realizados na folha/férias/rescisão estão corretos?</label>
+                                                realizados(folha/férias/rescisão) estão corretos? *</label>
                                             <select name="payroll_entries_correct" id="payroll_entries_correct"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -152,7 +152,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="payroll_compliance" class="form-label">Folha/Férias/Rescisões
-                                                foram pagas em conformidade?</label>
+                                                foram pagas em conformidade? *</label>
                                             <select name="payroll_compliance" id="payroll_compliance"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -185,7 +185,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="benefits_paid_correctly" class="form-label">Os benefícios
-                                                foram pagos corretamente?</label>
+                                                foram pagos corretamente? *</label>
                                             <select name="benefits_paid_correctly" id="benefits_paid_correctly"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -218,7 +218,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="leave_records_correct" class="form-label">Os afastamentos
-                                                foram feitos corretamente?</label>
+                                                foram feitos corretamente? *</label>
                                             <select name="leave_records_correct" id="leave_records_correct"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -257,7 +257,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="work_schedules_presented" class="form-label">Espelhos de Ponto
-                                                Apresentados</label>
+                                                Apresentados *</label>
                                             <select name="work_schedules_presented" id="work_schedules_presented"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -290,7 +290,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="work_records_compliant" class="form-label">Registros
-                                                realizados em conformidade</label>
+                                                realizados em conformidade *</label>
                                             <select name="work_records_compliant" id="work_records_compliant"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -323,7 +323,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="overtime_compliant" class="form-label">Horas extras realizadas
-                                                em conformidade com a CLT</label>
+                                                em conformidade com a CLT *</label>
                                             <select name="overtime_compliant" id="overtime_compliant"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -356,7 +356,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="rest_periods_complied" class="form-label">Cumprimento
-                                                intrajornada e interjornada</label>
+                                                intrajornada e interjornada *</label>
                                             <select name="rest_periods_complied" id="rest_periods_complied"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -394,7 +394,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="tax_guides_presented" class="form-label">Guias e
-                                                detalhamentos/relatórios apresentados (FGTS/INSS/IR)?</label>
+                                                detalhamentos/relatórios apresentados (FGTS/INSS/IR)? *</label>
                                             <select name="tax_guides_presented" id="tax_guides_presented"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -427,7 +427,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="fgts_compliance" class="form-label">Conformidade nos
-                                                lançamentos e pagamento do FGTS</label>
+                                                lançamentos e pagamento do FGTS *</label>
                                             <select name="fgts_compliance" id="fgts_compliance"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -460,7 +460,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="inss_compliance" class="form-label">Conformidade nos
-                                                lançamentos e pagamento do INSS</label>
+                                                lançamentos e pagamento do INSS *</label>
                                             <select name="inss_compliance" id="inss_compliance"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -493,7 +493,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="ir_compliance" class="form-label">Conformidade nos lançamentos
-                                                e pagamento do IR</label>
+                                                e pagamento do IR *</label>
                                             <select name="ir_compliance" id="ir_compliance"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -531,7 +531,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="cat_submitted_on_time" class="form-label">CAT emitida e
-                                                enviada ao eSocial dentro do prazo legal</label>
+                                                enviada ao eSocial dentro do prazo legal *</label>
                                             <select name="cat_submitted_on_time" id="cat_submitted_on_time"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -563,7 +563,7 @@
 
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="cipa_training" class="form-label">CIPA/treinamentos</label>
+                                            <label for="cipa_training" class="form-label">CIPA/treinamentos *</label>
                                             <select name="cipa_training" id="cipa_training"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -596,7 +596,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="medical_certificates_presented" class="form-label">Atestados
-                                                apresentados (doença relacionada às atividades laborais)</label>
+                                                apresentados (doença relacionada às atividades laborais) *</label>
                                             <select name="medical_certificates_presented"
                                                 id="medical_certificates_presented" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -629,7 +629,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="accident_investigation_presented"
-                                                class="form-label">Investigação de Acidente - apresentado</label>
+                                                class="form-label">Investigação de Acidente - apresentado *</label>
                                             <select name="accident_investigation_presented"
                                                 id="accident_investigation_presented"
                                                 @can('isClient') disabled @endcan

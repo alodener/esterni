@@ -2,7 +2,7 @@
     <x-navbars.sidebar activePage="client"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="client"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Cliente"></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="col-md-12 mb-lg-0 mb-4">

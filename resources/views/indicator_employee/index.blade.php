@@ -49,7 +49,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
+                                                Serviço *</label>
                                             <select name="service_provider_id" id="service_provider_id"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2" required readonly>
@@ -64,7 +64,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="admission_protocol" class="form-label">Protocolo de
-                                                Admissão</label>
+                                                Admissão *</label>
                                             <select name="admission_protocol" id="admission_protocol"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -88,7 +88,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="employment_contract" class="form-label">Contrato de
-                                                Trabalho</label>
+                                                Trabalho *</label>
                                             <select name="employment_contract" id="employment_contract"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -112,7 +112,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="ethics_code" class="form-label">Código de Ética e
-                                                Conduta</label>
+                                                Conduta *</label>
                                             <select name="ethics_code" id="ethics_code"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -135,7 +135,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="driver_license" class="form-label">CNH - Para Motoristas</label>
+                                            <label for="driver_license" class="form-label">CNH - Para Motoristas *</label>
                                             <select name="driver_license" id="driver_license"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -159,7 +159,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="federal_police_clearance" class="form-label">Alvará da Polícia
-                                                Federal</label>
+                                                Federal *</label>
                                             <select name="federal_police_clearance" id="federal_police_clearance"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -184,7 +184,7 @@
                                         <div class="mb-3 col-md-6">
                                             <label for="professional_council_certificate" class="form-label">Certidão
                                                 de
-                                                Registro no Conselho de Classe</label>
+                                                Registro no Conselho de Classe *</label>
                                             <select name="professional_council_certificate"
                                                 id="professional_council_certificate" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -208,7 +208,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="electrical_course_certificate" class="form-label">Certificado
-                                                de Curso de Elétrica</label>
+                                                de Curso de Elétrica *</label>
                                             <select name="electrical_course_certificate"
                                                 id="electrical_course_certificate" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -231,7 +231,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="collective_agreement" class="form-label">CCT ou ACT</label>
+                                            <label for="collective_agreement" class="form-label">CCT ou ACT *</label>
                                             <select name="collective_agreement" id="collective_agreement"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -279,7 +279,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
+                                                Serviço *</label>
                                             <select name="service_provider_id" id="service_provider_id"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2" required readonly>
@@ -293,7 +293,7 @@
                                             @enderror
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label for="ltcat" class="form-label">LTCAT</label>
+                                            <label for="ltcat" class="form-label">LTCAT *</label>
                                             <select name="ltcat" id="ltcat" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
@@ -315,7 +315,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="pgr" class="form-label">PGR</label>
+                                            <label for="pgr" class="form-label">PGR *</label>
                                             <select name="pgr" id="pgr" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
@@ -337,7 +337,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="pcmso" class="form-label">PCMSO</label>
+                                            <label for="pcmso" class="form-label">PCMSO *</label>
                                             <select name="pcmso" id="pcmso" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
@@ -360,7 +360,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="insalubrity_report" class="form-label">Laudo de
-                                                Insalubridade</label>
+                                                Insalubridade *</label>
                                             <select name="insalubrity_report" id="insalubrity_report"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -384,7 +384,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="danger_report" class="form-label">Laudo de
-                                                Periculosidade</label>
+                                                Periculosidade *</label>
                                             <select name="danger_report" id="danger_report"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -407,7 +407,7 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="aet" class="form-label">AET</label>
+                                            <label for="aet" class="form-label">AET *</label>
                                             <select name="aet" id="aet" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
@@ -458,7 +458,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
+                                                Serviço *</label>
                                             <select name="service_provider_id" id="service_provider_id"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2" required readonly>
@@ -474,7 +474,7 @@
 
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="aso" class="form-label">ASO</label>
+                                            <label for="aso" class="form-label">ASO *</label>
                                             <select name="aso" id="aso" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
@@ -498,7 +498,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="complementary_exams" class="form-label">Exames
-                                                Complementares</label>
+                                                Complementares *</label>
                                             <select name="complementary_exams" id="complementary_exams"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -522,7 +522,7 @@
 
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="work_order" class="form-label">Ordem de Serviço</label>
+                                            <label for="work_order" class="form-label">Ordem de Serviço *</label>
                                             <select name="work_order" id="work_order"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -547,7 +547,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="epi_uniform_record" class="form-label">Ficha de
-                                                EPI/Fardamento</label>
+                                                EPI/Fardamento *</label>
                                             <select name="epi_uniform_record" id="epi_uniform_record"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -572,7 +572,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="esocial_events_submission" class="form-label">Envio dos
-                                                eventos do eSocial (S-2220, S-2240, S-2210, S-2221)</label>
+                                                eventos do eSocial (S-2220, S-2240, S-2210, S-2221) *</label>
                                             <select name="esocial_events_submission" id="esocial_events_submission"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -623,7 +623,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
+                                                Serviço *</label>
                                             <select name="service_provider_id" id="service_provider_id"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2" required readonly>
@@ -638,7 +638,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="nr_01_general_safety" class="form-label">NR 01 - Orientações
-                                                de segurança em Geral</label>
+                                                de segurança em Geral *</label>
                                             <select name="nr_01_general_safety" id="nr_01_general_safety"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -662,7 +662,7 @@
 
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="nr_04_epi" class="form-label">NR 04 - EPI</label>
+                                            <label for="nr_04_epi" class="form-label">NR 04 - EPI *</label>
                                             <select name="nr_04_epi" id="nr_04_epi" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
                                                 <option value="Conforme"
@@ -686,7 +686,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="nr_18_construction" class="form-label">NR 18 - Construção
-                                                Civil</label>
+                                                Civil *</label>
                                             <select name="nr_18_construction" id="nr_18_construction"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -711,7 +711,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="nr_35_work_at_height" class="form-label">NR 35 - Trabalho em
-                                                Altura</label>
+                                                Altura *</label>
                                             <select name="nr_35_work_at_height" id="nr_35_work_at_height"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -736,7 +736,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="nr_10_electricity" class="form-label">NR 10 -
-                                                Eletricidade</label>
+                                                Eletricidade *</label>
                                             <select name="nr_10_electricity" id="nr_10_electricity"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -761,7 +761,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="nr_11_transport_handling" class="form-label">NR 11 -
-                                                Transporte, Movimentação, Armazenagem e Manuseio de equipamentos</label>
+                                                Transporte, Movimentação, Armazenagem e Manuseio de equipamentos *</label>
                                             <select name="nr_11_transport_handling" id="nr_11_transport_handling"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -785,7 +785,7 @@
 
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="nr_14_furnaces" class="form-label">NR 14 - Fornos</label>
+                                            <label for="nr_14_furnaces" class="form-label">NR 14 - Fornos *</label>
                                             <select name="nr_14_furnaces" id="nr_14_furnaces"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -809,7 +809,7 @@
 
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="nr_17_ergonomics" class="form-label">NR 17 - Ergonomia</label>
+                                            <label for="nr_17_ergonomics" class="form-label">NR 17 - Ergonomia *</label>
                                             <select name="nr_17_ergonomics" id="nr_17_ergonomics"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
@@ -834,7 +834,7 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="nr_19_explosives" class="form-label">NR 19 -
-                                                Explosivos</label>
+                                                Explosivos *</label>
                                             <select name="nr_19_explosives" id="nr_19_explosives"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">

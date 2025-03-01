@@ -47,23 +47,23 @@
                             @method('PUT') {{-- Importante: Adicione o método PUT para a atualização --}}
                             <div class="row">
                                 <div class="mb-3 col-md-6">
-                                    <label for="name" class="form-label">Nome</label>
+                                    <label for="name" class="form-label">Nome *</label>
                                     <input type="text" name="name" id="name" class="form-control border border-2 p-2" value="{{ old('name', $client->name) }}" required>
                                     @error('name')<p class='text-danger inputerror'>{{ $message }}</p>@enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="cnpj" class="form-label">CNPJ</label>
+                                    <label for="cnpj" class="form-label">CNPJ *</label>
                                     <input type="text" name="cnpj" id="cnpj" class="form-control border border-2 p-2" value="{{ old('cnpj', $client->cnpj) }}" required>
                                     @error('cnpj')<p class='text-danger inputerror'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="street" class="form-label">Rua</label>
+                                    <label for="street" class="form-label">Rua *</label>
                                     <input type="text" name="street" id="street" class="form-control border border-2 p-2" value="{{ old('street', $client->addresses->first()->street ?? '') }}" required>
                                     @error('street')<p class='text-danger inputerror'>{{ $message }}</p>@enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="number" class="form-label">Número</label>
+                                    <label for="number" class="form-label">Número *</label>
                                     <input type="text" name="number" id="number" class="form-control border border-2 p-2" value="{{ old('number', $client->addresses->first()->number ?? '') }}" required>
                                     @error('number')<p class='text-danger inputerror'>{{ $message }}</p>@enderror
                                 </div>
@@ -73,33 +73,33 @@
                                     @error('complement')<p class='text-danger inputerror'>{{ $message }}</p>@enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="district" class="form-label">Bairro</label>
+                                    <label for="district" class="form-label">Bairro *</label>
                                     <input type="text" name="district" id="district" class="form-control border border-2 p-2" value="{{ old('district', $client->addresses->first()->district ?? '') }}" required>
                                     @error('district')<p class='text-danger inputerror'>{{ $message }}</p>@enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="city" class="form-label">Cidade</label>
+                                    <label for="city" class="form-label">Cidade *</label>
                                     <input type="text" name="city" id="city" class="form-control border border-2 p-2" value="{{ old('city', $client->addresses->first()->city ?? '') }}" required>
                                     @error('city')<p class='text-danger inputerror'>{{ $message }}</p>@enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="state" class="form-label">Estado</label>
+                                    <label for="state" class="form-label">Estado *</label>
                                     <input type="text" name="state" id="state" class="form-control border border-2 p-2" value="{{ old('state', $client->addresses->first()->state ?? '') }}" required>
                                     @error('state')<p class='text-danger inputerror'>{{ $message }}</p>@enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="zip_code" class="form-label">CEP</label>
+                                    <label for="zip_code" class="form-label">CEP *</label>
                                     <input type="text" name="zip_code" id="zip_code" class="form-control border border-2 p-2" value="{{ old('zip_code', $client->addresses->first()->zip_code ?? '') }}" required>
                                     @error('zip_code')<p class='text-danger inputerror'>{{ $message }}</p>@enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="country" class="form-label">País</label>
+                                    <label for="country" class="form-label">País *</label>
                                     <input type="text" name="country" id="country" class="form-control border border-2 p-2" value="{{ old('country', $client->addresses->first()->country ?? '') }}" required>
                                     @error('country')<p class='text-danger inputerror'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="password" class="form-label">Nova Senha (deixe em branco para manter a senha atual)</label>
+                                    <label for="password" class="form-label">Nova Senha (deixe em branco para manter a senha atual) *</label>
                                     <input type="password" class="form-control border border-2 p-2" name="password" id="password">
                                     @error('password')
                                     <p class="text-danger inputerror">{{ $message }}</p>
@@ -107,19 +107,19 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="password_confirmation" class="form-label">Confirmar Nova Senha</label>
+                                    <label for="password_confirmation" class="form-label">Confirmar Nova Senha *</label>
                                     <input type="password" class="form-control border border-2 p-2" name="password_confirmation" id="password_confirmation">
                                 </div>
 
                                 <div class="mb-3 col-md-12">
-                                    <label for="status" class="form-label">Status</label>
+                                    <label for="status" class="form-label">Status *</label>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="status" id="ativo" value="Ativo" {{ old('status', $client->status ?? 'Inativo') === 'Ativo' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="ativo">Ativo</label>
+                                        <label class="form-check-label" for="ativo">Ativo *</label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="status" id="inativo" value="Inativo" {{ old('status', $client->status ?? 'Inativo') === 'Inativo' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="inativo">Inativo</label>
+                                        <label class="form-check-label" for="inativo">Inativo *</label>
                                     </div>
                                     @error('status')
                                     <p class="text-danger inputerror">{{ $message }}</p>

@@ -29,7 +29,7 @@
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
                                     <div class="input-group input-group-outline mt-3">
-                                        <label class="form-label">Password</label>
+                                        <label class="form-label">Senha</label>
                                         <input type="password" class="form-control" name="password"
                                             >
                                     </div>
