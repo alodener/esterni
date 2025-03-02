@@ -10,8 +10,9 @@
                 <div class="card card-plain h-100 mb-4">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-12 d-flex align-items-center">
+                            <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h6 class="mb-0">Funcionário</h6>
+                                <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-secondary">Voltar</a>
                             </div>
                         </div>
                     </div>
@@ -127,14 +128,15 @@
                                                                 Editar
                                                             </a>
 
-                                                            <form action="{{ route('employees.destroy', [$employee->id, $serviceProvider->id]) }}"
+                                                            <form id="delete-form-{{ $employee->id }}" action="{{ route('employees.destroy', [$employee->id, $serviceProvider->id]) }}"
                                                                 method="POST" style="display: inline-block;">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit"
+                                                                <button type="button"
                                                                         class="btn btn-sm btn-danger text-white me-1"
                                                                         data-toggle="tooltip"
-                                                                        data-original-title="Exluir usuário">
+                                                                        data-original-title="Exluir usuário"
+                                                                        onclick="confirmDelete({{ $employee->id }})">
                                                                         Excluir
                                                                 </button>
                                                             </form>

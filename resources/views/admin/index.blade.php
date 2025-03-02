@@ -73,14 +73,15 @@
                                                         data-original-title="Editar usuário">
                                                         Editar
                                                     </a>
-                                                    <form action="{{ route('admin.destroy', $user->id) }}"
+                                                    <form id="delete-form-{{ $user->id }}" action="{{ route('admin.destroy', $user->id) }}"
                                                         method="POST" style="display: inline-block;">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit"
+                                                        <button type="button"
                                                                 class="btn btn-sm btn-danger text-white me-1"
                                                                 data-toggle="tooltip"
-                                                                data-original-title="Exluir usuário">
+                                                                data-original-title="Exluir usuário"
+                                                                onclick="confirmDelete({{ $user->id }})">
                                                                 Excluir
                                                         </button>
                                                     </form>

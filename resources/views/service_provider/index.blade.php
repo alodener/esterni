@@ -74,14 +74,15 @@
                                                                 Editar
                                                             </a>
 
-                                                            <form action="{{ route('service-provider.destroy', $serviceProvider->id) }}"
+                                                            <form id="delete-form-{{ $serviceProvider->id }}" action="{{ route('service-provider.destroy', $serviceProvider->id) }}"
                                                                 method="POST" style="display: inline-block;">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit"
+                                                                <button type="button"
                                                                         class="btn btn-sm btn-danger text-white me-1"
                                                                         data-toggle="tooltip"
-                                                                        data-original-title="Exluir usuário">
+                                                                        data-original-title="Exluir usuário"
+                                                                        onclick="confirmDelete({{ $serviceProvider->id }})">
                                                                         Excluir
                                                                 </button>
                                                             </form>

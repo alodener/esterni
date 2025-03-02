@@ -10,8 +10,9 @@
                 <div class="card card-plain h-100 mb-4">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-12 d-flex align-items-center">
+                            <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h6 class="mb-3">Visualizar Prestadores - {{ $serviceProviders->company_name }}</h6>
+                                <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-secondary">Voltar</a>
                             </div>
                         </div>
                     </div>
