@@ -88,10 +88,17 @@
                                                             </form>
 
                                                             <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
-                                                            class="btn btn-sm btn-info text-white"
+                                                            class="btn btn-sm btn-info text-white me-1"
                                                             data-toggle="tooltip"
                                                             data-original-title="Visualizar usuário">
                                                                 Visualizar
+                                                            </a>
+
+                                                            <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                                            class="btn btn-sm btn-info text-white"
+                                                            data-toggle="tooltip"
+                                                            data-original-title="Visualizar usuário">
+                                                                Onboarding
                                                             </a>
                                                         </div>
                                                     </td>

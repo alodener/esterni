@@ -62,8 +62,8 @@ class DashboardController extends Controller
     public function index()
     {
         $client = Client::get()->count();
-        $serviceProvider = ServiceProvider::get()->count();
+        $serviceProviders = ServiceProvider::get();
 
-        return view('dashboard.index', compact('client', 'serviceProvider'));
+        return view('dashboard.index', compact('client', 'serviceProviders'));
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use function PHPUnit\Framework\isNull;
+
 class ServiceProvider extends Model
 {
     use HasFactory, SoftDeletes;
@@ -155,14 +157,21 @@ class ServiceProvider extends Model
     {
         $totalScore = 0;
         $validFields = 0;
+// try {
+    //code...
+    foreach ($fields as $field) {
+        if(!is_null($this->{$relation})){
 
-        foreach ($fields as $field) {
             $score = $this->getScore($this->{$relation}->{$field}, $field);
-            $totalScore += $score;
-            $validFields++;
         }
+        $totalScore += $score ?? 0;
+        $validFields++;
+    }
 
-        return $validFields > 0 ? round($totalScore, 2) : 0;
+// } catch (\Throwable $th) {
+//     dd($fields, $relation, $th->getMessage(), $this->legalCertification);
+// }
+    return $validFields > 0 ? round($totalScore, 2) : 0;
     }
 
     private function calculateAverageScoreContratacao(array $fields, string $relation)
@@ -271,6 +280,18 @@ class ServiceProvider extends Model
             $this->labor_certification_average_score,
             $this->fiscal_certification_average_score,
             $this->economic_certification_average_score
+        ];
+
+        return round(array_sum($scores) / count($scores), 2);
+    }
+
+    public function getTotalAverageScoreContratacaoAttribute()
+    {
+        $scores = [
+            $this->contractual_documentation_score,
+            $this->occupational_programs_score,
+            $this->occupational_healthSafety_score,
+            $this->occupational_training_score
         ];
 
         return round(array_sum($scores) / count($scores), 2);
