@@ -29,6 +29,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\IndicatorController;
 use App\Http\Controllers\ClientAuthController;
 use App\Http\Controllers\IndicatorEmployeeController;
+use App\Http\Controllers\OnboardingController;
 use App\Http\Controllers\PayrollAuditController;
 
 Route::prefix('client-auth')->group(function () {
@@ -69,6 +70,16 @@ Route::middleware(['multi-auth'])->prefix('service-provider')->group(function ()
     Route::get('/{id}/edit', [ServiceProviderController::class, 'edit'])->name('service-provider.edit');
     Route::put('/{serviceProvider}', [ServiceProviderController::class, 'update'])->name('service-provider.update');
     Route::delete('/{id}', [ServiceProviderController::class, 'destroy'])->name('service-provider.destroy');
+});
+
+Route::middleware(['multi-auth'])->prefix('onboarding')->group(function () {
+    // Route::get('/', [OnboardingController::class, 'index'])->name('onboarding.index');
+    // Route::get('/create', [OnboardingController::class, 'create'])->name('onboarding.create');
+    Route::get('/{id}', [OnboardingController::class, 'show'])->name('onboarding.show');
+    // Route::post('/', [OnboardingController::class, 'store'])->name('onboarding.store');
+    // Route::get('/{id}/edit', [OnboardingController::class, 'edit'])->name('onboarding.edit');
+    // Route::put('/{serviceProvider}', [OnboardingController::class, 'update'])->name('onboarding.update');
+    // Route::delete('/{id}', [OnboardingController::class, 'destroy'])->name('onboarding.destroy');
 });
 
 Route::middleware(['multi-auth'])->prefix('employees')->group(function () {

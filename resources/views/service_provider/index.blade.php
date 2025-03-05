@@ -94,7 +94,7 @@
                                                                 Visualizar
                                                             </a>
 
-                                                            <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                                            <a href="{{ route('onboarding.show', $serviceProvider->id) }}"
                                                             class="btn btn-sm btn-info text-white"
                                                             data-toggle="tooltip"
                                                             data-original-title="Visualizar usuário">
