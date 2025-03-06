@@ -9,7 +9,7 @@
         <div class="container-fluid py-4">
             <div class="header-card">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h3>Folha 13º</h3>
+                    <h3>Onboarding</h3>
                     <div class="bg-white text-center p-2 rounded">
                         <p class="mb-0 text-dark" id="nota_geral"><b>NOTA GERAL</b></p>
                         <h2 class="text-secondary">7</h2>
@@ -36,10 +36,10 @@
 
             @php
                 $habilitacoes = [
-                    ['titulo' => 'Habilitação Jurídica', 'valor' => $serviceProvider->getLegalCertificationAverageScoreAttribute(), 'icone' => 'gavel'],
-                    ['titulo' => 'Habilitação Trabalhista', 'valor' => $serviceProvider->getLaborCertificationAverageScoreAttribute(), 'icone' => 'work'],
-                    ['titulo' => 'Habilitação Fiscal', 'valor' => $serviceProvider->getFiscalCertificationAverageScoreAttribute(), 'icone' => 'receipt'],
-                    ['titulo' => 'Habilitação Econômica', 'valor' => $serviceProvider->getEconomicCertificationAverageScoreAttribute(), 'icone' => 'attach_money'],
+                    ['titulo' => 'Habilitação Jurídica', 'valor' => $serviceProvider->getLegalCertificationAverageScoreAttribute(), 'icone' => 'habilitacao_juridica.png'],
+                    ['titulo' => 'Habilitação Trabalhista', 'valor' => $serviceProvider->getLaborCertificationAverageScoreAttribute(), 'icone' => 'habilitacao_trabalhista.png'],
+                    ['titulo' => 'Habilitação Fiscal', 'valor' => $serviceProvider->getFiscalCertificationAverageScoreAttribute(), 'icone' => 'habilitacao_fiscal.png'],
+                    ['titulo' => 'Habilitação Econômica', 'valor' => $serviceProvider->getEconomicCertificationAverageScoreAttribute(), 'icone' => 'habilitacao_economica.png'],
                 ];
                 $media = 50; // Defina aqui a média que será usada na condição
             @endphp
@@ -47,26 +47,47 @@
                 <h3><strong>Visão Empresarial</strong></h3>
                 @foreach ($habilitacoes as $habilitacao)
                     @php
-                        $bgColor = $habilitacao['valor'] >= $media ? 'bg-gradient-success shadow-success' : 'bg-gradient-danger shadow-danger';
+                        // Definir cor com base no valor
+                        if ($habilitacao['valor'] > 70) {
+                            $bgColor = '#10D8A0'; // Verde
+                        } elseif ($habilitacao['valor'] > 50) {
+                            $bgColor = '#F6D118'; // Amarelo
+                        } else {
+                            $bgColor = '#E91F63'; // Vermelho
+                        }
                     @endphp
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                        <div class="card {{ $bgColor }}">
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-4">
+                        <div class="card">
                             <div class="card-header p-3 pt-2 ">
-                                <div class="icon icon-md icon-shape {{ $bgColor }} text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="material-icons opacity-10">{{ $habilitacao['icone'] }}</i>
+                                <div class="d-flex justify-content-center align-items-center icon icon-md icon-shape {{ $bgColor }} text-center border-radius-xl mt-n4 position-absolute" style="background-image: linear-gradient(195deg, {{  $bgColor}} 0%, {{ $bgColor }} 100%); width: 65px; height: 65px">
+                                    {{-- <i class="material-icons opacity-10">{{ $habilitacao['icone'] }}</i> --}}
+                                    <img src="{{ asset('assets/img/esterni/visao_empresarial/' . $habilitacao['icone']) }}" alt="{{ $habilitacao['titulo'] }}" style="width: 35px; height: auto;">
                                 </div>
                                 <div class="text-end pt-1">
-                                    <p class="text-sm mb-0 text-capitalize">{{ $habilitacao['titulo'] }}</p>
-                                    <h4 class="mb-0">{{ number_format($habilitacao['valor'], 0, ',', '.') }}</h4>
+                                    <p class="text-md mb-0 text-capitalize">
+                                        @foreach (explode(' ', $habilitacao['titulo']) as $palavra)
+                                            <span style="display: block;"><strong>{{ $palavra }}</strong></span>
+                                        @endforeach
+                                    </p>
+                                    <h4 class="mb-0 text-center" style="margin-top: 5px; color: {{ $bgColor }}; font-size: 40px !important">{{ number_format($habilitacao['valor'], 0, ',', '.') }}</h4>
                                 </div>
                             </div>
                             {{-- <hr class="dark horizontal my-0"> --}}
-                            <div class="card-footer p-3">
-                                <p class="mb-0"></p>
+                            <div class="card-footer pa-0 ma-0" style="padding: 4px">
+                                {{-- <p class="mb-0"></p> --}}
                             </div>
                         </div>
                     </div>
                 @endforeach
+            </div>
+
+            <div class="card mt-7">
+                <div class="card-body mt-n6">
+                    <div class="chart-container p-3" style="background: #2c2cd6; border-radius: 10px;">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                    <h5 class="mt-3 ms-3"><strong>Análise Empresarial</strong></h5>
+                </div>
             </div>
 
         </div>
@@ -104,4 +125,79 @@
         }
 
     </style>
+
+    @push('js')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const habilitacoes = @json($habilitacoes);
+
+            const labels = habilitacoes.map(h => h.titulo);
+            const data = habilitacoes.map(h => h.valor);
+            const backgroundColor = habilitacoes.map(h => {
+                if (h.valor > 70) {
+                    return '#10D8A0'; // Verde
+                } else if (h.valor > 50) {
+                    return '#F6D118'; // Amarelo
+                } else {
+                    return '#E91F63'; // Vermelho
+                }
+            });
+
+            const ctx = document.getElementById('barChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Habilitação Jurídica', 'Habilitação Trabalhista', 'Habilitação Fiscal', 'Habilitação Econômica'],
+                    datasets: [{
+                        data: data, // Valores das barras
+                        backgroundColor: backgroundColor, // Cores das barras
+                        borderRadius: 5,
+                        barPercentage: 0.4, // Reduz a largura das barras (0.1 a 1.0, onde 1.0 é o tamanho padrão)
+                        categoryPercentage: 0.5 // Define o espaçamento entre as barras (ajuste para testar)
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                color: '#fff'
+                            },
+                            grid: {
+                                color: 'rgba(255,255,255,0.3)',
+                                borderDash: [5, 5]
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#fff'
+                            },
+                            grid: {
+                                display: false
+                            },
+                            barPercentage: 2.0,  // Reduz a largura das barras (padrão é 1.0)
+                            categoryPercentage: 0.1  // Ajusta o espaçamento entre as barras
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function (tooltipItem) {
+                                    return tooltipItem.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    @endpush
 </x-layout>
