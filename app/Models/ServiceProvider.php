@@ -177,10 +177,14 @@ class ServiceProvider extends Model
         $totalScore = 0;
         $validFields = 0;
 
-        foreach ($fields as $field) {
-            $score = $this->getScoreContratacao($this->{$relation}->{$field}, $field);
-            $totalScore += $score;
-            $validFields++;
+        try {
+            foreach ($fields as $field) {
+                $score = $this->getScoreContratacao($this->{$relation}->{$field}, $field);
+                $totalScore += $score;
+                $validFields++;
+            }
+        } catch (\Throwable $th) {
+            return 0;
         }
 
         return $validFields > 0 ? round($totalScore, 2) : 0;
