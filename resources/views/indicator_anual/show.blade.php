@@ -51,8 +51,12 @@
                             <div class="card-body">
                                 <table class="table">
                                     <tr>
-                                        <td><strong>Local e Data</strong></td>
-                                        <td>{{ $serviceProvider->company_opening_date }}</td>
+                                        <td><strong>Tipo</strong></td>
+                                        <td>Anual</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Ano analisado</strong></td>
+                                        <td>{{ $auditCompliance->year }}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Tomador</strong></td>
@@ -66,24 +70,8 @@
                                         <td><strong>CNPJ do Prestador</strong></td>
                                         <td>{{ $serviceProvider->provider_cnpj }}</td>
                                     </tr>
-                                    <tr>
-                                        <td><strong>Início/Término do Contrato</strong></td>
-                                        <td>{{ $serviceProvider->contract_start_date }} / {{ $serviceProvider->contract_end_date }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Serviço Prestado</strong></td>
-                                        <td>{{ $serviceProvider->service_provided }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Nº Empregados Contratados</strong></td>
-                                        <td>{{ $serviceProvider->number_of_contracted_employees }}</td>
-                                    </tr>
                                 </table>
-
-
                             </div>
-
                         </div>
 
 
