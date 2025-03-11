@@ -5,16 +5,11 @@
         <x-navbars.navs.auth titlePage="Indicador Mensal - Visualizar"></x-navbars.navs.auth>
         <!-- End Navbar -->
 
-        <div class="container px-0">
-            <div class="card card-body mx-md-4 mt-4">
-                <div class="card card-plain h-400 mb-4">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-md-12 d-flex align-items-center">
-                                <h6 class="mb-0">Indicador Mensal - Visualizar</h6>
-                            </div>
-                        </div>
-                    </div>
+        <div class="container-fluid py-4">
+
+
+            <div class="mt-4">
+                <div class="h-400 mb-4">
                     <div class="row container">
                         <!-- Nav Tabs -->
                         <ul class="nav nav-tabs nav-fill mb-4">
@@ -36,632 +31,268 @@
                             </li>
                         </ul>
 
-                        <!-- Form Unificado -->
-                        <form method="POST" action="{{ route('payrollAudit.payrollAudit') }}"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <!-- Modal -->
-                            <div class="modal fade show" id="monthYearModal" tabindex="-1"
-                                aria-labelledby="monthYearModalLabel" aria-hidden="true" data-bs-backdrop="static"
-                                data-bs-keyboard="false">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="monthYearModalLabel">Mês e
-                                                Ano</h5>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label for="month" class="form-label">Mês</label>
-                                                <select id="month" name="month" class="form-select" disabled>
-                                                    <option value="">Selecione um mês</option>
-                                                    <option value="1" {{ $payrollAudit->month == 1 ? 'selected' : '' }}>
-                                                        Janeiro</option>
-                                                    <option value="2" {{ $payrollAudit->month == 2 ? 'selected' : '' }}>
-                                                        Fevereiro</option>
-                                                    <option value="3" {{ $payrollAudit->month == 3 ? 'selected' : '' }}>
-                                                        Março</option>
-                                                    <option value="4" {{ $payrollAudit->month == 4 ? 'selected' : '' }}>
-                                                        Abril</option>
-                                                    <option value="5" {{ $payrollAudit->month == 5 ? 'selected' : '' }}>
-                                                        Maio</option>
-                                                    <option value="6" {{ $payrollAudit->month == 6 ? 'selected' : '' }}>
-                                                        Junho</option>
-                                                    <option value="7" {{ $payrollAudit->month == 7 ? 'selected' : '' }}>
-                                                        Julho</option>
-                                                    <option value="8" {{ $payrollAudit->month == 8 ? 'selected' : '' }}>
-                                                        Agosto</option>
-                                                    <option value="9" {{ $payrollAudit->month == 9 ? 'selected' : '' }}>
-                                                        Setembro</option>
-                                                    <option value="10" {{ $payrollAudit->month == 10 ? 'selected' : '' }}>
-                                                        Outubro</option>
-                                                    <option value="11" {{ $payrollAudit->month == 11 ? 'selected' : '' }}>
-                                                        Novembro</option>
-                                                    <option value="12" {{ $payrollAudit->month == 12 ? 'selected' : '' }}>
-                                                        Dezembro</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="year" class="form-label">Ano</label>
-                                                <select id="year" name="year" class="form-select" disabled></select>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button id="confirmSelection" class="btn btn-primary" type="button"
-                                                disabled>Confirmar</button>
-                                        </div>
-                                    </div>
+                        @php
+                            $tabs = [
+                                'folha_pagamento' => 'Folha de Pagamento',
+                                'jornada_trabalho' => 'Jornada de Trabalho',
+                                'encargo_trabalhista' => 'Encargos Trabalhistas',
+                                'saude_seguranca_trabalho' => 'Saúde e Segurança no Trabalho'
+                            ];
+                            $activeTab = request('tab', 'folha_pagamento'); // Pega a aba ativa da query string
+                        @endphp
+
+                        <div class="header-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 id="tabTitle">Folha de Pagamento</h3>
+                                <div class="bg-white text-center p-2 rounded">
+                                    <p class="mb-0 text-dark" id="nota_geral"><b>NOTA GERAL</b></p>
+                                    <h2 class="text-secondary" id="nota_geral_valor">{{ $payrollAudit->getPayrollAverageScoreAttribute() }}</h2>
                                 </div>
                             </div>
+                        </div>
 
-                            <input type="number" name="id" value="{{ $payrollAudit->id }}" style="display: none">
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <table class="table">
+                                    <tr>
+                                        <td><strong>Local e Data</strong></td>
+                                        <td>{{ $serviceProvider->company_opening_date }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Tomador</strong></td>
+                                        <td>{{ $serviceProvider->company_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Prestador</strong></td>
+                                        <td>{{ $serviceProvider->social_purpose }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>CNPJ do Prestador</strong></td>
+                                        <td>{{ $serviceProvider->provider_cnpj }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Início/Término do Contrato</strong></td>
+                                        <td>{{ $serviceProvider->contract_start_date }} / {{ $serviceProvider->contract_end_date }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Serviço Prestado</strong></td>
+                                        <td>{{ $serviceProvider->service_provided }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Nº Empregados Contratados</strong></td>
+                                        <td>{{ $serviceProvider->number_of_contracted_employees }}</td>
+                                    </tr>
+                                </table>
 
-                            <div class="tab-content">
+
+                            </div>
+
+                        </div>
+
+                        <!-- Form Unificado -->
+                        <form method="POST" action="{{ route('payrollAudit.payrollAudit') }}"
+                            enctype="multipart/form-data" class="mt-4 p-0">
+                            @csrf
+
+                            <h1 class="mb-4" id="tabTitle2">Folha de Pagamento</h1>
+
+                            <div class="tab-content card">
 
                                 <!-- NOTE: Folha de Pagamento -->
-                                <div id="folha_pagamento" class="container tab-pane active">
-                                    <h1>Folha de Pagamento</h1>
+                                <div id="folha_pagamento" class="container tab-pane active card-body">
                                     <div class="row">
-                                        <div class="mb-3 col-md-6">
-                                            <label for="service_provider_id" class="form-label">Prestador de
-                                                Serviço</label>
-                                            <select name="service_provider_id" id="service_provider_id"
-                                                disabled
-                                                class="form-select border border-2 p-2" required readonly>
-                                                <option selected="selected" value="{{ $serviceProvider->id }}"
-                                                    readonly>
-                                                    {{ $serviceProvider->company_name }}
-                                                </option>
-                                            </select>
-                                            @error('service_provider_id')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                        <table class="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr class="bg-gray-100">
+                                                    <th class="p-3 text-gray-700">CATEGORIA</th>
+                                                    <th class="p-3 text-gray-700 text-center">RESULTADO</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $categories = [
+                                                        'Lançamentos dos Empregados e Eventos' => $payrollAudit->payroll_entries_correct,
+                                                        'Pagamento: Folha/Férias/Rescisões' => $payrollAudit->payroll_compliance,
+                                                        'Pagamento dos Benefícios' => $payrollAudit->benefits_paid_correctly,
+                                                        'Afastamentos' => $payrollAudit->leave_records_correct
+                                                    ];
+                                                    $statusColors = [
+                                                        'Conforme' => 'text-green-500',
+                                                        'Não Conforme' => 'text-red-500',
+                                                        'Conforme Parcialmente' => 'text-yellow-500'
+                                                    ];
+                                                @endphp
 
-                                        <div class="mb-3 col-md-6">
-                                            <label for="payroll_entries_correct" class="form-label">Os lançamentos
-                                                realizados na folha/férias/rescisão estão corretos?</label>
-                                            <select name="payroll_entries_correct" id="payroll_entries_correct"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->payroll_entries_correct == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção
-                                                </option>
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->payroll_entries_correct == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme
-                                                </option>
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->payroll_entries_correct == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme
-                                                </option>
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->payroll_entries_correct == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente
-                                                </option>
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->payroll_entries_correct == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica
-                                                </option>
-                                            </select>
-                                            @error('payroll_entries_correct')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="payroll_compliance" class="form-label">Folha/Férias/Rescisões
-                                                foram pagas em conformidade?</label>
-                                            <select name="payroll_compliance" id="payroll_compliance"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->payroll_compliance == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->payroll_compliance == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->payroll_compliance == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->payroll_compliance == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->payroll_compliance == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('payroll_compliance')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="benefits_paid_correctly" class="form-label">Os benefícios
-                                                foram pagos corretamente?</label>
-                                            <select name="benefits_paid_correctly" id="benefits_paid_correctly"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->benefits_paid_correctly == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->benefits_paid_correctly == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->benefits_paid_correctly == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->benefits_paid_correctly == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->benefits_paid_correctly == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('benefits_paid_correctly')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="leave_records_correct" class="form-label">Os afastamentos
-                                                foram feitos corretamente?</label>
-                                            <select name="leave_records_correct" id="leave_records_correct"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->leave_records_correct == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->leave_records_correct == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->leave_records_correct == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->leave_records_correct == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->leave_records_correct == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('leave_records_correct')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                                @foreach ($categories as $category => $status)
+                                                    <tr class="border-t border-gray-200 hover:bg-gray-50">
+                                                        <td class="p-3 font-medium">{{ $category }}</td>
+                                                        <td class="p-3 d-flex justify-content-center">
+                                                            <span class="text-lg {{ $statusColors[$status] }}">
+                                                                @if ($status == 'Conforme' || $status == 'Não se Aplica')
+                                                                    ✅
+                                                                @elseif ($status == 'Não Conforme')
+                                                                    ❌
+                                                                @else
+                                                                    ⚠️
+                                                                @endif
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
 
                                     </div>
                                 </div>
 
                                 <!-- NOTE: Jornada de Trabalho -->
                                 <div id="jornada_trabalho" class="container tab-pane fade">
-                                    <h1>Jornada de Trabalho</h1>
+                                    {{-- <h1>Jornada de Trabalho</h1> --}}
                                     <div class="row">
-                                        <div class="mb-3 col-md-6">
-                                            <label for="work_schedules_presented" class="form-label">Espelhos de Ponto
-                                                Apresentados</label>
-                                            <select name="work_schedules_presented" id="work_schedules_presented"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{$payrollAudit->work_schedules_presented == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
+                                        <table class="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr class="bg-gray-100">
+                                                    <th class="p-3 text-gray-700">CATEGORIA</th>
+                                                    <th class="p-3 text-gray-700 text-center">RESULTADO</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $categories = [
+                                                        'Espelhos de Ponto Apresentados' => $payrollAudit->work_schedules_presented,
+                                                        'Registros realizados em conformidade' => $payrollAudit->work_records_compliant,
+                                                        'Horas extras realizadas em conformidade com a CLT' => $payrollAudit->overtime_compliant,
+                                                        'Cumprimento intrajornada e interjornada' => $payrollAudit->rest_periods_complied
+                                                    ];
+                                                    $statusColors = [
+                                                        'Conforme' => 'text-green-500',
+                                                        'Não Conforme' => 'text-red-500',
+                                                        'Conforme Parcialmente' => 'text-yellow-500',
+                                                        'Não se aplica' => 'text-gray-500'
+                                                    ];
+                                                @endphp
 
-                                                <option value="Conforme"
-                                                    {{$payrollAudit->work_schedules_presented == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{$payrollAudit->work_schedules_presented == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{$payrollAudit->work_schedules_presented == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{$payrollAudit->work_schedules_presented == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('work_schedules_presented')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="work_records_compliant" class="form-label">Registros
-                                                realizados em conformidade</label>
-                                            <select name="work_records_compliant" id="work_records_compliant"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->work_records_compliant == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                {{ $payrollAudit->work_records_compliant == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                {{ $payrollAudit->work_records_compliant == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                {{  $payrollAudit->work_records_compliant == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                {{ $payrollAudit->work_records_compliant == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('work_records_compliant')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="overtime_compliant" class="form-label">Horas extras realizadas
-                                                em conformidade com a CLT</label>
-                                            <select name="overtime_compliant" id="overtime_compliant"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->overtime_compliant == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->overtime_compliant == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->overtime_compliant == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->overtime_compliant == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->overtime_compliant == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('overtime_compliant')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="rest_periods_complied" class="form-label">Cumprimento
-                                                intrajornada e interjornada</label>
-                                            <select name="rest_periods_complied" id="rest_periods_complied"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->rest_periods_complied == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->rest_periods_complied == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->rest_periods_complied == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->rest_periods_complied == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->rest_periods_complied == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('rest_periods_complied')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                                @foreach ($categories as $category => $status)
+                                                    <tr class="border-t border-gray-200 hover:bg-gray-50">
+                                                        <td class="p-3 font-medium">{{ $category }}</td>
+                                                        <td class="p-3 text-center">
+                                                            <span class="text-lg {{ $statusColors[$status] ?? 'text-gray-500' }}">
+                                                                @if ($status == 'Conforme' || $status == 'Não se aplica')
+                                                                    ✅
+                                                                @elseif ($status == 'Não Conforme')
+                                                                    ❌
+                                                                @else
+                                                                    ⚠️
+                                                                @endif
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
+
                                 </div>
 
                                 <!-- NOTE: Encargos Trabalhistas -->
                                 <div id="encargo_trabalhista" class="container tab-pane fade">
-                                    <h1>Encargos Trabalhistas</h1>
+                                    {{-- <h1>Encargos Trabalhistas</h1> --}}
                                     <div class="row">
-                                        <div class="mb-3 col-md-6">
-                                            <label for="tax_guides_presented" class="form-label">Guias e
-                                                detalhamentos/relatórios apresentados (FGTS/INSS/IR)?</label>
-                                            <select name="tax_guides_presented" id="tax_guides_presented"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->tax_guides_presented == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
+                                        <table class="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr class="bg-gray-100">
+                                                    <th class="p-3 text-gray-700">CATEGORIA</th>
+                                                    <th class="p-3 text-gray-700 text-center">RESULTADO</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $categories = [
+                                                        'Guias e detalhamentos/relatórios apresentados (FGTS/INSS/IR)' => $payrollAudit->tax_guides_presented,
+                                                        'Conformidade nos lançamentos e pagamento do FGTS' => $payrollAudit->fgts_compliance,
+                                                        'Conformidade nos lançamentos e pagamento do INSS' => $payrollAudit->inss_compliance,
+                                                        'Conformidade nos lançamentos e pagamento do IR' => $payrollAudit->ir_compliance
+                                                    ];
 
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->tax_guides_presented == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
+                                                    $statusColors = [
+                                                        'Conforme' => 'text-green-500',
+                                                        'Não Conforme' => 'text-red-500',
+                                                        'Conforme Parcialmente' => 'text-yellow-500',
+                                                        'Não se aplica' => 'text-gray-500'
+                                                    ];
+                                                @endphp
 
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->tax_guides_presented == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->tax_guides_presented == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->tax_guides_presented == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('tax_guides_presented')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="fgts_compliance" class="form-label">Conformidade nos
-                                                lançamentos e pagamento do FGTS</label>
-                                            <select name="fgts_compliance" id="fgts_compliance"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->fgts_compliance == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->fgts_compliance == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->fgts_compliance == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->fgts_compliance == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->fgts_compliance == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('fgts_compliance')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="inss_compliance" class="form-label">Conformidade nos
-                                                lançamentos e pagamento do INSS</label>
-                                            <select name="inss_compliance" id="inss_compliance"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->inss_compliance == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->inss_compliance == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->inss_compliance == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->inss_compliance == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->inss_compliance == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('inss_compliance')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="ir_compliance" class="form-label">Conformidade nos lançamentos
-                                                e pagamento do IR</label>
-                                            <select name="ir_compliance" id="ir_compliance"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->ir_compliance == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->ir_compliance == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->ir_compliance == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->ir_compliance == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->ir_compliance == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('ir_compliance')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                                @foreach ($categories as $category => $status)
+                                                    <tr class="border-t border-gray-200 hover:bg-gray-50">
+                                                        <td class="p-3 font-medium">{{ $category }}</td>
+                                                        <td class="p-3 text-center">
+                                                            <span class="text-lg {{ $statusColors[$status] ?? 'text-gray-500' }}">
+                                                                @if ($status == 'Conforme' || $status == 'Não se aplica')
+                                                                    ✅
+                                                                @elseif ($status == 'Não Conforme')
+                                                                    ❌
+                                                                @else
+                                                                    ⚠️
+                                                                @endif
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
+
                                 </div>
 
                                 <!-- NOTE: Saúde e Segurança no Trabalho -->
                                 <div id="saude_seguranca_trabalho" class="container tab-pane fade">
-                                    <h1>Saúde e Segurança no Trabalho</h1>
+                                    {{-- <h1>Saúde e Segurança no Trabalho</h1> --}}
                                     <div class="row">
-                                        <div class="mb-3 col-md-6">
-                                            <label for="cat_submitted_on_time" class="form-label">CAT emitida e
-                                                enviada ao eSocial dentro do prazo legal</label>
-                                            <select name="cat_submitted_on_time" id="cat_submitted_on_time"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->cat_submitted_on_time == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
+                                        <table class="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr class="bg-gray-100">
+                                                    <th class="p-3 text-gray-700">CATEGORIA</th>
+                                                    <th class="p-3 text-gray-700 text-center">RESULTADO</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $categories = [
+                                                        'CAT emitida e enviada ao eSocial dentro do prazo legal' => $payrollAudit->cat_submitted_on_time,
+                                                        'CIPA/treinamentos' => $payrollAudit->cipa_training,
+                                                        'Atestados apresentados (doença relacionada às atividades laborais)' => $payrollAudit->medical_certificates_presented,
+                                                        'Investigação de Acidente - apresentado' => $payrollAudit->accident_investigation_presented
+                                                    ];
 
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->cat_submitted_on_time == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
+                                                    $statusColors = [
+                                                        'Conforme' => 'text-green-500',
+                                                        'Não Conforme' => 'text-red-500',
+                                                        'Conforme Parcialmente' => 'text-yellow-500',
+                                                        'Não se aplica' => 'text-gray-500'
+                                                    ];
+                                                @endphp
 
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->cat_submitted_on_time == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->cat_submitted_on_time == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->cat_submitted_on_time == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('cat_submitted_on_time')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="cipa_training" class="form-label">CIPA/treinamentos</label>
-                                            <select name="cipa_training" id="cipa_training"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->cipa_training == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->cipa_training == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->cipa_training == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->cipa_training == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->cipa_training == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('cipa_training')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="medical_certificates_presented" class="form-label">Atestados
-                                                apresentados (doença relacionada às atividades laborais)</label>
-                                            <select name="medical_certificates_presented"
-                                                id="medical_certificates_presented" disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->medical_certificates_presented == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->medical_certificates_presented == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->medical_certificates_presented == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->medical_certificates_presented == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->medical_certificates_presented == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('medical_certificates_presented')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="accident_investigation_presented"
-                                                class="form-label">Investigação de Acidente - apresentado</label>
-                                            <select name="accident_investigation_presented"
-                                                id="accident_investigation_presented"
-                                                disabled
-                                                class="form-select border border-2 p-2">
-                                                <option value=""
-                                                    {{ $payrollAudit->accident_investigation_presented == '' ? 'selected' : '' }}>
-                                                    Selecione uma opção</option>
-
-                                                <option value="Conforme"
-                                                    {{ $payrollAudit->accident_investigation_presented == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-
-                                                <option value="Não Conforme"
-                                                    {{ $payrollAudit->accident_investigation_presented == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-
-                                                <option value="Conforme Parcialmente"
-                                                    {{ $payrollAudit->accident_investigation_presented == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-
-                                                <option value="Não se aplica"
-                                                    {{ $payrollAudit->accident_investigation_presented == 'Não se aplica' ? 'selected' : '' }}>
-                                                    Não se aplica</option>
-
-                                            </select>
-                                            @error('accident_investigation_presented')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                                @foreach ($categories as $category => $status)
+                                                    <tr class="border-t border-gray-200 hover:bg-gray-50">
+                                                        <td class="p-3 font-medium">{{ $category }}</td>
+                                                        <td class="p-3 text-center">
+                                                            <span class="text-lg {{ $statusColors[$status] ?? 'text-gray-500' }}">
+                                                                @if ($status == 'Conforme' || $status == 'Não se aplica')
+                                                                    ✅
+                                                                @elseif ($status == 'Não Conforme')
+                                                                    ❌
+                                                                @else
+                                                                    ⚠️
+                                                                @endif
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -684,7 +315,68 @@
             </div>
         </div>
     </main>
+    <style>
+        .header-card {
+            background: url("{{ asset('assets/img/esterni/header_gradient.png') }}") no-repeat center center;
+            background-size: cover;
+            border-radius: 10px;
+            padding: 20px;
+            color: white;
+            position: relative;
+
+            h3 {
+                margin-left: 40px;
+                color: white;
+            }
+
+            div {
+                margin-right: 25px;
+            }
+
+            div {
+                #nota_geral {
+                    width: 100px;
+                    font-size: 12px;
+                }
+            }
+
+            div {
+                #nota_geral {
+                    width: 100px;
+                    font-size: 12px;
+                }
+            }
+        }
+    </style>
     @push('js')
+        <!-- JavaScript para Atualizar o Título -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const tabs = {
+                    "folha_pagamento": "Folha de Pagamento",
+                    "jornada_trabalho": "Jornada de Trabalho",
+                    "encargo_trabalhista": "Encargos Trabalhistas",
+                    "saude_seguranca_trabalho": "Saúde e Segurança no Trabalho"
+                };
+
+                const scores = {
+                    folha_pagamento: {{ $payrollAudit->getPayrollAverageScoreAttribute() }},
+                    jornada_trabalho: {{ $payrollAudit->getWorkJourneyAverageScoreAttribute() }},
+                    encargo_trabalhista: {{ $payrollAudit->getTaxesAverageScoreAttribute() }},
+                    saude_seguranca_trabalho: {{ $payrollAudit->getSstAverageScoreAttribute() }}
+                };
+
+                document.querySelectorAll(".nav-link").forEach(tab => {
+                    tab.addEventListener("click", function () {
+                        const selectedTab = this.getAttribute("href").replace("#", "");
+                        document.getElementById("tabTitle").textContent = tabs[selectedTab];
+                        document.getElementById("tabTitle2").textContent = tabs[selectedTab];
+                        document.getElementById("nota_geral_valor").textContent = scores[selectedTab] || "N/A"; // Atualiza a nota
+                    });
+                });
+            });
+        </script>
+
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 // Obtém a hash da URL
