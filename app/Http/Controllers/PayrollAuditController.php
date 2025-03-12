@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PayrollAudit;
 use App\Models\ServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,11 +73,72 @@ class PayrollAuditController extends Controller
 
     public function show($id)
     {
-        $serviceProvider = ServiceProvider::find($id);
+        $serviceProvider = ServiceProvider::with('payrollAudits')->find($id);
         if (!$serviceProvider) {
             return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
         }
-        return view('indicator_mensal.index', compact('serviceProvider'));
+
+        $totalRegistros = $serviceProvider->payrollAudits->count();
+
+        if ($totalRegistros > 0) {
+            $totalPayroll = $serviceProvider->payrollAudits->sum('payroll_average_score');
+            $totalWorkJourney = $serviceProvider->payrollAudits->sum('work_journey_average_score');
+            $totalTaxes = $serviceProvider->payrollAudits->sum('taxes_average_score');
+            $totalSST = $serviceProvider->payrollAudits->sum('sst_average_score');
+
+            $media = [
+                'Folha de Pagamento' => round($totalPayroll / $totalRegistros, 2),
+                'Jornada de Trabalho' => round($totalWorkJourney / $totalRegistros, 2),
+                'Encargos trabalhistas' => round($totalTaxes / $totalRegistros, 2),
+                'Saúde e Segurança no Trabalho' => round($totalSST / $totalRegistros, 2)
+            ];
+        } else {
+            $media = [
+                'Folha de Pagamento' => 0,
+                'Jornada de Trabalho' => 0,
+                'Encargos trabalhistas' => 0,
+                'Saúde e Segurança no Trabalho' => 0
+            ];
+        }
+
+        // Pega o mês e ano atual
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
+
+        // Pegando a "minha referência" baseada no mês e ano atuais
+        $minhaReferencia = $serviceProvider->payrollAudits
+            ->where('month', $currentMonth)
+            ->where('year', $currentYear)
+            ->first();
+
+        $indicadores = [
+            [
+                'titulo' => 'Folha de Pagamento',
+                'nota' => $minhaReferencia->payroll_average_score ?? 0,
+                'minha_referencia' => $minhaReferencia->payroll_average_score ?? 0,
+                'media' => $media['Folha de Pagamento']
+            ],
+            [
+                'titulo' => 'Jornada de Trabalho',
+                'nota' => $minhaReferencia->work_journey_average_score ?? 0,
+                'minha_referencia' => $minhaReferencia->work_journey_average_score ?? 0,
+                'media' => $media['Jornada de Trabalho']
+            ],
+            [
+                'titulo' => 'Encargos trabalhistas',
+                'nota' => $minhaReferencia->taxes_average_score ?? 0,
+                'minha_referencia' => $minhaReferencia->taxes_average_score ?? 0,
+                'media' => $media['Encargos trabalhistas']
+            ],
+            [
+                'titulo' => 'Saúde e Segurança no Trabalho',
+                'nota' => $minhaReferencia->sst_average_score ?? 0,
+                'minha_referencia' => $minhaReferencia->sst_average_score ?? 0,
+                'media' => $media['Saúde e Segurança no Trabalho']
+            ]
+        ];
+
+        return view('indicator_mensal.index', compact('serviceProvider', 'indicadores'));
     }
 
     public function create($id)

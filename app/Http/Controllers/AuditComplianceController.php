@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AuditCompliance;
 use App\Models\ServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,12 +73,75 @@ class AuditComplianceController extends Controller
 
     public function show($id)
     {
-        $serviceProvider = ServiceProvider::find($id);
+        $serviceProvider = ServiceProvider::with('auditCompliances')->find($id);
         if (!$serviceProvider) {
             return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
         }
-        return view('indicator_anual.index', compact('serviceProvider'));
+
+        $currentYear = Carbon::now()->year;
+
+        $auditCompliances = $serviceProvider->auditCompliances()
+            ->whereNot('year', $currentYear)
+            ->get();
+
+        $totalRegistros = $auditCompliances->count();
+
+        if ($totalRegistros > 0) {
+            $totalPayrollThirteenth = $auditCompliances->sum('payroll_thirteenth_average_score');
+            $totalVacation = $auditCompliances->sum('vacation_average_score');
+            $totalOccupationalHealth = $auditCompliances->sum('OccupationalHealthAverageScore');
+            $totalCctActFgts = $auditCompliances->sum('cct_act_fgts_average_score');
+
+            $media = [
+                'Folha 13º' => round($totalPayrollThirteenth / $totalRegistros, 2),
+                'Férias' => round($totalVacation / $totalRegistros, 2),
+                'Saúde e Segurança no Trabalho' => round($totalOccupationalHealth / $totalRegistros, 2),
+                'CCT/ACT e FGTS' => round($totalCctActFgts / $totalRegistros, 2)
+            ];
+        } else {
+            $media = [
+                'Folha 13º' => 0,
+                'Férias' => 0,
+                'Saúde e Segurança no Trabalho' => 0,
+                'CCT/ACT e FGTS' => 0
+            ];
+        }
+
+        // Pegando a "minha referência" baseada no ano atual
+        $minhaReferencia = $serviceProvider->auditCompliances
+            ->where('year', $currentYear)
+            ->first();
+
+        $indicadores = [
+            [
+                'titulo' => 'Folha 13º',
+                'nota' => $minhaReferencia->payroll_thirteenth_average_score ?? 0,
+                'minha_referencia' => $minhaReferencia->payroll_thirteenth_average_score ?? 0,
+                'media' => $media['Folha 13º']
+            ],
+            [
+                'titulo' => 'Férias',
+                'nota' => $minhaReferencia->vacation_average_score ?? 0,
+                'minha_referencia' => $minhaReferencia->vacation_average_score ?? 0,
+                'media' => $media['Férias']
+            ],
+            [
+                'titulo' => 'Saúde e Segurança no Trabalho',
+                'nota' => $minhaReferencia->OccupationalHealthAverageScore ?? 0,
+                'minha_referencia' => $minhaReferencia->OccupationalHealthAverageScore ?? 0,
+                'media' => $media['Saúde e Segurança no Trabalho']
+            ],
+            [
+                'titulo' => 'CCT/ACT e FGTS',
+                'nota' => $minhaReferencia->cct_act_fgts_average_score ?? 0,
+                'minha_referencia' => $minhaReferencia->cct_act_fgts_average_score ?? 0,
+                'media' => $media['CCT/ACT e FGTS']
+            ]
+        ];
+
+        return view('indicator_anual.index', compact('serviceProvider', 'indicadores'));
     }
+
 
     public function create($id)
     {

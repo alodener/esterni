@@ -714,7 +714,7 @@
                     backdrop: 'static',
                     keyboard: false
                 });
-                modal.show();
+                // modal.show();
 
                 // Recuperando valores antigos do Laravel
                 let oldMonth = "{{ $payrollAudit->month }}";

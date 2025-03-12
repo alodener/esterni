@@ -5,10 +5,71 @@
         <x-navbars.navs.auth titlePage="Indicador Mensal"></x-navbars.navs.auth>
         <!-- End Navbar -->
 
+        <div class="container mt-5">
+            <h3 class="fw-bold">Indicadores Mensais</h3>
+            <p class="text-muted">Mês Analisado: {{ \Carbon\Carbon::now()->translatedFormat('F \d\e Y') }}</p>
+
+            <div class="row g-4">
+                @php
+                    function getColorClass($valor) {
+                        return $valor >= 70 ? 'bg-success' : ($valor >= 60 ? 'bg-warning' : 'bg-danger');
+                    }
+                @endphp
+
+                <div class="row g-3 align-items-stretch">
+                    @foreach($indicadores as $indicador)
+                        <div class="col-lg-3 col-md-6 col-sm-12 d-flex">
+                            <div class="card p-4 w-100 d-flex flex-column justify-content-between">
+                                <h6 class="fw-bold">{{ $indicador['titulo'] }}</h6>
+                                <p class="mb-7" style="margin-top: -10px">Nota: <strong>{{ $indicador['nota'] }}</strong></p>
+
+                                <div class="d-flex justify-content-center gap-4 align-items-end" style="height: 100px;">
+                                    <div class="text-center">
+                                        <div class="rounded text-white {{ getColorClass($indicador['minha_referencia']) }}"
+                                            style="margin-left: 13px ; width: 40px; height: {{ $indicador['minha_referencia'] * 1.2 }}px;">
+                                            {{ $indicador['minha_referencia'] }}
+                                        </div>
+                                        <small class="text-muted">Minha <br> Referência</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="rounded text-white {{ getColorClass($indicador['media']) }}"
+                                            style="width: 40px; height: {{ $indicador['media'] * 1.2 }}px;">
+                                            {{ $indicador['media'] }}
+                                        </div>
+                                        <small class="text-muted">Média <br> ㅤ </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        @can('isAdmin')
+            <div class="row mt-5" style="margin-right: 25px">
+                <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
+
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
+
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
+                    {{-- <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
+                        href="{{ route('indicatorEmployee.show', $serviceProvider->id) }}">Indicadores</a> --}}
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
+                    <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
+                        style="white-space: nowrap;"
+                        href="{{ route('payrollAudit.create', $serviceProvider->id) }}">Adicionar mês</a>
+                </div>
+            </div>
+        @endcan
+
         <div class="container px-0">
             <div class="card card-body mx-md-4 mt-4">
                 <div class="card card-plain h-100 mb-4">
-                    <div class="card-header">
+                    <div class="">
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h6 class="mb-0">Indicador Mensal</h6>
@@ -16,7 +77,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-0 mb-2">
+
+                    {{-- <div class="row mt-0 mb-2">
                         @php
                             // Contar quantos registros existem
                             $totalRegistros = $serviceProvider->payrollAudits->count();
@@ -94,26 +156,8 @@
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                    @can('isAdmin')
-                        <div class="row">
-                            <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
+                    </div> --}}
 
-                            </div>
-                            <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
-
-                            </div>
-                            <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
-                                {{-- <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
-                                    href="{{ route('indicatorEmployee.show', $serviceProvider->id) }}">Indicadores</a> --}}
-                            </div>
-                            <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
-                                <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
-                                    style="white-space: nowrap;"
-                                    href="{{ route('payrollAudit.create', $serviceProvider->id) }}">Adicionar mês</a>
-                            </div>
-                        </div>
-                    @endcan
                     @can('isAdmin')
                         <div class="row">
                             <div class="card-body px-0 pb-2">
@@ -260,6 +304,24 @@
             </div>
         </div>
     </main>
+    @push('js')
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @endpush
 
-
+    <style>
+        .card {
+            border-radius: 12px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .indicator-bar {
+            width: 40px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
 </x-layout>
