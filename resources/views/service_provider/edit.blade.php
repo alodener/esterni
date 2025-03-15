@@ -79,7 +79,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="share_capital" class="form-label">Capital Social</label>
-                                    <input type="number" name="share_capital" id="share_capital" class="form-control border border-2 p-2" value="{{ old('share_capital', $serviceProvider->share_capital) }}">
+                                    <input type="text" name="share_capital" id="share_capital" class="form-control border border-2 p-2" value="{{ old('share_capital', $serviceProvider->share_capital) }}">
                                     @error('share_capital')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
@@ -123,7 +123,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="monthly_base_value" class="form-label">Valor Base Mensal</label>
-                                    <input type="number" name="monthly_base_value" id="monthly_base_value" class="form-control border border-2 p-2" value="{{ old('monthly_base_value', $serviceProvider->monthly_base_value) }}">
+                                    <input type="text" name="monthly_base_value" id="monthly_base_value" class="form-control border border-2 p-2" value="{{ old('monthly_base_value', $serviceProvider->monthly_base_value) }}">
                                     @error('monthly_base_value')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
@@ -134,7 +134,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="number_of_contracted_employees" class="form-label">Número de Funcionários</label>
+                                    <label for="number_of_contracted_employees" class="form-label">Número de Colaboradores</label>
                                     <input type="number" name="number_of_contracted_employees" id="number_of_contracted_employees" class="form-control border border-2 p-2" value="{{ old('number_of_contracted_employees', $serviceProvider->number_of_contracted_employees) }}">
                                     @error('number_of_contracted_employees')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
@@ -163,6 +163,57 @@
 
         </div>
     </div>
+
+    @push('js')
+        <!-- Adicionando IMask.js via CDN -->
+        <script src="https://unpkg.com/imask"></script>
+
+        <script>
+             document.addEventListener("DOMContentLoaded", function () {
+                var input = document.getElementById("share_capital");
+
+                var maskOptions = {
+                    mask: "R$ num", // Adiciona o prefixo "R$ "
+                    blocks: {
+                        num: {
+                            mask: Number,
+                            scale: 2, // Duas casas decimais
+                            thousandsSeparator: "", // Separador de milhar
+                            radix: ".", // Separador decimal
+                            mapToRadix: [","], // Mapeia "," para o separador decimal
+                            padFractionalZeros: true, // Garante duas casas decimais
+                            normalizeZeros: true
+                        }
+                    }
+                };
+
+                IMask(input, maskOptions);
+            });
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var input = document.getElementById("monthly_base_value");
+
+                var maskOptions = {
+                    mask: "R$ num", // Adiciona o prefixo "R$ "
+                    blocks: {
+                        num: {
+                            mask: Number,
+                            scale: 2, // Duas casas decimais
+                            thousandsSeparator: "", // Separador de milhar
+                            radix: ".", // Separador decimal
+                            mapToRadix: [","], // Mapeia "," para o separador decimal
+                            padFractionalZeros: true, // Garante duas casas decimais
+                            normalizeZeros: true
+                        }
+                    }
+                };
+
+                IMask(input, maskOptions);
+            });
+        </script>
+    @endpush
 
 
 </x-layout>

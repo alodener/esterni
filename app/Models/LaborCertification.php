@@ -13,6 +13,7 @@ class LaborCertification extends Model
 
     protected $fillable = [
         'service_provider_id',
+        'share_capital',
         'risk_level', // Grau de Risco
         'social_capital', // Capital Social
         'employees_number', // Nº de Empregados

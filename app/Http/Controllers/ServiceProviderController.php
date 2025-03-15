@@ -87,7 +87,7 @@ class ServiceProviderController extends Controller
             'social_purpose' => 'nullable|string',
             'company_type' => 'nullable|string|max:255',
             'company_opening_date' => 'nullable|date',
-            'share_capital' => 'nullable|numeric',
+            'share_capital' => 'nullable',
             'managing_partner_1' => 'nullable|string|max:255',
             'managing_partner_2' => 'nullable|string|max:255',
             'managing_partner_3' => 'nullable|string|max:255',
@@ -97,7 +97,7 @@ class ServiceProviderController extends Controller
             'relationship_contact' => 'nullable|string|max:255',
             'contract_start_date' => 'nullable|date',
             'contract_end_date' => 'nullable|date',
-            'monthly_base_value' => 'nullable|numeric',
+            'monthly_base_value' => 'nullable',
             'retention_clause' => 'nullable|string|max:255',
             'number_of_contracted_employees' => 'nullable|integer',
             'client_id' => 'required|exists:clients,id', // Validação de chave estrangeira
@@ -106,6 +106,13 @@ class ServiceProviderController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        $data = $request->all();
+        $data['share_capital'] = $this->formatMoney($request->input('share_capital'));
+        $data['monthly_base_value'] = $this->formatMoney($request->input('monthly_base_value'));
+
+        ServiceProvider::create($data);
+
 
         ServiceProvider::create($request->all()); // Mass assignment (cuidado com campos sensíveis)
 
@@ -133,7 +140,7 @@ class ServiceProviderController extends Controller
             'social_purpose' => 'nullable|string',
             'company_type' => 'nullable|string|max:255',
             'company_opening_date' => 'nullable|date',
-            'share_capital' => 'nullable|numeric',
+            'share_capital' => 'nullable',
             'managing_partner_1' => 'nullable|string|max:255',
             'managing_partner_2' => 'nullable|string|max:255',
             'managing_partner_3' => 'nullable|string|max:255',
@@ -143,7 +150,7 @@ class ServiceProviderController extends Controller
             'relationship_contact' => 'nullable|string|max:255',
             'contract_start_date' => 'nullable|date',
             'contract_end_date' => 'nullable|date',
-            'monthly_base_value' => 'nullable|numeric',
+            'monthly_base_value' => 'nullable',
             'retention_clause' => 'nullable|string|max:255',
             'number_of_contracted_employees' => 'nullable|integer',
             'client_id' => 'required|exists:clients,id', // Validação de chave estrangeira
@@ -153,9 +160,25 @@ class ServiceProviderController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $serviceProvider->update($request->all()); // Mass assignment (cuidado com campos sensíveis)
+        $data = $request->all();
+
+        $data['share_capital'] = $this->formatMoney($request->input('share_capital'));
+        $data['monthly_base_value'] = $this->formatMoney($request->input('monthly_base_value'));
+
+
+        $serviceProvider->update($data); // Mass assignment (cuidado com campos sensíveis)
 
         return redirect()->route('service-provider.index')->with('success', 'Prestador de serviço atualizado com sucesso!');
+    }
+
+    private function formatMoney($value)
+    {
+        if (!$value) return null; // Retorna null se não houver valor
+
+        // Remove "R$ " e espaços extras
+        $value = str_replace(['R$ ', ' '], '', $value);
+
+        return (float) $value; // Converte para float
     }
 
     public function destroy($id) // Route model binding

@@ -2,7 +2,7 @@
     <x-navbars.sidebar activePage="service-provider"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Funcionário"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Colaborador"></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="container px-0">
@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                <h6 class="mb-0">Funcionário</h6>
+                                <h6 class="mb-0">Colaborador</h6>
                                 <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-secondary">Voltar</a>
                             </div>
                         </div>
@@ -22,7 +22,7 @@
                                 ['titulo' => 'Documentação Contratual', 'valor' => $serviceProvider->getContractualDocumentationScoreAttribute(), 'icone' => 'description'],
                                 ['titulo' => 'Programas Ocupacionais', 'valor' => $serviceProvider->getOccupationalProgramsScoreAttribute(), 'icone' => 'business_center'],
                                 [
-                                    'titulo' => 'Saúde e Segurança Ocupacional',
+                                    'titulo' => 'Programas Ocupacionais',
                                     'valor' => $serviceProvider->getOccupationalHealthSafetyScoreAttribute(),
                                     'icone' => 'health_and_safety',
                                 ],
@@ -77,7 +77,7 @@
                             <div class="col-xl-3 col-sm-6 mb-1 mt-1 d-flex justify-content-center align-items-center">
                                 <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center"
                                 style="white-space: nowrap;"
-                                    href="{{ route('employees.create', $serviceProvider->id) }}">Novos Funcionários</a>
+                                    href="{{ route('employees.create', $serviceProvider->id) }}">Novos Colaboradores</a>
                             </div>
                         </div>
                     @endcan

@@ -2,7 +2,7 @@
     <x-navbars.sidebar activePage="service-provider"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Funcionário"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Colaborador"></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="container px-0">
@@ -190,29 +190,19 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="share_capital" class="form-label">Capital Social *</label>
-                                            <select name="share_capital" id="share_capital"
-                                                @can('isClient') disabled @endcan
-                                                class="form-select border border-2 p-2">
-                                                <option value="Conforme"
-                                                    {{ old('share_capital', $serviceProvider->laborCertification?->share_capital) == 'Conforme' ? 'selected' : '' }}>
-                                                    Conforme</option>
-                                                <option value="Não Conforme"
-                                                    {{ old('share_capital', $serviceProvider->laborCertification?->share_capital) == 'Não Conforme' ? 'selected' : '' }}>
-                                                    Não Conforme</option>
-                                                <option value="Conforme Parcialmente"
-                                                    {{ old('share_capital', $serviceProvider->laborCertification?->share_capital) == 'Conforme Parcialmente' ? 'selected' : '' }}>
-                                                    Conforme Parcialmente</option>
-                                            </select>
-                                            @error('share_capital')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
+                                            <label for="share_capital" class="form-label">Capital Social</label>
+                                            <input type="text" name="share_capital" id="share_capital"
+                                                class="form-control border border-2 p-2"
+                                                value="{{ old('share_capital', $serviceProvider->laborCertification?->share_capital) }}">
+                                            @error('share_capital')<p class='text-danger'>
+                                                {{ $message }}
+                                            </p>@enderror
                                         </div>
 
                                         <div class="mb-3 col-md-6">
                                             <label for="employees_number" class="form-label">Nº de Empregados *</label>
                                             <input type="number" name="employees_number" id="employees_number"
-                                                @can('isClient') disabled @endcan
+                                                disabled
                                                 value="{{ old('employees_number', $serviceProvider->laborCertification?->employees_number) }}"
                                                 class="form-control border border-2 p-2">
                                             @error('employees_number')
@@ -461,7 +451,7 @@
                                                 Contrato *</label>
                                             <input type="date" name="contract_start_end" id="contract_start_end"
                                                 @can('isClient') disabled @endcan
-                                                value="{{ old('contract_start_end', optional(\Carbon\Carbon::parse($serviceProvider->economicCertification?->contract_start_end))->format('Y-m-d')) }}"
+                                                value="{{ old('contract_start_end') ?? ($serviceProvider->economicCertification?->contract_start_end ? \Carbon\Carbon::parse($serviceProvider->economicCertification->contract_start_end)->format('Y-m-d') : '') }}"
                                                 class="form-control border border-2 p-2" required>
 
                                             @error('contract_start_end')
@@ -583,5 +573,29 @@
             </div>
         </div>
     </main>
+    <script src="https://unpkg.com/imask"></script>
+
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            var input = document.getElementById("share_capital");
+
+            var maskOptions = {
+                mask: "R$ num", // Adiciona o prefixo "R$ "
+                blocks: {
+                    num: {
+                        mask: Number,
+                        scale: 2, // Duas casas decimais
+                        thousandsSeparator: "", // Separador de milhar
+                        radix: ".", // Separador decimal
+                        mapToRadix: [","], // Mapeia "," para o separador decimal
+                        padFractionalZeros: true, // Garante duas casas decimais
+                        normalizeZeros: true
+                    }
+                }
+            };
+
+            IMask(input, maskOptions);
+        });
+    </script>
 
 </x-layout>

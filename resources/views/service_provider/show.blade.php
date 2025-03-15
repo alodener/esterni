@@ -52,7 +52,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-sm-6 mb-4 mt-4 d-flex justify-content-center align-items-center">
-                            <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center" href="{{ route('employees.show', $serviceProviders->id) }}">Funcionários</a>
+                            <a class="btn bg-gradient-dark btn-lg px-5 py-3 w-100 text-center" href="{{ route('employees.show', $serviceProviders->id) }}">Colaboradores</a>
                         </div>
                         @can('isAdmin')
                             <div class="col-xl-3 col-sm-6 mb-4 mt-4 d-flex justify-content-center align-items-center">

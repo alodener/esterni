@@ -94,7 +94,7 @@ class EmployeeController extends Controller
             'admission_date' => 'required|date',
             'dismissal_date' => 'nullable|date',
             'job_title' => 'required|string',
-            'salary' => 'required|numeric',
+            'salary' => 'required',
             'insalubrity' => 'nullable|boolean',
             'dangerousness' => 'nullable|boolean',
             'work_schedule' => 'required|string',
@@ -128,7 +128,7 @@ class EmployeeController extends Controller
             'admission_date' => $data['admission_date'],
             'dismissal_date' => $data['dismissal_date'],
             'job_title' => $data['job_title'],
-            'salary' => $data['salary'],
+            'salary' => $this->formatMoney($data['salary']),
             'insalubrity' => $data['insalubrity'] ?? false,
             'dangerousness' => $data['dangerousness'] ?? false,
             'work_schedule' => $data['work_schedule'],
@@ -171,7 +171,7 @@ class EmployeeController extends Controller
             'admission_date' => 'required|date',
             'dismissal_date' => 'nullable|date',
             'job_title' => 'required|string',
-            'salary' => 'required|numeric',
+            'salary' => 'required',
             'insalubrity' => 'nullable|boolean',
             'dangerousness' => 'nullable|boolean',
             'work_schedule' => 'required|string',
@@ -209,7 +209,7 @@ class EmployeeController extends Controller
             'admission_date' => $data['admission_date'],
             'dismissal_date' => $data['dismissal_date'],
             'job_title' => $data['job_title'],
-            'salary' => $data['salary'],
+            'salary' => $this->formatMoney($data['salary']),
             'insalubrity' => $data['insalubrity'] ?? false,
             'dangerousness' => $data['dangerousness'] ?? false,
             'work_schedule' => $data['work_schedule'],
@@ -219,7 +219,17 @@ class EmployeeController extends Controller
             'end_client_allocation' => $data['end_client_allocation'],
         ]);
 
-        return redirect()->route('employees.show', $data['service_provider_id'])->with('success', 'Funcionário atualizado com sucesso!');
+        return redirect()->route('employees.show', $data['service_provider_id'])->with('success', 'Colaborador atualizado com sucesso!');
+    }
+
+    private function formatMoney($value)
+    {
+        if (!$value) return null; // Retorna null se não houver valor
+
+        // Remove "R$ " e espaços extras
+        $value = str_replace(['R$ ', ' '], '', $value);
+
+        return (float) $value; // Converte para float
     }
 
 
@@ -233,10 +243,10 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($id);
         if(!$employee){
-            return redirect()->route('employees.show', $serviceProviderId)->with('error', 'Não foi possivel excluir o funcionário');
+            return redirect()->route('employees.show', $serviceProviderId)->with('error', 'Não foi possivel excluir o Colaborador');
         }
         $employee->delete(); // Soft delete
 
-        return redirect()->route('employees.show', $serviceProviderId)->with('success', 'Funcionário excluído com sucesso!');
+        return redirect()->route('employees.show', $serviceProviderId)->with('success', 'Colaborador excluído com sucesso!');
     }
 }

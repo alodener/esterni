@@ -246,9 +246,9 @@
                                     <table class="table align-items-center mb-0">
                                         <thead>
                                             <tr>
-                                                <th
+                                                {{-- <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Mês</th>
+                                                    Mês</th> --}}
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                     Ano</th>
@@ -262,7 +262,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($serviceProvider->auditCompliances->sortByDesc('year') as $payrollAudit)
+                                            @foreach ($serviceProvider->auditCompliances->sortByDesc('year') as $auditCompliance)
                                                 <tr>
                                                     <td>
                                                         <p class="text-xs font-weight-bold mb-0">

@@ -2,7 +2,7 @@
     <x-navbars.sidebar activePage="service-provider"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Funcionário"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Colaborador"></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="container px-0">
@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12 d-flex align-items-center">
-                                <h6 class="mb-0">Indicador Funcionário</h6>
+                                <h6 class="mb-0">Indicador Colaborador</h6>
                             </div>
                         </div>
                     </div>

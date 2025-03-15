@@ -3,7 +3,7 @@
     <x-navbars.sidebar activePage="service-provider"></x-navbars.sidebar>
     <div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage='Editar Funcionário'></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage='Editar Colaborador'></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="container px-2 px-md-4">
@@ -12,7 +12,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-3">Editar Funcionário</h6>
+                                <h6 class="mb-3">Editar Colaborador</h6>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="employee_name" class="form-label">Nome do Funcionário *</label>
+                                    <label for="employee_name" class="form-label">Nome do Colaborador *</label>
                                     <input type="text" name="employee_name" id="employee_name"
                                     @can('isClient') disabled @endcan
                                     value="{{ old('employee_name', $employee->employee_name) }}"
@@ -161,7 +161,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="salary" class="form-label">Salário *</label>
-                                    <input type="number" step="0.01" name="salary" id="salary"
+                                    <input type="text" step="0.01" name="salary" id="salary"
                                     @can('isClient') disabled @endcan
                                     value="{{ old('salary', $employee->salary) }}"
                                         class="form-control border border-2 p-2" required>
@@ -245,6 +245,32 @@
 
         </div>
     </div>
+    @push('js')
+        <!-- Adicionando IMask.js via CDN -->
+        <script src="https://unpkg.com/imask"></script>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var input = document.getElementById("salary");
+
+                var maskOptions = {
+                    mask: "R$ num", // Adiciona o prefixo "R$ "
+                    blocks: {
+                        num: {
+                            mask: Number,
+                            scale: 2, // Duas casas decimais
+                            thousandsSeparator: "", // Separador de milhar
+                            radix: ".", // Separador decimal
+                            mapToRadix: [","], // Mapeia "," para o separador decimal
+                            padFractionalZeros: true, // Garante duas casas decimais
+                            normalizeZeros: true
+                        }
+                    }
+                };
+
+                IMask(input, maskOptions);
+            });
+        </script>
+    @endpush
 
 </x-layout>

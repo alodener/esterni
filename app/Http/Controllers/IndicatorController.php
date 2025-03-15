@@ -87,9 +87,14 @@ class IndicatorController extends Controller
     {
         $serviceProvider = ServiceProvider::findOrFail($request->service_provider_id);
 
+        $data = $request->all();
+
+        $data['share_capital'] = floatval($this->formatMoney($request->input('share_capital')));
+        $data['capital_per_employee'] = floatval($this->formatMoney($request->input('share_capital'))/ $data['employees_number']);
+
         $serviceProvider->laborCertification()->updateOrCreate(
             ['service_provider_id' => $request->service_provider_id],
-            $request->all()
+            $data
         );
 
         return redirect()->route('service-provider.show', $request->service_provider_id)->with('success', 'Indicador alterado com sucesso');
@@ -123,5 +128,15 @@ class IndicatorController extends Controller
         );
 
         return redirect()->route('service-provider.show', $request->service_provider_id)->with('success', 'Indicador alterado com sucesso');
+    }
+
+    private function formatMoney($value)
+    {
+        if (!$value) return null; // Retorna null se não houver valor
+
+        // Remove "R$ " e espaços extras
+        $value = str_replace(['R$ ', ' '], '', $value);
+
+        return (float) $value; // Converte para float
     }
 }

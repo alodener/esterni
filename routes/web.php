@@ -83,13 +83,13 @@ Route::middleware(['multi-auth'])->prefix('onboarding')->group(function () {
 });
 
 Route::middleware(['multi-auth'])->prefix('employees')->group(function () {
-    Route::get('/', [EmployeeController::class, 'index'])->name('employees.index'); // Listar funcionários
+    Route::get('/', [EmployeeController::class, 'index'])->name('employees.index'); // Listar Colaboradores
     Route::get('/create/{employee}', [EmployeeController::class, 'create'])->name('employees.create'); // Formulário de criação
-    Route::post('/', [EmployeeController::class, 'store'])->name('employees.store'); // Criar funcionário
+    Route::post('/', [EmployeeController::class, 'store'])->name('employees.store'); // Criar Colaborador
     Route::get('/{employee}', [EmployeeController::class, 'show'])->name('employees.show'); // Ver detalhes
     Route::get('/{employee}/edit/{serviceProviderId}', [EmployeeController::class, 'edit'])->name('employees.edit'); // Formulário de edição
-    Route::put('/{employee}', [EmployeeController::class, 'update'])->name('employees.update'); // Atualizar funcionário
-    Route::delete('/{employee}/{serviceProvider}', [EmployeeController::class, 'destroy'])->name('employees.destroy'); // Excluir funcionário
+    Route::put('/{employee}', [EmployeeController::class, 'update'])->name('employees.update'); // Atualizar Colaborador
+    Route::delete('/{employee}/{serviceProvider}', [EmployeeController::class, 'destroy'])->name('employees.destroy'); // Excluir Colaborador
 });
 
 Route::middleware(['multi-auth'])->prefix('indicator')->group(function () {

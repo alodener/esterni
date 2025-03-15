@@ -282,8 +282,10 @@
                                 @endcan
 
                                 @can('isClient')
-                                    <a href="{{ route('auditCompliance.show', $serviceProvider->id) }}"
-                                        class="btn btn-primary">Voltar</a>
+                                    <div class="mt-3 d-flex justify-content-end">
+                                        <a href="{{ route('auditCompliance.show', $serviceProvider->id) }}"
+                                            class="btn btn-primary me-2">Voltar</a>
+                                    </div>
                                 @endcan
                             </div>
                         </form>

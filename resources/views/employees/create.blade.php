@@ -3,7 +3,7 @@
     <x-navbars.sidebar activePage="service-provider"></x-navbars.sidebar>
     <div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage='Novo Funcionário'></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage='Novo Colaborador'></x-navbars.navs.auth>
         <!-- End Navbar -->
 
         <div class="container px-2 px-md-4">
@@ -12,7 +12,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-3">Novo Funcionário</h6>
+                                <h6 class="mb-3">Novo Colaborador</h6>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="employee_name" class="form-label">Nome do Funcionário *</label>
+                                    <label for="employee_name" class="form-label">Nome do Colaborador *</label>
                                     <input type="text" name="employee_name" id="employee_name" class="form-control border border-2 p-2" required>
                                     @error('employee_name')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
@@ -109,7 +109,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="salary" class="form-label">Salário *</label>
-                                    <input type="number" step="0.01" name="salary" id="salary" class="form-control border border-2 p-2" required>
+                                    <input type="text" step="0.01" name="salary" id="salary" class="form-control border border-2 p-2" required>
                                     @error('salary')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
@@ -144,12 +144,6 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="dismissal_date" class="form-label">Data de Demissão *</label>
-                                    <input type="date" name="dismissal_date" id="dismissal_date" class="form-control border border-2 p-2">
-                                    @error('dismissal_date')<p class='text-danger'>{{ $message }}</p>@enderror
-                                </div>
-
-                                <div class="mb-3 col-md-6">
                                     <label for="start_client_allocation" class="form-label">Ínicio da Lotação no Tomador *</label>
                                     <input type="date" name="start_client_allocation" id="start_client_allocation" class="form-control border border-2 p-2">
                                     @error('start_client_allocation')<p class='text-danger'>{{ $message }}</p>@enderror
@@ -171,6 +165,32 @@
 
         </div>
     </div>
+    @push('js')
+        <!-- Adicionando IMask.js via CDN -->
+        <script src="https://unpkg.com/imask"></script>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var input = document.getElementById("salary");
+
+                var maskOptions = {
+                    mask: "R$ num", // Adiciona o prefixo "R$ "
+                    blocks: {
+                        num: {
+                            mask: Number,
+                            scale: 2, // Duas casas decimais
+                            thousandsSeparator: "", // Separador de milhar
+                            radix: ".", // Separador decimal
+                            mapToRadix: [","], // Mapeia "," para o separador decimal
+                            padFractionalZeros: true, // Garante duas casas decimais
+                            normalizeZeros: true
+                        }
+                    }
+                };
+
+                IMask(input, maskOptions);
+            });
+        </script>
+    @endpush
 
 </x-layout>

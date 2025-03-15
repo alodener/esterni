@@ -267,16 +267,15 @@
                                             @foreach ($serviceProvider->payrollAudits as $payrollAudit)
                                                 <tr>
                                                     <td>
-                                                        <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex px-2 py-1" >
                                                             <div class="d-flex flex-column justify-content-center">
-                                                                <h6 class="mb-0 text-sm">{{ $payrollAudit->client_name }}
-                                                                </h6>
+                                                                <h6 class="mb-0 text-sm">{{ $payrollAudit->MonthName }}</h6>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <p class="text-xs font-weight-bold mb-0">
-                                                            {{ $payrollAudit->department }}</p>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $payrollAudit->year }}
+                                                        </p>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
                                                         <p class="text-xs font-weight-bold mb-0">

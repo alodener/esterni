@@ -112,7 +112,7 @@
             new Chart(ctx, {
                 type: "bar",
                 data: {
-                    labels: labels,
+                    labels: @json($labels),
                     datasets: [{
                         label: "Sales",
                         tension: 0.4,
@@ -120,7 +120,7 @@
                         borderRadius: 4,
                         borderSkipped: false,
                         backgroundColor: "rgba(255, 255, 255, .8)",
-                        data: data,
+                        data: @json($data),
                         maxBarThickness: 6
                     }, ],
                 },
