@@ -155,7 +155,7 @@
                                     @error('end_client_allocation')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
                             </div>
-                            <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-primary">Voltar</a>
+                            <a href="{{ route('employees.show', $serviceProvider->id) }}" class="btn btn-primary">Voltar</a>
                             <button type="submit" class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                         </form>
 

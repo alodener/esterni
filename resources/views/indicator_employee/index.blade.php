@@ -256,13 +256,13 @@
                                     </div>
                                     @can('isAdmin')
                                         <div class="mt-3 d-flex justify-content-end">
-                                            <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                            <a href="{{ route('employees.show', $serviceProvider->id) }}"
                                                 class="btn btn-primary">Voltar</a>
                                             <button class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                                         </div>
                                     @endcan
                                     @can('isClient')
-                                        <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                        <a href="{{ route('employees.show', $serviceProvider->id) }}"
                                             class="btn btn-primary">Voltar</a>
                                     @endcan
                                 </form>
@@ -431,13 +431,13 @@
                                     </div>
                                     @can('isAdmin')
                                         <div class="mt-3 d-flex justify-content-end">
-                                            <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                            <a href="{{ route('employees.show', $serviceProvider->id) }}"
                                                 class="btn btn-primary">Voltar</a>
                                             <button class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                                         </div>
                                     @endcan
                                     @can('isClient')
-                                        <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                        <a href="{{ route('employees.show', $serviceProvider->id) }}"
                                             class="btn btn-primary">Voltar</a>
                                     @endcan
                                 </form>
@@ -597,13 +597,13 @@
                                     </div>
                                     @can('isAdmin')
                                         <div class="mt-3 d-flex justify-content-end">
-                                            <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                            <a href="{{ route('employees.show', $serviceProvider->id) }}"
                                                 class="btn btn-primary">Voltar</a>
                                             <button class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                                         </div>
                                     @endcan
                                     @can('isClient')
-                                        <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                        <a href="{{ route('employees.show', $serviceProvider->id) }}"
                                             class="btn btn-primary">Voltar</a>
                                     @endcan
                                 </form>
@@ -859,13 +859,13 @@
                                     </div>
                                     @can('isAdmin')
                                         <div class="mt-3 d-flex justify-content-end">
-                                            <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                            <a href="{{ route('employees.show', $serviceProvider->id) }}"
                                                 class="btn btn-primary">Voltar</a>
                                             <button class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                                         </div>
                                     @endcan
                                     @can('isClient')
-                                        <a href="{{ route('service-provider.show', $serviceProvider->id) }}"
+                                        <a href="{{ route('employees.show', $serviceProvider->id) }}"
                                             class="btn btn-primary">Voltar</a>
                                     @endcan
                                 </form>

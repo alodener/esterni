@@ -115,11 +115,11 @@
                                                         <td class="p-3 text-center">
                                                             <span class="text-lg {{ $statusColors[$status] ?? 'text-gray-500' }}">
                                                                 @if ($status == 'Conforme' || $status == 'Não se aplica')
-                                                                    ✅
+                                                                    🟢
                                                                 @elseif ($status == 'Não Conforme')
-                                                                    ❌
+                                                                    🔴
                                                                 @else
-                                                                    ⚠️
+                                                                    🟡
                                                                 @endif
                                                             </span>
                                                         </td>
@@ -162,11 +162,11 @@
                                                         <td class="p-3 text-center">
                                                             <span class="text-lg {{ $statusColors[$status] ?? 'text-gray-500' }}">
                                                                 @if ($status == 'Conforme' || $status == 'Não se aplica')
-                                                                    ✅
+                                                                    🟢
                                                                 @elseif ($status == 'Não Conforme')
-                                                                    ❌
+                                                                    🔴
                                                                 @else
-                                                                    ⚠️
+                                                                    🟡
                                                                 @endif
                                                             </span>
                                                         </td>
@@ -210,11 +210,11 @@
                                                         <td class="p-3 text-center">
                                                             <span class="text-lg {{ $statusColors[$status] ?? 'text-gray-500' }}">
                                                                 @if ($status == 'Conforme' || $status == 'Não se aplica')
-                                                                    ✅
+                                                                    🟢
                                                                 @elseif ($status == 'Não Conforme')
-                                                                    ❌
+                                                                    🔴
                                                                 @else
-                                                                    ⚠️
+                                                                    🟡
                                                                 @endif
                                                             </span>
                                                         </td>
@@ -258,11 +258,11 @@
                                                         <td class="p-3 text-center">
                                                             <span class="text-lg {{ $statusColors[$status] ?? 'text-gray-500' }}">
                                                                 @if ($status == 'Conforme' || $status == 'Não se aplica')
-                                                                    ✅
+                                                                    🟢
                                                                 @elseif ($status == 'Não Conforme')
-                                                                    ❌
+                                                                    🔴
                                                                 @else
-                                                                    ⚠️
+                                                                    🟡
                                                                 @endif
                                                             </span>
                                                         </td>

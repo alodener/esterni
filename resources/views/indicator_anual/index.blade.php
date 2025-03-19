@@ -73,7 +73,7 @@
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h6 class="mb-0">Indicador Anual</h6>
-                                <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-secondary">Voltar</a>
+                                <a href="{{ route('service-provider.show', $serviceProvider->id) }}" class="btn btn-secondary">Voltar</a>
                             </div>
                         </div>
                     </div>

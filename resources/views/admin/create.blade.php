@@ -90,7 +90,7 @@
                             </div>
 
                             <div class="mt-3 d-flex justify-content-end">
-                                <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-primary">Cancelar</a>
+                                <a href="{{ route('admin.index') }}" class="btn btn-primary">Cancelar</a>
                                 <button type="submit" class="btn btn-primary" style="margin-left: 15px">Salvar</button>
                             </div>
 

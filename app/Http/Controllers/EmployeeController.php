@@ -50,7 +50,7 @@ class EmployeeController extends Controller
 
         // Bloqueia acesso caso nenhum guard esteja autenticado
         if (!$this->guard) {
-            abort(403, 'Acesso não autorizado.');
+            return redirect()->route('login')->with('error', 'Sua sessão expirou. Faça login novamente.');
         }
 
         // Verifica se o método chamado está permitido para o usuário autenticado

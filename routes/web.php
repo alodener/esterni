@@ -73,13 +73,7 @@ Route::middleware(['multi-auth'])->prefix('service-provider')->group(function ()
 });
 
 Route::middleware(['multi-auth'])->prefix('onboarding')->group(function () {
-    // Route::get('/', [OnboardingController::class, 'index'])->name('onboarding.index');
-    // Route::get('/create', [OnboardingController::class, 'create'])->name('onboarding.create');
     Route::get('/{id}', [OnboardingController::class, 'show'])->name('onboarding.show');
-    // Route::post('/', [OnboardingController::class, 'store'])->name('onboarding.store');
-    // Route::get('/{id}/edit', [OnboardingController::class, 'edit'])->name('onboarding.edit');
-    // Route::put('/{serviceProvider}', [OnboardingController::class, 'update'])->name('onboarding.update');
-    // Route::delete('/{id}', [OnboardingController::class, 'destroy'])->name('onboarding.destroy');
 });
 
 Route::middleware(['multi-auth'])->prefix('employees')->group(function () {
@@ -124,10 +118,10 @@ Route::delete('/audit-compliance/{id}/{serviceProviderId}', [AuditComplianceCont
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('multi-auth')->name('dashboard');
-Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
-Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
 Route::get('sign-in', [SessionsController::class, 'create'])->middleware('guest')->name('login');
 Route::post('sign-in', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
-Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
 Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('multi-auth')->name('logout');
+// Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
+// Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
+// Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
