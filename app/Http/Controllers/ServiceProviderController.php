@@ -108,8 +108,8 @@ class ServiceProviderController extends Controller
         }
 
         $data = $request->all();
-        $data['share_capital'] = $this->formatMoney($request->input('share_capital'));
-        $data['monthly_base_value'] = $this->formatMoney($request->input('monthly_base_value'));
+        $data['share_capital'] = floatval($this->formatMoney($request->input('share_capital')));
+        $data['monthly_base_value'] = floatval($this->formatMoney($request->input('monthly_base_value')));
 
         ServiceProvider::create($data);
 
@@ -162,8 +162,8 @@ class ServiceProviderController extends Controller
 
         $data = $request->all();
 
-        $data['share_capital'] = $this->formatMoney($request->input('share_capital'));
-        $data['monthly_base_value'] = $this->formatMoney($request->input('monthly_base_value'));
+        $data['share_capital'] = floatval($this->formatMoney($request->input('share_capital')));
+        $data['monthly_base_value'] = floatval($this->formatMoney($request->input('monthly_base_value')));
 
 
         $serviceProvider->update($data); // Mass assignment (cuidado com campos sensíveis)

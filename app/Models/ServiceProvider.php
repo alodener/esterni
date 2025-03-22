@@ -266,9 +266,9 @@ class ServiceProvider extends Model
      */
     public function getOccupationalTrainingsScoreAttribute()
     {
-        return $this->calculateAverageScoreContratacao([
+        return $this->calculateAverageScore([
             'nr_01_general_safety', 'nr_04_epi',
-            'nr_18_construction', 'nr_35_work_at_height', 'nr_10_electricity'
+            'nr_17_ergonomics', 'nr_19_explosives'
         ], 'occupationalTrainings');
     }
 

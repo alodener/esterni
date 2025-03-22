@@ -160,13 +160,13 @@ class IndicatorEmployeeController extends Controller
 
             'nr_01_general_safety' => 'required|string|max:255',
             'nr_04_epi' => 'required|string|max:255',
-            'nr_18_construction' => 'required|string|max:255',
-            'nr_35_work_at_height' => 'required|string|max:255',
-            'nr_10_electricity' => 'required|string|max:255',
-            'nr_11_transport_handling' => 'required|string|max:255',
-            'nr_14_furnaces' => 'required|string|max:255',
+            // 'nr_18_construction' => 'required|string|max:255',
+            // 'nr_35_work_at_height' => 'required|string|max:255',
+            // 'nr_10_electricity' => 'required|string|max:255',
+            // 'nr_11_transport_handling' => 'required|string|max:255',
+            // 'nr_14_furnaces' => 'required|string|max:255',
             'nr_17_ergonomics' => 'required|string|max:255',
-            'nr_19_explosives' => 'required|string|max:255',
+            // 'nr_19_explosives' => 'required|string|max:255',
         ]);
 
         // Atualiza ou cria um novo registro baseado no 'service_provider_id'

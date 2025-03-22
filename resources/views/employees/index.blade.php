@@ -93,7 +93,7 @@
                                                 Setor Lotado</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Dt Adimissão</th>
+                                                Dt Admissão</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Ações</th>

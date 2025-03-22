@@ -78,7 +78,7 @@ class AuditComplianceController extends Controller
             return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
         }
 
-        $currentYear = Carbon::now()->year;
+        $currentYear = Carbon::now()->subYear()->year;
 
         $auditCompliances = $serviceProvider->auditCompliances()
             ->whereNot('year', $currentYear)

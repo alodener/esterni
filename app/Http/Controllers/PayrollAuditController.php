@@ -101,9 +101,9 @@ class PayrollAuditController extends Controller
             ];
         }
 
-        // Pega o mês e ano atual
-        $currentMonth = Carbon::now()->month;
-        $currentYear = Carbon::now()->year;
+        // Pega o mês e ano de dois meses atrás
+        $currentMonth = Carbon::now()->subMonths(2)->month;
+        $currentYear = Carbon::now()->subMonths(2)->year;
 
         // Pegando a "minha referência" baseada no mês e ano atuais
         $minhaReferencia = $serviceProvider->payrollAudits
@@ -168,11 +168,14 @@ class PayrollAuditController extends Controller
                 $payrollAudit->year = $validatedData['year'];
             } else {
                 // Criação: Gera um novo registro
-                $payrollAudit = PayrollAudit::create([
-                    'month' => $validatedData['month'],
-                    'year' => $validatedData['year'],
-                    'service_provider_id' => $validatedData['service_provider_id'],
-                ]);
+                $payrollAudit = PayrollAudit::firstOrCreate(
+                    [
+                        'month' => $validatedData['month'],
+                        'year' => $validatedData['year'],
+                        'service_provider_id' => $validatedData['service_provider_id'],
+                    ],
+                    []
+                );
             }
 
             // Array para armazenar os campos validados

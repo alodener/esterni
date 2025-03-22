@@ -96,7 +96,7 @@
                                                     Setor Lotado</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Dt Adimissão</th>
+                                                    Dt Admissão</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     Ações</th>
@@ -167,7 +167,7 @@
                                                     Setor Lotado</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Dt Adimissão</th>
+                                                    Dt Admissão</th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     Ações</th>
@@ -188,7 +188,7 @@
                                                         <p class="text-xs font-weight-bold mb-0">{{ $employee->department }}</p>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
-                                                        <p class="text-xs font-weight-bold mb-0">{{ $employee->admission_date }}</p>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $employee->admission_date->format('d/m/Y') ?? '' }}</p>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
