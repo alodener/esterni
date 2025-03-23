@@ -121,6 +121,13 @@
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
+                                                            <a href="{{ route('employees.visualizar', $employee->id) }}"
+                                                            class="btn btn-sm btn-info text-white  me-1"
+                                                            data-toggle="tooltip"
+                                                            data-original-title="Visualizar usuário">
+                                                                Visualizar
+                                                            </a>
+
                                                             <a href="{{ route('employees.edit', [$employee->id, $serviceProvider->id]) }}"
                                                             class="btn btn-sm btn-secondary text-white me-1"
                                                             data-toggle="tooltip"
@@ -192,8 +199,14 @@
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
-                                                            <a href="{{ route('employees.edit', [$employee->id, $serviceProvider->id]) }}"
+                                                            {{-- <a href="{{ route('employees.edit', [$employee->id, $serviceProvider->id]) }}"
                                                             class="btn btn-sm btn-info text-white"
+                                                            data-toggle="tooltip"
+                                                            data-original-title="Visualizar usuário">
+                                                                Visualizar
+                                                            </a> --}}
+                                                            <a href="{{ route('employees.visualizar', $employee->id) }}"
+                                                            class="btn btn-sm btn-info text-white  me-1"
                                                             data-toggle="tooltip"
                                                             data-original-title="Visualizar usuário">
                                                                 Visualizar

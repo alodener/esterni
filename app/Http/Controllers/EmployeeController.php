@@ -32,8 +32,8 @@ class EmployeeController extends Controller
     {
         // Permissões por nome de método
         $permissions = [
-            'client' => ['index', 'show', 'edit'], // Clientes só podem acessar index
-            'web' => ['index', 'show', 'edit','create', 'store', 'update', 'destroy'], // Web tem acesso total pois é admin
+            'client' => ['index', 'show', 'edit', 'visualizar'], // Clientes só podem acessar index
+            'web' => ['index', 'show', 'edit','create', 'store', 'update', 'destroy',  'visualizar'], // Web tem acesso total pois é admin
         ];
 
         // Descobre o nome do método sendo chamado
@@ -58,6 +58,17 @@ class EmployeeController extends Controller
             abort(403, "O guard '{$this->guard}' não tem permissão para acessar '{$currentAction}'.");
         }
     }
+    public function visualizar($id)
+    {
+        $employee = Employee::with('serviceProvider')->find($id);
+        if (!$employee) {
+            return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
+        }
+
+
+        return view('employees.visualizar', compact('employee'));
+    }
+
     public function index()
     {
         return view('employees.index');

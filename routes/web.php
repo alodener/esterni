@@ -80,6 +80,7 @@ Route::middleware(['multi-auth'])->prefix('employees')->group(function () {
     Route::get('/', [EmployeeController::class, 'index'])->name('employees.index'); // Listar Colaboradores
     Route::get('/create/{employee}', [EmployeeController::class, 'create'])->name('employees.create'); // Formulário de criação
     Route::post('/', [EmployeeController::class, 'store'])->name('employees.store'); // Criar Colaborador
+    Route::get('/visualizar/{employee}', [EmployeeController::class, 'visualizar'])->name('employees.visualizar'); // Ver detalhes
     Route::get('/{employee}', [EmployeeController::class, 'show'])->name('employees.show'); // Ver detalhes
     Route::get('/{employee}/edit/{serviceProviderId}', [EmployeeController::class, 'edit'])->name('employees.edit'); // Formulário de edição
     Route::put('/{employee}', [EmployeeController::class, 'update'])->name('employees.update'); // Atualizar Colaborador
