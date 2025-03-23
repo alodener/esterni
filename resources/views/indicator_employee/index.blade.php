@@ -20,7 +20,7 @@
                         <ul class="nav nav-tabs nav-fill mb-4">
                             <li class="nav-item">
                                 <a class="nav-link active" data-bs-toggle="tab" href="#contratual">Documentação
-                                    Contratual dos Empregados</a>
+                                    Contratual dos Colaborador</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#ocupacionais">Programas Ocupacionais</a>
@@ -42,7 +42,7 @@
                                     Contratual dos Empregados --}}
                             <div id="contratual" class="container tab-pane active">
                                 <h1>Documentação
-                                    Contratual dos Empregados</h1>
+                                    Contratual dos Colaboradores</h1>
                                 <form method="POST" action="{{ route('indicatorEmployee.employeeContractualDocs') }}"
                                     enctype="multipart/form-data">
                                     @csrf

@@ -32,7 +32,7 @@ return new class extends Migration
             $table->date('contract_end_date')->nullable(); // Término do contrato
             $table->decimal('monthly_base_value', 15, 2)->nullable(); // Valor base mensal
             $table->string('retention_clause')->nullable(); // Cláusula de retenção
-            $table->integer('number_of_contracted_employees')->nullable(); // Nº de empregados
+            $table->integer('number_of_contracted_employees')->nullable(); // Nº de Colaboradores
             $table->unsignedBigInteger('client_id'); // Chave estrangeira para clientes
             $table->foreign('client_id')->references('id')->on('clients'); // Vincula à tabela clients
             $table->timestamps(); //created_at e updated_at

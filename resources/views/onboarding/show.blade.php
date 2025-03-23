@@ -46,7 +46,7 @@
                             <td>{{ $serviceProvider->service_provided }}</td>
                         </tr>
                         <tr>
-                            <td><strong>Nº Empregados Contratados</strong></td>
+                            <td><strong>Nº Colaboradores Contratados</strong></td>
                             <td>{{ $serviceProvider->number_of_contracted_employees }}</td>
                         </tr>
                     </table>
@@ -60,22 +60,22 @@
                 $habilitacoes = [
                     [
                         'titulo' => 'Habilitação Jurídica',
-                        'valor' => $serviceProvider->getLegalCertificationAverageScoreAttribute(),
+                        'valor' => round($serviceProvider->getLegalCertificationAverageScoreAttribute()),
                         'icone' => 'habilitacao_juridica.png',
                     ],
                     [
                         'titulo' => 'Habilitação Trabalhista',
-                        'valor' => $serviceProvider->getLaborCertificationAverageScoreAttribute(),
+                        'valor' => round($serviceProvider->getLaborCertificationAverageScoreAttribute()),
                         'icone' => 'habilitacao_trabalhista.png',
                     ],
                     [
                         'titulo' => 'Habilitação Fiscal',
-                        'valor' => $serviceProvider->getFiscalCertificationAverageScoreAttribute(),
+                        'valor' => round($serviceProvider->getFiscalCertificationAverageScoreAttribute()),
                         'icone' => 'habilitacao_fiscal.png',
                     ],
                     [
                         'titulo' => 'Habilitação Econômica',
-                        'valor' => $serviceProvider->getEconomicCertificationAverageScoreAttribute(),
+                        'valor' => round($serviceProvider->getEconomicCertificationAverageScoreAttribute()),
                         'icone' => 'habilitacao_economica.png',
                     ],
                 ];
@@ -136,22 +136,22 @@
                 $habilitacoesTrabalhista = [
                     [
                         'titulo' => 'Documentação Contratual',
-                        'valor' => $serviceProvider->getContractualDocumentationScoreAttribute(),
+                        'valor' => round($serviceProvider->getContractualDocumentationScoreAttribute()),
                         'icone' => 'documentacao_contratual.png',
                     ],
                     [
                         'titulo' => 'Programas Ocupacionais',
-                        'valor' => $serviceProvider->getOccupationalProgramsScoreAttribute(),
+                        'valor' => round($serviceProvider->getOccupationalProgramsScoreAttribute()),
                         'icone' => 'programas_ocupacionais.png',
                     ],
                     [
                         'titulo' => 'Saúde e Segurança no Trabalho (SST)',
-                        'valor' => $serviceProvider->getOccupationalHealthSafetyScoreAttribute(),
+                        'valor' => round($serviceProvider->getOccupationalHealthSafetyScoreAttribute()),
                         'icone' => 'saude_seguranca.png',
                     ],
                     [
                         'titulo' => 'Treinamentos Ocupacionais',
-                        'valor' => $serviceProvider->getOccupationalTrainingsScoreAttribute(),
+                        'valor' => round($serviceProvider->getOccupationalTrainingsScoreAttribute()),
                         'icone' => 'treinamento_ocupacionais.png',
                     ],
                 ];

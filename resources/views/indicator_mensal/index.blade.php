@@ -27,14 +27,14 @@
                                     <div class="text-center">
                                         <div class="rounded text-white {{ getColorClass($indicador['minha_referencia']) }}"
                                             style="margin-left: 13px ; width: 40px; height: {{ $indicador['minha_referencia'] * 1.2 }}px;">
-                                            {{ $indicador['minha_referencia'] }}
+                                            {{ round($indicador['minha_referencia']) }}
                                         </div>
                                         <small class="text-muted">Minha <br> Referência</small>
                                     </div>
                                     <div class="text-center">
                                         <div class="rounded text-white {{ getColorClass($indicador['media']) }}"
                                             style="width: 40px; height: {{ $indicador['media'] * 1.2 }}px;">
-                                            {{ $indicador['media'] }}
+                                            {{ round($indicador['media']) }}
                                         </div>
                                         <small class="text-muted">Média <br> ㅤ </small>
                                     </div>

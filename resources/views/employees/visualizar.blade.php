@@ -67,7 +67,7 @@
                             <div class="rounded-circle border border-3"
                                 style="width: 150px; height: 150px; overflow: hidden;">
                                 <img src="{{ Storage::url($employee->photo ?? 'assets/img/esterni/icone_adicionar_imagem.png') }}"
-                                    alt="Foto do Empregado"
+                                    alt="Foto do colaborador"
                                     class="img-fluid"
                                     style="object-fit: cover; width: 100%; height: 100%;">
                             </div>
@@ -231,6 +231,9 @@
                 </div>
             </div>
 
+            <div class="container py-4 px-6">
+                <a class="btn btn-primary" href="{{ route('employees.show', $employee->serviceProvider->id) }}">voltar</a>
+            </div>
         </div>
     </div>
 

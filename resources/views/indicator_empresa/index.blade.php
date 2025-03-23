@@ -63,6 +63,9 @@
                                             <label for="cnpj_card" class="form-label">Cartão de CNPJ *</label>
                                             <select name="cnpj_card" id="cnpj_card" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
+                                                <option value=""
+                                                    {{ old('cnpj_card', $serviceProvider->legalCertification?->cnpj_card) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('cnpj_card', $serviceProvider->legalCertification?->cnpj_card) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -84,6 +87,9 @@
                                             <select name="incorporation_act" id="incorporation_act"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
+                                                <option value=""
+                                                    {{ old('incorporation_act', $serviceProvider->legalCertification?->incorporation_act) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('incorporation_act', $serviceProvider->legalCertification?->incorporation_act) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -105,6 +111,9 @@
                                             <select name="partners_identification" id="partners_identification"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
+                                                <option value=""
+                                                    {{ old('partners_identification', $serviceProvider->legalCertification?->partners_identification) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('partners_identification', $serviceProvider->legalCertification?->partners_identification) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -126,6 +135,9 @@
                                             <select name="operating_license" id="operating_license"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
+                                                <option value=""
+                                                    {{ old('operating_license', $serviceProvider->legalCertification?->operating_license) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('operating_license', $serviceProvider->legalCertification?->operating_license) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -200,9 +212,9 @@
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label for="employees_number" class="form-label">Nº de Empregados *</label>
+                                            <label for="employees_number" class="form-label">Nº de Colaboradores *</label>
                                             <input type="number" name="employees_number" id="employees_number"
-                                                disabled
+                                                @can('isClient') disabled @endcan id="capital_per_employee"
                                                 value="{{ old('employees_number', $serviceProvider->laborCertification?->employees_number) }}"
                                                 class="form-control border border-2 p-2">
                                             @error('employees_number')
@@ -212,11 +224,11 @@
 
                                         <div class="mb-3 col-md-6">
                                             <label for="capital_per_employee" class="form-label">Proporção
-                                                Capital/Empregados *</label>
+                                                Capital/Colaboradores *</label>
                                             <input type="text" name="capital_per_employee"
                                                 @can('isClient') disabled @endcan id="capital_per_employee"
                                                 value="{{ old('capital_per_employee', $serviceProvider->laborCertification?->capital_per_employee) }}"
-                                                class="form-control border border-2 p-2">
+                                                class="form-control border border-2 p-2" readonly>
                                             @error('capital_per_employee')
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
@@ -228,6 +240,9 @@
                                             <select name="retention_clause" id="retention_clause"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
+                                                <option value=""
+                                                    {{ old('retention_clause', $serviceProvider->legalCertification?->retention_clause) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('retention_clause', $serviceProvider->laborCertification?->retention_clause) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -248,6 +263,9 @@
                                             <select name="fgts_certificate" id="fgts_certificate"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
+                                                <option value=""
+                                                    {{ old('fgts_certificate', $serviceProvider->legalCertification?->fgts_certificate) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('fgts_certificate', $serviceProvider->laborCertification?->fgts_certificate) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -269,6 +287,9 @@
                                             <select name="labor_certificate" id="labor_certificate"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
+                                                <option value=""
+                                                    {{ old('labor_certificate', $serviceProvider->legalCertification?->labor_certificate) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('labor_certificate', $serviceProvider->laborCertification?->labor_certificate) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -328,6 +349,9 @@
                                             <select name="federal_tax_certification" id="federal_tax_certification"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
+                                                <option value=""
+                                                    {{ old('federal_tax_certification', $serviceProvider->legalCertification?->federal_tax_certification) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('federal_tax_certification', $serviceProvider->fiscalCertification?->federal_tax_certification) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -349,6 +373,9 @@
                                             <select name="state_tax_certification" id="state_tax_certification"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
+                                                <option value=""
+                                                    {{ old('state_tax_certification', $serviceProvider->legalCertification?->state_tax_certification) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('state_tax_certification', $serviceProvider->fiscalCertification?->state_tax_certification) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -370,6 +397,9 @@
                                             <select name="municipal_tax_certification"
                                                 id="municipal_tax_certification" @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">
+                                                <option value=""
+                                                    {{ old('municipal_tax_certification', $serviceProvider->legalCertification?->municipal_tax_certification) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('municipal_tax_certification', $serviceProvider->fiscalCertification?->municipal_tax_certification) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -392,6 +422,9 @@
                                                     <select name="cnd_federal_debt" id="cnd_federal_debt"
                                                         @can('isClient') disabled @endcan
                                                         class="form-select border border-2 p-2">
+                                                        <option value=""
+                                                            {{ old('cnd_federal_debt', $serviceProvider->legalCertification?->cnd_federal_debt) == '' ? 'selected' : '' }}>
+                                                            Selecione uma opção</option>
                                                         <option value="Conforme"
                                                             {{ old('cnd_federal_debt', $serviceProvider->fiscalCertification?->cnd_federal_debt) == 'Conforme' ? 'selected' : '' }}>
                                                             Conforme</option>
@@ -476,6 +509,9 @@
                                             <select @can('isClient') disabled @endcan name="calculation_memory"
                                                 id="calculation_memory" class="form-select border border-2 p-2"
                                                 required>
+                                                <option value=""
+                                                    {{ old('calculation_memory', $serviceProvider->legalCertification?->calculation_memory) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('calculation_memory', $serviceProvider->economicCertification?->calculation_memory) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -497,6 +533,9 @@
                                             <select @can('isClient') disabled @endcan name="bankruptcy_certificate"
                                                 id="bankruptcy_certificate" class="form-select border border-2 p-2"
                                                 required>
+                                                <option value=""
+                                                    {{ old('bankruptcy_certificate', $serviceProvider->legalCertification?->bankruptcy_certificate) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('bankruptcy_certificate', $serviceProvider->economicCertification?->bankruptcy_certificate) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -517,6 +556,9 @@
                                             <select @can('isClient') disabled @endcan name="dre_balance_sheet"
                                                 id="dre_balance_sheet" class="form-select border border-2 p-2"
                                                 required>
+                                                <option value=""
+                                                    {{ old('dre_balance_sheet', $serviceProvider->legalCertification?->dre_balance_sheet) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('dre_balance_sheet', $serviceProvider->economicCertification?->dre_balance_sheet) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -536,6 +578,9 @@
                                             <label for="issues_invoice" class="form-label">Emite Nota Fiscal? *</label>
                                             <select @can('isClient') disabled @endcan name="issues_invoice"
                                                 id="issues_invoice" class="form-select border border-2 p-2" required>
+                                                <option value=""
+                                                    {{ old('issues_invoice', $serviceProvider->legalCertification?->issues_invoice) == '' ? 'selected' : '' }}>
+                                                    Selecione uma opção</option>
                                                 <option value="Conforme"
                                                     {{ old('issues_invoice', $serviceProvider->economicCertification?->issues_invoice) == 'Conforme' ? 'selected' : '' }}>
                                                     Conforme</option>
@@ -595,7 +640,35 @@
             };
 
             IMask(input, maskOptions);
+
+            const shareCapitalInput = document.getElementById('share_capital');
+            const employeesNumberInput = document.getElementById('employees_number');
+            const capitalPerEmployeeInput = document.getElementById('capital_per_employee');
+
+            function parseCurrency(value) {
+                // Remove "R$" e espaços extras, mantendo o valor decimal correto
+                const numericValue = value.replace(/[^\d.]/g, '');
+                return parseFloat(numericValue) || 0; // Converte em float e trata caso vazio
+            }
+
+            function formatCurrency(value) {
+                // Formata o valor no padrão de moeda brasileiro
+                return `R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+            }
+
+            function calculateCapitalPerEmployee() {
+                const shareCapital = parseCurrency(shareCapitalInput.value); // Agora lê corretamente
+                const employeesNumber = parseInt(employeesNumberInput.value) || 1;
+                const capitalPerEmployee = shareCapital / employeesNumber;
+
+                capitalPerEmployeeInput.value = isFinite(capitalPerEmployee)
+                    ? formatCurrency(capitalPerEmployee)
+                    : 'R$ 0,00';
+            }
+
+            // Escuta mudanças e aplica o cálculo
+            shareCapitalInput.addEventListener('input', calculateCapitalPerEmployee);
+            employeesNumberInput.addEventListener('input', calculateCapitalPerEmployee);
         });
     </script>
-
 </x-layout>

@@ -89,8 +89,18 @@ class IndicatorController extends Controller
 
         $data = $request->all();
 
-        $data['share_capital'] = floatval($this->formatMoney($request->input('share_capital')));
-        $data['capital_per_employee'] = floatval($this->formatMoney($request->input('share_capital'))/ $data['employees_number']);
+        $data['share_capital'] = $this->formatMoney($request->input('share_capital', '0.00')); // Valor padrão '0.00' caso não enviado
+        $data['capital_per_employee'] = 0; // Inicializa para evitar erros
+
+        // Conversão segura para float e cálculo apenas se o número de colaboradores for maior que 0
+        $data['share_capital'] = floatval($data['share_capital']);
+
+        $data['employees_number'] = intval($request->input('employees_number', 1)); // Define '1' para evitar divisão por zero
+
+        if ($data['employees_number'] > 0) {
+            $data['capital_per_employee'] = $data['share_capital'] / $data['employees_number'];
+        }
+
 
         $serviceProvider->laborCertification()->updateOrCreate(
             ['service_provider_id' => $request->service_provider_id],

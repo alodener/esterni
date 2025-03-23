@@ -67,7 +67,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="client_name" class="form-label">Nome do Cliente *</label>
-                                    <input type="text" name="client_name" id="client_name" class="form-control border border-2 p-2" required>
+                                    <input type="text" name="client_name" id="client_name" class="form-control border border-2 p-2" value="{{ $serviceProvider->client->name ?? null }}" required readonly>
                                     @error('client_name')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
@@ -129,6 +129,15 @@
                                         <option value="1">Sim</option>
                                     </select>
                                     @error('dangerousness')<p class='text-danger'>{{ $message }}</p>@enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="night_shift" class="form-label">Trabalho noturno *</label>
+                                    <select name="night_shift" id="night_shift" class="form-select border border-2 p-2" required>
+                                        <option value="0">Não</option>
+                                        <option value="1">Sim</option>
+                                    </select>
+                                    @error('night_shift')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">

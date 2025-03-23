@@ -100,7 +100,7 @@
                                             <tbody>
                                                 @php
                                                     $categories = [
-                                                        'Lançamentos dos Empregados e Eventos' => $payrollAudit->payroll_entries_correct,
+                                                        'Lançamentos dos Colaboradores e Eventos' => $payrollAudit->payroll_entries_correct,
                                                         'Pagamento: Folha/Férias/Rescisões' => $payrollAudit->payroll_compliance,
                                                         'Pagamento dos Benefícios' => $payrollAudit->benefits_paid_correctly,
                                                         'Afastamentos' => $payrollAudit->leave_records_correct

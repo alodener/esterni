@@ -22,7 +22,7 @@
                                 ['titulo' => 'Documentação Contratual', 'valor' => $serviceProvider->getContractualDocumentationScoreAttribute(), 'icone' => 'description'],
                                 ['titulo' => 'Programas Ocupacionais', 'valor' => $serviceProvider->getOccupationalProgramsScoreAttribute(), 'icone' => 'business_center'],
                                 [
-                                    'titulo' => 'Programas Ocupacionais',
+                                    'titulo' => 'Saúde e Segurança Ocupacional',
                                     'valor' => $serviceProvider->getOccupationalHealthSafetyScoreAttribute(),
                                     'icone' => 'health_and_safety',
                                 ],
@@ -109,7 +109,7 @@
                                                     <td>
                                                         <div class="d-flex px-2 py-1">
                                                             <div class="d-flex flex-column justify-content-center">
-                                                                <h6 class="mb-0 text-sm">{{ $employee->client_name }}</h6>
+                                                                <h6 class="mb-0 text-sm">{{ $employee->employee_name }}</h6>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -117,7 +117,7 @@
                                                         <p class="text-xs font-weight-bold mb-0">{{ $employee->department }}</p>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
-                                                        <p class="text-xs font-weight-bold mb-0">{{ \Carbon\Carbon::parse($employee->admission_date)->format('d/m/Y') }}</p>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $employee->admission_date ? \Carbon\Carbon::parse($employee->admission_date)->format('d/m/Y') : null }}</p>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
@@ -187,7 +187,7 @@
                                                     <td>
                                                         <div class="d-flex px-2 py-1">
                                                             <div class="d-flex flex-column justify-content-center">
-                                                                <h6 class="mb-0 text-sm">{{ $employee->client_name }}</h6>
+                                                                <h6 class="mb-0 text-sm">{{ $employee->employee_name }}</h6>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -195,7 +195,7 @@
                                                         <p class="text-xs font-weight-bold mb-0">{{ $employee->department }}</p>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
-                                                        <p class="text-xs font-weight-bold mb-0">{{ $employee->admission_date->format('d/m/Y') ?? '' }}</p>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $employee->admission_date ? \Carbon\Carbon::parse($employee->admission_date)->format('d/m/Y') : null }}</p>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
