@@ -107,6 +107,7 @@
                                                     ];
                                                     $statusColors = [
                                                         'Conforme' => 'text-green-500',
+                                                        'Não se aplica' => 'text-green-500',
                                                         'Não Conforme' => 'text-red-500',
                                                         'Conforme Parcialmente' => 'text-yellow-500'
                                                     ];
