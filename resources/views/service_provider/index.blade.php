@@ -144,12 +144,15 @@
                                         @endcan
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <div class="mt-4 d-flex justify-content-center">
+                {{ $serviceProviders->links() }}
+            </div>
             {{-- <x-footers.auth></x-footers.auth> --}}
         </div>
     </main>

@@ -116,5 +116,26 @@
         });
     }
 </script>
+<style>
+    .pagination .page-item.active .page-link {
+        background-color: #00A8E8;   /* Azul Elétrico (destaca item ativo) */
+        color: #1A202C;              /* Texto escuro para melhor contraste */
+        font-weight: bold;           /* Dá mais peso visual ao item ativo */
+        border-color: #00A8E8;
+    }
+
+    .pagination .page-item .page-link:hover {
+        background-color: #32DE84;   /* Verde Neon no hover (CTA feeling) */
+        color: #1A202C;              /* Texto escuro no hover */
+        border-color: #32DE84;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        background-color: #4A5568;   /* Cinza Técnico para itens desativados */
+        color: #F8F9FA;              /* Texto claro em botões desabilitados */
+        cursor: not-allowed;         /* Indicador de botão desativado */
+        opacity: 0.6;                /* Reduzir visibilidade de itens inativos */
+    }
+</style>
 </body>
 </html>

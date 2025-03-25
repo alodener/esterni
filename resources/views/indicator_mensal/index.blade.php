@@ -196,7 +196,7 @@
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
                                                         <p class="text-xs font-weight-bold mb-0">
-                                                            {{ $payrollAudit->total_average_score }}</p>
+                                                            {{ round($payrollAudit->total_average_score) }}</p>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
@@ -279,7 +279,7 @@
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
                                                         <p class="text-xs font-weight-bold mb-0">
-                                                            {{ $payrollAudit->total_average_score }}</p>
+                                                            {{ round($payrollAudit->total_average_score) }}</p>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex justify-content-center">
