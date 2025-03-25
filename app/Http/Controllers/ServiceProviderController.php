@@ -59,7 +59,7 @@ class ServiceProviderController extends Controller
     }
     public function index()
     {
-        $serviceProviders = ServiceProvider::with('client')->paginate(1);
+        $serviceProviders = ServiceProvider::with('client')->paginate(10);
         return view('service_provider.index', compact('serviceProviders'));
     }
 
