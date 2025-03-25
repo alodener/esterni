@@ -301,7 +301,18 @@ class ServiceProvider extends Model
 
     public function getPontuacaoGeralAttribute()
     {
-        return round(($this->total_average_score + $this->total_average_score_contratacao) / 2, 2);
+        $scores = [
+            $this->legal_certification_average_score,
+            $this->labor_certification_average_score,
+            $this->fiscal_certification_average_score,
+            $this->economic_certification_average_score,
+            $this->contractual_documentation_score,
+            $this->occupational_programs_score,
+            $this->occupational_healthSafety_score,
+            $this->occupational_training_score
+        ];
+
+        return round(array_sum($scores) / count($scores), 2);
     }
 
 }
