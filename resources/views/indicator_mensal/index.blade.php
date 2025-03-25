@@ -7,7 +7,7 @@
 
         <div class="container mt-5">
             <h3 class="fw-bold">Indicadores Mensais</h3>
-            <p class="text-muted">Mês Analisado: {{ \Carbon\Carbon::now()->translatedFormat('F \d\e Y') }}</p>
+            <p class="text-muted">Mês Analisado: {{ \Carbon\Carbon::now()->subMonths(2)->translatedFormat('F \d\e Y') }}</p>
 
             <div class="row g-4">
                 @php

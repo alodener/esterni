@@ -81,7 +81,6 @@ class AuditComplianceController extends Controller
         $currentYear = Carbon::now()->subYear()->year;
 
         $auditCompliances = $serviceProvider->auditCompliances()
-            ->whereNot('year', $currentYear)
             ->get();
 
         $totalRegistros = $auditCompliances->count();

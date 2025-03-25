@@ -7,7 +7,7 @@
 
         <div class="container mt-5">
             <h3 class="fw-bold">Indicadores Anuais</h3>
-            <p class="text-muted">Ano Analisado: {{ \Carbon\Carbon::now()->year }}</p>
+            <p class="text-muted">Ano Analisado: {{ \Carbon\Carbon::now()->subYear(1)->year }}</p>
 
             <div class="row g-4">
                 @php
