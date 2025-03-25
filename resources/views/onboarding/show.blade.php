@@ -12,7 +12,7 @@
                     <h3>Onboarding</h3>
                     <div class="bg-white text-center p-2 rounded">
                         <p class="mb-0 text-dark" id="nota_geral"><b>NOTA GERAL</b></p>
-                        <h2 class="text-secondary">{{ round($serviceProvider->getPontuacaoGeralAttribute())  }}</h2>
+                        <h2 class="text-secondary">{{ $serviceProvider->getPontuacaoGeralAttribute()  }}</h2>
                     </div>
                 </div>
             </div>
