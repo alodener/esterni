@@ -299,4 +299,9 @@ class ServiceProvider extends Model
         return round(array_sum($scores) / count($scores), 2);
     }
 
+    public function getPontuacaoGeralAttribute()
+    {
+        return round(($this->total_average_score + $this->total_average_score_contratacao) / 2, 2);
+    }
+
 }
