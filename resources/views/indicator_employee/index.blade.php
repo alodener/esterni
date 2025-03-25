@@ -271,8 +271,7 @@
                             {{-- NOTE: Saúde e Segurança
                                     Ocupacional --}}
                             <div id="ocupacionais" class="container tab-pane fade">
-                                <h1>Saúde e Segurança
-                                    Ocupacional</h1>
+                                <h1>Programas Ocupacionais</h1>
                                 <form method="POST" action="{{ route('indicatorEmployee.occupationalProgram') }}"
                                     enctype="multipart/form-data">
                                     @csrf
