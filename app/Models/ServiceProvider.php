@@ -312,7 +312,7 @@ class ServiceProvider extends Model
             $this->occupational_training_score
         ];
 
-        return round(array_sum($scores) / count($scores), 2);
+        return round(array_sum($scores) / 8);
     }
 
 }
