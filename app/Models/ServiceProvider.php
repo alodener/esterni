@@ -293,7 +293,7 @@ class ServiceProvider extends Model
             $this->contractual_documentation_score,
             $this->occupational_programs_score,
             $this->occupational_healthSafety_score,
-            $this->occupational_training_score
+            $this->occupational_trainings_score
         ];
 
         return round(array_sum($scores) / count($scores), 2);
@@ -309,7 +309,7 @@ class ServiceProvider extends Model
             $this->contractual_documentation_score,
             $this->occupational_programs_score,
             $this->occupational_healthSafety_score,
-            $this->occupational_training_score
+            $this->occupational_trainings_score
         ];
         dd($scores, array_sum($scores), round(array_sum($scores) / 8));
 
