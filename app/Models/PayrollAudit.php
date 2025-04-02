@@ -35,6 +35,11 @@ class PayrollAudit extends Model
         'cipa_training',
         'medical_certificates_presented',
         'accident_investigation_presented',
+
+        'payroll_notes',
+        'work_schedule_notes',
+        'tax_obligations_notes',
+        'health_safety_notes',
     ];
 
     protected $appends = [

@@ -834,7 +834,7 @@
                                         <div class="mb-3 col-md-6">
                                             {{-- <label for="nr_19_explosives" class="form-label">NR 19 -
                                                 Explosivos *</label> --}}
-                                            <label for="nr_19_explosives" class="form-label">NRs ESPCIFICAS *</label>
+                                            <label for="nr_19_explosives" class="form-label">NRs ESPECÍFICAS *</label>
                                             <select name="nr_19_explosives" id="nr_19_explosives"
                                                 @can('isClient') disabled @endcan
                                                 class="form-select border border-2 p-2">

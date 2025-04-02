@@ -22,7 +22,7 @@
                     <table class="table">
                         <tr>
                             <td><strong>Local e Data</strong></td>
-                            <td>{{ $serviceProvider->company_opening_date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($serviceProvider->company_opening_date)->format('d/m/Y') }}</td>
                         </tr>
                         <tr>
                             <td><strong>Tomador</strong></td>

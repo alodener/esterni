@@ -250,6 +250,14 @@
                                             @enderror
                                         </div>
 
+                                        <div>
+                                            <label>Informações</label>
+                                            <textarea name="payroll_notes" class="form-control  border border-2 p-2">{{ $payrollAudit->payroll_notes }}</textarea>
+                                            @error('payroll_notes')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -387,6 +395,14 @@
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
+
+                                        <div>
+                                            <label>Informações</label>
+                                            <textarea name="work_schedule_notes" class="form-control  border border-2 p-2">{{ $payrollAudit->work_schedule_notes }}</textarea>
+                                            @error('work_schedule_notes')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
@@ -522,6 +538,14 @@
                                             </select>
                                             @error('ir_compliance')
                                                 <p class='text-danger'>{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div>
+                                            <label>Informações</label>
+                                            <textarea name="tax_obligations_notes" class="form-control  border border-2 p-2">{{ $payrollAudit->tax_obligations_notes }}</textarea>
+                                            @error('tax_obligations_notes')
+                                            <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -662,6 +686,14 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div>
+                                        <label>Informações</label>
+                                        <textarea name="health_safety_notes" class="form-control  border border-2 p-2">{{ $payrollAudit->health_safety_notes }}</textarea>
+                                        @error('health_safety_notes')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
                                 </div>
                             </div>
 

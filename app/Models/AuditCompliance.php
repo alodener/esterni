@@ -34,6 +34,11 @@ class AuditCompliance extends Model
         'special_work_shifts_cct_act',
         'benefits_cct_act',
         'fgts_balance_deposited',
+
+        'payroll_notes',
+        'work_schedule_notes',
+        'tax_obligations_notes',
+        'health_safety_notes',
     ];
 
     /**

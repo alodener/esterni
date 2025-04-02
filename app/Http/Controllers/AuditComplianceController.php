@@ -183,24 +183,28 @@ class AuditComplianceController extends Controller
                     'payroll_thirteenth_fgts' => 'required|string',
                     'payroll_thirteenth_inss' => 'required|string',
                     'payroll_thirteenth_ir' => 'required|string',
+                    'payroll_notes' => 'nullable|string',
                 ],
                 'work' => [
                     'vacation_granted_on_time' => 'required|string',
                     'vacation_paid_on_time' => 'required|string',
                     'vacation_planning' => 'required|string',
                     'vacation_documentation' => 'required|string',
+                    'work_schedule_notes' => 'nullable|string',
                 ],
                 'tax' => [
                     'occupational_exams' => 'required|string',
                     'occupational_programs' => 'required|string',
                     'occupational_trainings' => 'required|string',
                     'esocial_events' => 'required|string',
+                    'tax_obligations_notes' => 'nullable|string',
                 ],
                 'safety' => [
                     'salary_cct_act' => 'required|string',
                     'special_work_shifts_cct_act' => 'required|string',
                     'benefits_cct_act' => 'required|string',
                     'fgts_balance_deposited' => 'required|string',
+                    'health_safety_notes' => 'nullable|string',
                 ],
             ];
 

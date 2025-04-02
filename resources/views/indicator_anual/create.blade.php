@@ -206,7 +206,17 @@
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
-
+                                        <div class="mb-4 col-md-12">
+                                            <label for="payroll_notes" class="form-label">Informações</label>
+                                            <textarea name="payroll_notes" id="payroll_notes"
+                                                      class="form-control border border-2 p-2"
+                                                      rows="4"
+                                                      placeholder="[inserir]"
+                                                      @can('isClient') disabled @endcan>{{ old('payroll_notes', session('valid_data.payroll_notes')) }}</textarea>
+                                            @error('payroll_notes')
+                                            <p class='text-danger'>{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
@@ -340,7 +350,17 @@
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
-
+                                        <div class="mb-4 col-md-12">
+                                            <label for="work_schedule_notes" class="form-label">Informações</label>
+                                            <textarea name="work_schedule_notes" id="work_schedule_notes"
+                                                      class="form-control border border-2 p-2"
+                                                      rows="4"
+                                                      placeholder="[inserir]"
+                                                      @can('isClient') disabled @endcan>{{ old('work_schedule_notes', session('valid_data.work_schedule_notes')) }}</textarea>
+                                            @error('work_schedule_notes')
+                                            <p class='text-danger'>{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
@@ -472,6 +492,17 @@
                                             </select>
                                             @error('esocial_events')
                                                 <p class='text-danger'>{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-4 col-md-12">
+                                            <label for="tax_obligations_notes" class="form-label">Informações</label>
+                                            <textarea name="tax_obligations_notes" id="tax_obligations_notes"
+                                                      class="form-control border border-2 p-2"
+                                                      rows="4"
+                                                      placeholder="[inserir]"
+                                                      @can('isClient') disabled @endcan>{{ old('tax_obligations_notes', session('valid_data.tax_obligations_notes')) }}</textarea>
+                                            @error('tax_obligations_notes')
+                                            <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
@@ -606,6 +637,17 @@
                                             </select>
                                             @error('fgts_balance_deposited')
                                                 <p class='text-danger'>{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-4 col-md-12">
+                                            <label for="health_safety_notes" class="form-label">Informações</label>
+                                            <textarea name="health_safety_notes" id="health_safety_notes"
+                                                      class="form-control border border-2 p-2"
+                                                      rows="4"
+                                                      placeholder="[inserir]"
+                                                      @can('isClient') disabled @endcan>{{ old('health_safety_notes', session('valid_data.health_safety_notes')) }}</textarea>
+                                            @error('health_safety_notes')
+                                            <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>

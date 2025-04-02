@@ -188,24 +188,28 @@ class PayrollAuditController extends Controller
                     'payroll_compliance' => 'required|string',
                     'benefits_paid_correctly' => 'required|string',
                     'leave_records_correct' => 'required|string',
+                    'payroll_notes' => 'nullable|string',
                 ],
                 'work' => [
                     'work_schedules_presented' => 'required|string',
                     'work_records_compliant' => 'required|string',
                     'overtime_compliant' => 'required|string',
                     'rest_periods_complied' => 'required|string',
+                    'work_schedule_notes' => 'nullable|string',
                 ],
                 'tax' => [
                     'tax_guides_presented' => 'required|string',
                     'fgts_compliance' => 'required|string',
                     'inss_compliance' => 'required|string',
                     'ir_compliance' => 'required|string',
+                    'tax_obligations_notes' => 'nullable|string',
                 ],
                 'safety' => [
                     'cat_submitted_on_time' => 'required|string',
                     'cipa_training' => 'required|string',
                     'medical_certificates_presented' => 'required|string',
                     'accident_investigation_presented' => 'required|string',
+                    'health_safety_notes' => 'nullable|string',
                 ],
             ];
 
