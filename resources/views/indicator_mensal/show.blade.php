@@ -286,6 +286,16 @@
                                 </div>
                             </div>
 
+
+                            <div class="tab-content card mt-4 p-0" style="height: 200px">
+                                <div class="container tab-pane active card-body">
+                                    <div class="row">
+                                        <label>Informações</label>
+                                        <textarea id="textarea" style="height: 100px" name="payroll_notes" class="form-control border border-2 p-2" readonly>{{ $payrollAudit->payroll_notes }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Botões de Ação -->
                             @can('isAdmin')
                                 <div class="mt-3 d-flex justify-content-end">
@@ -343,25 +353,42 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const tabs = {
-                    "folha_pagamento": "Folha de Pagamento",
-                    "jornada_trabalho": "Jornada de Trabalho",
-                    "encargo_trabalhista": "Encargos Trabalhistas",
-                    "saude_seguranca_trabalho": "Saúde e Segurança no Trabalho"
-                };
-
-                const scores = {
-                    folha_pagamento: {{ $payrollAudit->getPayrollAverageScoreAttribute() }},
-                    jornada_trabalho: {{ $payrollAudit->getWorkJourneyAverageScoreAttribute() }},
-                    encargo_trabalhista: {{ $payrollAudit->getTaxesAverageScoreAttribute() }},
-                    saude_seguranca_trabalho: {{ $payrollAudit->getSstAverageScoreAttribute() }}
+                    "folha_pagamento": {
+                        title: "Folha de Pagamento",
+                        field: "payroll_notes",
+                        score: {{ $payrollAudit->getPayrollAverageScoreAttribute() }},
+                        value: `{{ $payrollAudit->payroll_notes }}`
+                    },
+                    "jornada_trabalho": {
+                        title: "Jornada de Trabalho",
+                        field: "work_schedule_notes",
+                        score: {{ $payrollAudit->getWorkJourneyAverageScoreAttribute() }},
+                        value: `{{ $payrollAudit->work_schedule_notes }}`
+                    },
+                    "encargo_trabalhista": {
+                        title: "Encargos Trabalhistas",
+                        field: "tax_obligations_notes",
+                        score: {{ $payrollAudit->getTaxesAverageScoreAttribute() }},
+                        value: `{{ $payrollAudit->tax_obligations_notes }}`
+                    },
+                    "saude_seguranca_trabalho": {
+                        title: "Saúde e Segurança no Trabalho",
+                        field: "health_safety_notes",
+                        score: {{ $payrollAudit->getSstAverageScoreAttribute() }},
+                        value: `{{ $payrollAudit->health_safety_notes }}`
+                    }
                 };
 
                 document.querySelectorAll(".nav-link").forEach(tab => {
                     tab.addEventListener("click", function () {
                         const selectedTab = this.getAttribute("href").replace("#", "");
-                        document.getElementById("tabTitle").textContent = tabs[selectedTab];
-                        document.getElementById("tabTitle2").textContent = tabs[selectedTab];
-                        document.getElementById("nota_geral_valor").textContent = scores[selectedTab] || "N/A"; // Atualiza a nota
+
+                        if (tabs[selectedTab]) {
+                            document.getElementById("tabTitle").textContent = tabs[selectedTab].title;
+                            document.getElementById("tabTitle2").textContent = tabs[selectedTab].title;
+                            document.getElementById("nota_geral_valor").textContent = tabs[selectedTab].score || "N/A";
+                            document.getElementById("textarea").textContent = tabs[selectedTab].value;
+                        }
                     });
                 });
             });

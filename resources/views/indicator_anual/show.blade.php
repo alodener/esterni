@@ -289,6 +289,15 @@
                                 @endcan
                             </div>
                         </form>
+
+                        <div class="tab-content card mt-4 p-0" style="height: 200px">
+                            <div class="container tab-pane active card-body">
+                                <div class="row">
+                                    <label>Informações</label>
+                                    <textarea id="textarea" style="height: 100px" name="payroll_notes" class="form-control border border-2 p-2" readonly>{{ $auditCompliance->payroll_notes }}</textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -333,25 +342,42 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const tabs = {
-                    "folha_13": "Folha 13º",
-                    "ferias": "Férias",
-                    "saude_seguranca_trabalho": "Saúde e Segurança no Trabalho",
-                    "ccc_act_fgts": "CCT/ACT e FGTS"
-                };
-
-                const scores = {
-                    folha_13: {{ $auditCompliance->getPayrollThirteenthAverageScoreAttribute() }},
-                    ferias: {{ $auditCompliance->getVacationAverageScoreAttribute() }},
-                    saude_seguranca_trabalho: {{ $auditCompliance->getOccupationalHealthAverageScoreAttribute() }},
-                    ccc_act_fgts: {{ $auditCompliance->getCctActFgtsAverageScoreAttribute() }}
+                    "folha_13": {
+                        title: "Folha 13º",
+                        field: "payroll_thirteenth_notes",
+                        score: {{ $auditCompliance->getPayrollThirteenthAverageScoreAttribute() }},
+                        value: `{{ $auditCompliance->payroll_notes }}`
+                    },
+                    "ferias": {
+                        title: "Férias",
+                        field: "vacation_notes",
+                        score: {{ $auditCompliance->getVacationAverageScoreAttribute() }},
+                        value: `{{ $auditCompliance->work_schedule_notes }}`
+                    },
+                    "saude_seguranca_trabalho": {
+                        title: "Saúde e Segurança no Trabalho",
+                        field: "occupational_health_notes",
+                        score: {{ $auditCompliance->getOccupationalHealthAverageScoreAttribute() }},
+                        value: `{{ $auditCompliance->tax_obligations_notes }}`
+                    },
+                    "ccc_act_fgts": {
+                        title: "CCT/ACT e FGTS",
+                        field: "cct_act_fgts_notes",
+                        score: {{ $auditCompliance->getCctActFgtsAverageScoreAttribute() }},
+                        value: `{{ $auditCompliance->health_safety_notes }}`
+                    }
                 };
 
                 document.querySelectorAll(".nav-link").forEach(tab => {
                     tab.addEventListener("click", function () {
                         const selectedTab = this.getAttribute("href").replace("#", "");
-                        document.getElementById("tabTitle").textContent = tabs[selectedTab];
-                        document.getElementById("tabTitle2").textContent = tabs[selectedTab];
-                        document.getElementById("nota_geral_valor").textContent = scores[selectedTab] || "N/A"; // Atualiza a nota
+
+                        if (tabs[selectedTab]) {
+                            document.getElementById("tabTitle").textContent = tabs[selectedTab].title;
+                            document.getElementById("tabTitle2").textContent = tabs[selectedTab].title;
+                            document.getElementById("nota_geral_valor").textContent = tabs[selectedTab].score || "N/A";
+                            document.getElementById("textarea").textContent = tabs[selectedTab].value;
+                        }
                     });
                 });
             });
