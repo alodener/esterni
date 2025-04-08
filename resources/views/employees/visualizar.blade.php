@@ -163,16 +163,16 @@
                                             <td>{{ $employee->work_schedule ?? null }}</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Insalubridade</strong></td>
-                                            <td>{{ $employee->insalubrity ? 'Sim' : 'Não' }}</td>
+                                            <td><strong>Intervalo</strong></td>
+                                            <td>{{ $employee->intervalo ?? '' }}</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Periculosidade</strong></td>
-                                            <td>{{ $employee->dangerousness ? 'Sim' : 'Não' }}</td>
+                                            <td><strong>Adicionais</strong></td>
+                                            <td>{{ $employee->adicionais ?? '' }}</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Adicional Noturno</strong></td>
-                                            <td>{{ $employee->night_shift ? 'Sim' : 'Não' }}</td>
+                                            <td><strong>Treinamentos</strong></td>
+                                            <td>{{ $employee->treinamentos ?? '' }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

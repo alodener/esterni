@@ -114,30 +114,21 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="insalubrity" class="form-label">Insalubridade *</label>
-                                    <select name="insalubrity" id="insalubrity" class="form-select border border-2 p-2" required>
-                                        <option value="0">Não</option>
-                                        <option value="1">Sim</option>
-                                    </select>
-                                    @error('insalubrity')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="intervalo" class="form-label">Intervalo *</label>
+                                    <input type="text" step="0.01" name="intervalo" id="intervalo" class="form-control border border-2 p-2" required>
+                                    @error('intervalo')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="dangerousness" class="form-label">Periculosidade *</label>
-                                    <select name="dangerousness" id="dangerousness" class="form-select border border-2 p-2" required>
-                                        <option value="0">Não</option>
-                                        <option value="1">Sim</option>
-                                    </select>
-                                    @error('dangerousness')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="adicionais" class="form-label">Adicionais *</label>
+                                    <input type="text" step="0.01" name="adicionais" id="adicionais" class="form-control border border-2 p-2" required>
+                                    @error('adicionais')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="night_shift" class="form-label">Trabalho noturno *</label>
-                                    <select name="night_shift" id="night_shift" class="form-select border border-2 p-2" required>
-                                        <option value="0">Não</option>
-                                        <option value="1">Sim</option>
-                                    </select>
-                                    @error('night_shift')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="treinamentos" class="form-label">Treinamentos *</label>
+                                    <input type="text" step="0.01" name="treinamentos" id="treinamentos" class="form-control border border-2 p-2" required>
+                                    @error('treinamentos')<p class='text-danger'>{{ $message }}</p>@enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">

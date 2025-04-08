@@ -91,7 +91,7 @@
                                                             class="btn btn-sm btn-info text-white me-1"
                                                             data-toggle="tooltip"
                                                             data-original-title="Visualizar usuário">
-                                                                Visualizar
+                                                                Indicadores
                                                             </a>
 
                                                             <a href="{{ route('onboarding.show', $serviceProvider->id) }}"
@@ -128,7 +128,7 @@
                                                             class="btn btn-sm btn-info text-white me-1"
                                                             data-toggle="tooltip"
                                                             data-original-title="Visualizar usuário">
-                                                                Visualizar
+                                                                Indicadores
                                                             </a>
 
                                                             <a href="{{ route('onboarding.show', $serviceProvider->id) }}"

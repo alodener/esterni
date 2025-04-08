@@ -133,7 +133,6 @@
                                         </table>
 
                                     </div>
-                                    teste
                                 </div>
 
                                 <!-- NOTE: Jornada de Trabalho -->

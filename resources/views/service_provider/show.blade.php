@@ -16,39 +16,39 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-5 mb-4">
-                        @php
-                            $habilitacoes = [
-                                ['titulo' => 'Habilitação Jurídica', 'valor' => $serviceProviders->getLegalCertificationAverageScoreAttribute(), 'icone' => 'gavel'],
-                                ['titulo' => 'Habilitação Trabalhista', 'valor' => $serviceProviders->getLaborCertificationAverageScoreAttribute(), 'icone' => 'work'],
-                                ['titulo' => 'Habilitação Fiscal', 'valor' => $serviceProviders->getFiscalCertificationAverageScoreAttribute(), 'icone' => 'receipt'],
-                                ['titulo' => 'Habilitação Econômica', 'valor' => $serviceProviders->getEconomicCertificationAverageScoreAttribute(), 'icone' => 'attach_money'],
-                            ];
-                            $media = 50; // Defina aqui a média que será usada na condição
-                        @endphp
+                    <div class="row">
+{{--                        @php--}}
+{{--                            $habilitacoes = [--}}
+{{--                                ['titulo' => 'Habilitação Jurídica', 'valor' => $serviceProviders->getLegalCertificationAverageScoreAttribute(), 'icone' => 'gavel'],--}}
+{{--                                ['titulo' => 'Habilitação Trabalhista', 'valor' => $serviceProviders->getLaborCertificationAverageScoreAttribute(), 'icone' => 'work'],--}}
+{{--                                ['titulo' => 'Habilitação Fiscal', 'valor' => $serviceProviders->getFiscalCertificationAverageScoreAttribute(), 'icone' => 'receipt'],--}}
+{{--                                ['titulo' => 'Habilitação Econômica', 'valor' => $serviceProviders->getEconomicCertificationAverageScoreAttribute(), 'icone' => 'attach_money'],--}}
+{{--                            ];--}}
+{{--                            $media = 50; // Defina aqui a média que será usada na condição--}}
+{{--                        @endphp--}}
 
-                        @foreach ($habilitacoes as $habilitacao)
-                            @php
-                                $bgColor = $habilitacao['valor'] >= $media ? 'bg-gradient-success shadow-success' : 'bg-gradient-danger shadow-danger';
-                            @endphp
-                            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                                <div class="card {{ $bgColor }}">
-                                    <div class="card-header p-3 pt-2 ">
-                                        <div class="icon icon-md icon-shape {{ $bgColor }} text-center border-radius-xl mt-n4 position-absolute">
-                                            <i class="material-icons opacity-10">{{ $habilitacao['icone'] }}</i>
-                                        </div>
-                                        <div class="text-end pt-1">
-                                            <p class="text-sm mb-0 text-capitalize">{{ $habilitacao['titulo'] }}</p>
-                                            <h4 class="mb-0">{{ number_format($habilitacao['valor'], 0, ',', '.') }}</h4>
-                                        </div>
-                                    </div>
-                                    <hr class="dark horizontal my-0">
-                                    <div class="card-footer p-3">
-                                        <p class="mb-0"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+{{--                        @foreach ($habilitacoes as $habilitacao)--}}
+{{--                            @php--}}
+{{--                                $bgColor = $habilitacao['valor'] >= $media ? 'bg-gradient-success shadow-success' : 'bg-gradient-danger shadow-danger';--}}
+{{--                            @endphp--}}
+{{--                            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">--}}
+{{--                                <div class="card {{ $bgColor }}">--}}
+{{--                                    <div class="card-header p-3 pt-2 ">--}}
+{{--                                        <div class="icon icon-md icon-shape {{ $bgColor }} text-center border-radius-xl mt-n4 position-absolute">--}}
+{{--                                            <i class="material-icons opacity-10">{{ $habilitacao['icone'] }}</i>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="text-end pt-1">--}}
+{{--                                            <p class="text-sm mb-0 text-capitalize">{{ $habilitacao['titulo'] }}</p>--}}
+{{--                                            <h4 class="mb-0">{{ number_format($habilitacao['valor'], 0, ',', '.') }}</h4>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <hr class="dark horizontal my-0">--}}
+{{--                                    <div class="card-footer p-3">--}}
+{{--                                        <p class="mb-0"></p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-sm-6 mb-4 mt-4 d-flex justify-content-center align-items-center">

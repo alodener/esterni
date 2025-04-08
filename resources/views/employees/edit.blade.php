@@ -171,29 +171,35 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="insalubrity" class="form-label">Insalubridade *</label>
-                                    <select @can('isClient') disabled @endcan name="insalubrity" id="insalubrity" class="form-select border border-2 p-2" required>
-                                        <option value="0" {{ $employee->insalubrity == 0 ? 'selected' : '' }}>Não</option>
-                                        <option value="1" {{ $employee->insalubrity == 1 ? 'selected' : '' }}>Sim</option>
-                                    </select>
-                                    @error('insalubrity')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="intervalo" class="form-label">Intervalo *</label>
+                                    <input type="text" step="0.01" name="intervalo" id="intervalo"
+                                           @can('isClient') disabled @endcan
+                                           value="{{ old('intervalo', $employee->intervalo) }}"
+                                           class="form-control border border-2 p-2" required>
+                                    @error('intervalo')
+                                    <p class='text-danger'>{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="dangerousness" class="form-label">Periculosidade *</label>
-                                    <select @can('isClient') disabled @endcan name="dangerousness" id="dangerousness" class="form-select border border-2 p-2" required>
-                                        <option value="0" {{ $employee->dangerousness == 0 ? 'selected' : '' }}>Não</option>
-                                        <option value="1" {{ $employee->dangerousness == 1 ? 'selected' : '' }}>Sim</option>
-                                    </select>
-                                    @error('dangerousness')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="adicionais" class="form-label">Adicionais *</label>
+                                    <input type="text" step="0.01" name="adicionais" id="adicionais"
+                                           @can('isClient') disabled @endcan
+                                           value="{{ old('adicionais', $employee->adicionais) }}"
+                                           class="form-control border border-2 p-2" required>
+                                    @error('adicionais')
+                                    <p class='text-danger'>{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="night_shift" class="form-label">Trabalho noturno *</label>
-                                    <select @can('isClient') disabled @endcan name="night_shift" id="night_shift" class="form-select border border-2 p-2" required>
-                                        <option value="0" {{ $employee->night_shift == 0 ? 'selected' : '' }}>Não</option>
-                                        <option value="1" {{ $employee->night_shift == 1 ? 'selected' : '' }}>Sim</option>
-                                    </select>
-                                    @error('night_shift')<p class='text-danger'>{{ $message }}</p>@enderror
+                                    <label for="treinamentos" class="form-label">Treinamentos *</label>
+                                    <input type="text" step="0.01" name="treinamentos" id="treinamentos"
+                                           @can('isClient') disabled @endcan
+                                           value="{{ old('treinamentos', $employee->treinamentos) }}"
+                                           class="form-control border border-2 p-2" required>
+                                    @error('treinamentos')
+                                    <p class='text-danger'>{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">

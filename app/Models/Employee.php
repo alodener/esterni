@@ -25,10 +25,10 @@ class Employee extends Model
         'dismissal_date',
         'job_title',
         'salary',
-        'insalubrity',
-        'dangerousness',
+        'intervalo',
+        'adicionais',
         'work_schedule',
-        'night_shift',
+        'treinamentos',
         'department',
         'start_client_allocation',
         'end_client_allocation',
@@ -40,10 +40,7 @@ class Employee extends Model
         'dismissal_date' => 'date',
         'start_client_allocation' => 'date',
         'end_client_allocation' => 'date',
-        'salary' => 'decimal:2',
-        'insalubrity' => 'boolean',
-        'dangerousness' => 'boolean',
-        'night_shift' => 'boolean',
+        'salary' => 'decimal:2'
     ];
 
     public function serviceProvider()
