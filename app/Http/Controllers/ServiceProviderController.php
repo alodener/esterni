@@ -6,6 +6,7 @@ use App\Models\ServiceProvider;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class ServiceProviderController extends Controller
@@ -59,7 +60,18 @@ class ServiceProviderController extends Controller
     }
     public function index()
     {
-        $serviceProviders = ServiceProvider::with('client')->paginate(10);
+        if (Gate::allows('isAdmin')) {
+            // Admin vê todos
+            $serviceProviders = ServiceProvider::with('client')->paginate(10);
+        } elseif (Gate::allows('isClient')) {
+            // Client vê apenas os seus
+            $client = Auth::guard('client')->user();
+            $serviceProviders = $client->serviceProviders()->with('client')->paginate(1);
+//            $serviceProviders = ServiceProvider::with('client')->where('client_id', '=', $client)->paginate(1);
+        } else {
+            abort(403, 'Acesso não autorizado.');
+        }
+
         return view('service_provider.index', compact('serviceProviders'));
     }
 

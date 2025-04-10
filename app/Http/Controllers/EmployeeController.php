@@ -80,7 +80,8 @@ class EmployeeController extends Controller
         if (!$serviceProvider) {
             return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
         }
-        return view('employees.show', compact('serviceProvider'));
+        $employees = $serviceProvider->employees()->paginate(1);
+        return view('employees.show', compact('serviceProvider', 'employees'));
     }
 
     public function create($id)

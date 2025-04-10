@@ -73,7 +73,7 @@
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h6 class="mb-0">Indicador Mensal</h6>
-                                <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-secondary">Voltar</a>
+                                <a href="{{ route('service-provider.show', $serviceProvider->id) }}" class="btn btn-secondary">Voltar</a>
                             </div>
                         </div>
                     </div>
@@ -181,7 +181,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($serviceProvider->payrollAudits as $payrollAudit)
+                                            @foreach ($payrollAudits as $payrollAudit)
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex px-2 py-1">
@@ -264,7 +264,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($serviceProvider->payrollAudits as $payrollAudit)
+                                            @foreach ($payrollAudits as $payrollAudit)
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex px-2 py-1" >
@@ -301,6 +301,9 @@
                     @endcan
                 </div>
             </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-center">
+            {{ $payrollAudits->links() }}
         </div>
     </main>
     @push('js')

@@ -78,6 +78,11 @@ class AuditComplianceController extends Controller
             return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
         }
 
+        $auditCompliancesPaginate = $serviceProvider
+            ->auditCompliances()
+            ->orderByDesc('year')
+            ->paginate(1);
+
         $currentYear = Carbon::now()->subYear()->year;
 
         $auditCompliances = $serviceProvider->auditCompliances()
@@ -138,7 +143,7 @@ class AuditComplianceController extends Controller
             ]
         ];
 
-        return view('indicator_anual.index', compact('serviceProvider', 'indicadores'));
+        return view('indicator_anual.index', compact('serviceProvider', 'indicadores', 'auditCompliancesPaginate'));
     }
 
 

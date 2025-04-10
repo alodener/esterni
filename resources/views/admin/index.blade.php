@@ -95,7 +95,9 @@
                     </div>
                 </div>
             </div>
-
+            <div class="mt-4 d-flex justify-content-center">
+                {{ $users->links() }}
+            </div>
             {{-- <x-footers.auth></x-footers.auth> --}}
         </div>
     </main>

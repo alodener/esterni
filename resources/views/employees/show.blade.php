@@ -104,7 +104,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($serviceProvider->employees as $employee)
+                                            @foreach ($employees as $employee)
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex px-2 py-1">
@@ -182,7 +182,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($serviceProvider->employees as $employee)
+                                            @foreach ($employees as $employee)
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex px-2 py-1">
@@ -223,6 +223,9 @@
                     @endcan
                 </div>
             </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-center">
+            {{ $employees->links() }}
         </div>
     </main>
 

@@ -107,7 +107,7 @@
                                         @endcan
 
                                         @can('isClient')
-                                            @foreach (Auth::guard('client')->user()->serviceProviders as $serviceProvider)
+                                            @foreach ($serviceProviders as $serviceProvider)
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex px-2 py-1">

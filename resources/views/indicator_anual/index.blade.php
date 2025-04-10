@@ -185,7 +185,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($serviceProvider->auditCompliances->sortByDesc('year') as $auditCompliance)
+                                            @foreach ($auditCompliancesPaginate as $auditCompliance)
                                                 <tr>
                                                     <td>
                                                         <p class="text-xs font-weight-bold mb-0">
@@ -262,7 +262,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($serviceProvider->auditCompliances->sortByDesc('year') as $auditCompliance)
+                                            @foreach ($auditCompliancesPaginate as $auditCompliance)
                                                 <tr>
                                                     <td>
                                                         <p class="text-xs font-weight-bold mb-0">
@@ -294,6 +294,9 @@
                     @endcan
                 </div>
             </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-center">
+            {{ $auditCompliancesPaginate->links() }}
         </div>
     </main>
     @push('js')
