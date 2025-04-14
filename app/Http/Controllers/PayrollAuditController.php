@@ -77,7 +77,7 @@ class PayrollAuditController extends Controller
         if (!$serviceProvider) {
             return redirect()->route('service-provider.show', $id)->with('error', 'Cliente não encontrado');
         }
-        $payrollAudits = $serviceProvider->payrollAudits()->paginate(1);
+        $payrollAudits = $serviceProvider->payrollAudits()->paginate(10);
 
         $totalRegistros = $serviceProvider->payrollAudits->count();
 

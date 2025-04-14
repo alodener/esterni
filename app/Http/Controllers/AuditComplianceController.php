@@ -81,7 +81,7 @@ class AuditComplianceController extends Controller
         $auditCompliancesPaginate = $serviceProvider
             ->auditCompliances()
             ->orderByDesc('year')
-            ->paginate(1);
+            ->paginate(10);
 
         $currentYear = Carbon::now()->subYear()->year;
 

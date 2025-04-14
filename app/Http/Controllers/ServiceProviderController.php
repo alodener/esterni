@@ -66,7 +66,7 @@ class ServiceProviderController extends Controller
         } elseif (Gate::allows('isClient')) {
             // Client vê apenas os seus
             $client = Auth::guard('client')->user();
-            $serviceProviders = $client->serviceProviders()->with('client')->paginate(1);
+            $serviceProviders = $client->serviceProviders()->with('client')->paginate(10);
 //            $serviceProviders = ServiceProvider::with('client')->where('client_id', '=', $client)->paginate(1);
         } else {
             abort(403, 'Acesso não autorizado.');
